@@ -1,0 +1,24 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Bb]uild/
+[Bb]uilds/
+[Uu]ser[Ss]ettings/
+
+# IDE and local caches
+.vs/
+.idea/
+*.csproj
+*.sln
+*.user
+*.suo
+*.tmp
+*.bak
+
+# Local credentials and environment files
+.env
+.env.*
+!.env.example
