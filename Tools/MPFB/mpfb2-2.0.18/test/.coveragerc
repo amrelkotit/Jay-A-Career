@@ -1,0 +1,13 @@
+[run]
+parallel = True
+source = ../src/mpfb
+omit =
+    */modules/*
+    */tests/*
+    */testdata/*
+
+[html]
+directory = coverage
+
+[json]
+output = coverage/coverage.json

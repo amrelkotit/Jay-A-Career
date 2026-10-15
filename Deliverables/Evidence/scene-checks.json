@@ -1,0 +1,249 @@
+{
+  "checks": 61,
+  "rows": [
+    {
+      "name": "Early sleep blocked: accept",
+      "passed": true
+    },
+    {
+      "name": "Early clean blocked",
+      "passed": true
+    },
+    {
+      "name": "No-package negotiation blocked",
+      "passed": true
+    },
+    {
+      "name": "Hale briefing owns dialogue",
+      "passed": true
+    },
+    {
+      "name": "Exactly one package",
+      "passed": true
+    },
+    {
+      "name": "Authored clutter and package activated",
+      "passed": true
+    },
+    {
+      "name": "Package carry reference",
+      "passed": true
+    },
+    {
+      "name": "Handoff dock placement",
+      "passed": true
+    },
+    {
+      "name": "Handoff exact position",
+      "passed": true
+    },
+    {
+      "name": "Correct settlement: accept",
+      "passed": true
+    },
+    {
+      "name": "Duplicate payment blocked",
+      "passed": true
+    },
+    {
+      "name": "Visible cleanup",
+      "passed": true
+    },
+    {
+      "name": "Day reset keeps cash",
+      "passed": true
+    },
+    {
+      "name": "Early sleep blocked: counter-success",
+      "passed": true
+    },
+    {
+      "name": "Early clean blocked",
+      "passed": true
+    },
+    {
+      "name": "No-package negotiation blocked",
+      "passed": true
+    },
+    {
+      "name": "Hale briefing owns dialogue",
+      "passed": true
+    },
+    {
+      "name": "Exactly one package",
+      "passed": true
+    },
+    {
+      "name": "Authored clutter and package activated",
+      "passed": true
+    },
+    {
+      "name": "Package carry reference",
+      "passed": true
+    },
+    {
+      "name": "Handoff dock placement",
+      "passed": true
+    },
+    {
+      "name": "Handoff exact position",
+      "passed": true
+    },
+    {
+      "name": "Correct settlement: counter-success",
+      "passed": true
+    },
+    {
+      "name": "Duplicate payment blocked",
+      "passed": true
+    },
+    {
+      "name": "Visible cleanup",
+      "passed": true
+    },
+    {
+      "name": "Day reset keeps cash",
+      "passed": true
+    },
+    {
+      "name": "Early sleep blocked: counter-refusal",
+      "passed": true
+    },
+    {
+      "name": "Early clean blocked",
+      "passed": true
+    },
+    {
+      "name": "No-package negotiation blocked",
+      "passed": true
+    },
+    {
+      "name": "Hale briefing owns dialogue",
+      "passed": true
+    },
+    {
+      "name": "Exactly one package",
+      "passed": true
+    },
+    {
+      "name": "Authored clutter and package activated",
+      "passed": true
+    },
+    {
+      "name": "Package carry reference",
+      "passed": true
+    },
+    {
+      "name": "Handoff dock placement",
+      "passed": true
+    },
+    {
+      "name": "Handoff exact position",
+      "passed": true
+    },
+    {
+      "name": "Correct settlement: counter-refusal",
+      "passed": true
+    },
+    {
+      "name": "Duplicate payment blocked",
+      "passed": true
+    },
+    {
+      "name": "Return required before cleaning",
+      "passed": true
+    },
+    {
+      "name": "Unsold return dock",
+      "passed": true
+    },
+    {
+      "name": "Visible cleanup",
+      "passed": true
+    },
+    {
+      "name": "Day reset keeps cash",
+      "passed": true
+    },
+    {
+      "name": "Early sleep blocked: reject",
+      "passed": true
+    },
+    {
+      "name": "Early clean blocked",
+      "passed": true
+    },
+    {
+      "name": "No-package negotiation blocked",
+      "passed": true
+    },
+    {
+      "name": "Hale briefing owns dialogue",
+      "passed": true
+    },
+    {
+      "name": "Exactly one package",
+      "passed": true
+    },
+    {
+      "name": "Authored clutter and package activated",
+      "passed": true
+    },
+    {
+      "name": "Package carry reference",
+      "passed": true
+    },
+    {
+      "name": "Handoff dock placement",
+      "passed": true
+    },
+    {
+      "name": "Handoff exact position",
+      "passed": true
+    },
+    {
+      "name": "Correct settlement: reject",
+      "passed": true
+    },
+    {
+      "name": "Duplicate payment blocked",
+      "passed": true
+    },
+    {
+      "name": "Return required before cleaning",
+      "passed": true
+    },
+    {
+      "name": "Unsold return dock",
+      "passed": true
+    },
+    {
+      "name": "Visible cleanup",
+      "passed": true
+    },
+    {
+      "name": "Day reset keeps cash",
+      "passed": true
+    },
+    {
+      "name": "Pause panel freezes time",
+      "passed": true
+    },
+    {
+      "name": "Resume restores time",
+      "passed": true
+    },
+    {
+      "name": "Flashlight toggle",
+      "passed": true
+    },
+    {
+      "name": "Grouped lab switch",
+      "passed": true
+    },
+    {
+      "name": "Three saved Cinemachine cameras",
+      "passed": true
+    }
+  ]
+}

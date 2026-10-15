@@ -1,0 +1,9 @@
+{
+  "scene": "Assets/JayACareer/Scenes/JayACareer_Realism.unity",
+  "humans": 3,
+  "cameras": 3,
+  "materials": 65,
+  "labFloorMaterial": "LabFloor_PBR",
+  "confirm": "confirmation_001",
+  "placement": "impactWood_light_000"
+}

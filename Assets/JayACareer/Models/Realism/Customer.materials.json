@@ -1,0 +1,102 @@
+[
+  {
+    "name": "CustomerSkin.teeth_base",
+    "color": [
+      0.6399999856948853,
+      0.6399999856948853,
+      0.6399999856948853,
+      1.0
+    ],
+    "roughness": 0.65,
+    "metallic": 0,
+    "textures": {
+      "Base Color": "teeth.png"
+    }
+  },
+  {
+    "name": "CustomerSkin",
+    "color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "roughness": 0.65,
+    "metallic": 0,
+    "textures": {
+      "Base Color": "middleage_darkskinned_male_diffuse.png"
+    }
+  },
+  {
+    "name": "CustomerSkin.shoes01",
+    "color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "roughness": 0.65,
+    "metallic": 0,
+    "textures": {
+      "Base Color": "shoes01_diffuse.png",
+      "Normal": "shoes01_normal.png"
+    }
+  },
+  {
+    "name": "CustomerSkin.short04",
+    "color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "roughness": 0.65,
+    "metallic": 0,
+    "textures": {
+      "Base Color": "short04_diffuse.png"
+    }
+  },
+  {
+    "name": "CustomerEyes",
+    "color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "roughness": 0.65,
+    "metallic": 0,
+    "textures": {
+      "Base Color": "brown_eye.png"
+    }
+  },
+  {
+    "name": "CustomerSkin.male_casualsuit01",
+    "color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "roughness": 0.65,
+    "metallic": 0,
+    "textures": {
+      "Base Color": "male_casualsuit01_diffuse.png",
+      "Normal": "male_casualsuit01_normal.png"
+    }
+  },
+  {
+    "name": "CustomerSkin.eyebrow001",
+    "color": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "roughness": 0.65,
+    "metallic": 0,
+    "textures": {
+      "Base Color": "eyebrow001.png"
+    }
+  }
+]

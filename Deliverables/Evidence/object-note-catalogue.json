@@ -1,0 +1,77 @@
+{
+  "PreparationBench": [
+    "Preparation bench",
+    "O: prepare package",
+    "Briefing with Dr. Hale first"
+  ],
+  "InstrumentBench": [
+    "Instrument table",
+    "Laboratory instruments",
+    "Fixed work surface"
+  ],
+  "GlasswareBench": [
+    "Glassware table",
+    "Glassware & test tubes",
+    "Fixed work surface"
+  ],
+  "CleaningSink": [
+    "Cleaning station",
+    "C: clean workspace",
+    "After delivery is resolved"
+  ],
+  "ReturnShelfSupport": [
+    "Return table",
+    "Unsold packages only",
+    "Place package on return tray"
+  ],
+  "ReturnShelf": [
+    "Return tray",
+    "L: return package",
+    "After a refused / rejected deal"
+  ],
+  "CustomerCounter": [
+    "Delivery counter",
+    "L: place package here",
+    "Then T: talk to customer"
+  ],
+  "BedroomDesk": [
+    "Bedroom desk",
+    "Personal workspace",
+    "Fixed furniture"
+  ],
+  "BedroomBed": [
+    "Bed",
+    "O: sleep / next day",
+    "Finish cleaning first"
+  ],
+  "LabLightSwitch": [
+    "Lab lights",
+    "O: switch ON / OFF",
+    "F controls your flashlight"
+  ],
+  "BedroomChair": [
+    "Bedroom chair",
+    "O: arrange chair",
+    "Enter: confirm / Esc: cancel"
+  ],
+  "SealedDeliveryPackage": [
+    "Delivery package",
+    "L: lift / place",
+    "R: rotate while carrying"
+  ],
+  "CarryableCrate": [
+    "Supply crate",
+    "L: lift / place",
+    "R: rotate while carrying"
+  ],
+  "CarryableEmptyDrum": [
+    "Empty drum",
+    "L: lift / place",
+    "R: rotate while carrying"
+  ],
+  "SupplyCarton": [
+    "Supply carton",
+    "L: lift / place",
+    "R: rotate while carrying"
+  ]
+}

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "steel_frame_shelves_01",
+    "color": [
+      0.800000011920929,
+      0.800000011920929,
+      0.800000011920929,
+      1.0
+    ],
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "textures": {
+      "Base Color": "steel_frame_shelves_01_diff_1k.jpg",
+      "Normal": "steel_frame_shelves_01_nor_gl_1k.jpg",
+      "Roughness": "steel_frame_shelves_01_arm_1k.jpg",
+      "Metallic": "steel_frame_shelves_01_arm_1k.jpg"
+    }
+  }
+]

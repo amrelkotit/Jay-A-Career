@@ -1,0 +1,54 @@
+[
+  {
+    "name": "street_lamp_01",
+    "color": [
+      0.800000011920929,
+      0.800000011920929,
+      0.800000011920929,
+      1.0
+    ],
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "textures": {
+      "Base Color": "street_lamp_01_diff_1k.jpg",
+      "Normal": "street_lamp_01_nor_gl_1k.jpg",
+      "Roughness": "street_lamp_01_arm_1k.jpg",
+      "Metallic": "street_lamp_01_arm_1k.jpg"
+    }
+  },
+  {
+    "name": "street_lamp_01_glass",
+    "color": [
+      0.800000011920929,
+      0.800000011920929,
+      0.800000011920929,
+      1.0
+    ],
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "textures": {
+      "Base Color": "street_lamp_01_diff_1k.jpg",
+      "Normal": "street_lamp_01_nor_gl_1k.jpg",
+      "Roughness": "street_lamp_01_arm_1k.jpg",
+      "Metallic": "street_lamp_01_arm_1k.jpg",
+      "Alpha": "street_lamp_01_diff_1k.jpg"
+    }
+  },
+  {
+    "name": "street_lamp_01_bulb",
+    "color": [
+      0.800000011920929,
+      0.800000011920929,
+      0.800000011920929,
+      1.0
+    ],
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "textures": {
+      "Base Color": "street_lamp_01_diff_1k.jpg",
+      "Normal": "street_lamp_01_nor_gl_1k.jpg",
+      "Roughness": "street_lamp_01_arm_1k.jpg",
+      "Metallic": "street_lamp_01_arm_1k.jpg"
+    }
+  }
+]

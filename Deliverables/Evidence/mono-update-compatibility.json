@@ -1,0 +1,295 @@
+{
+  "types": [
+    {
+      "type": "ContextualInteractable",
+      "sameFields": true,
+      "oldFields": [],
+      "newFields": []
+    },
+    {
+      "type": "JayCameraRig",
+      "sameFields": true,
+      "oldFields": [
+        "<LookPivot>k__BackingField:UnityEngine.Transform",
+        "<IsThirdPerson>k__BackingField:System.Boolean",
+        "outputCamera:UnityEngine.Camera",
+        "firstPersonCamera:Unity.Cinemachine.CinemachineCamera",
+        "thirdPersonCamera:Unity.Cinemachine.CinemachineCamera",
+        "interactionCamera:Unity.Cinemachine.CinemachineCamera",
+        "normalPriority:System.Int32",
+        "initialized:System.Boolean"
+      ],
+      "newFields": [
+        "<LookPivot>k__BackingField:UnityEngine.Transform",
+        "<IsThirdPerson>k__BackingField:System.Boolean",
+        "outputCamera:UnityEngine.Camera",
+        "firstPersonCamera:Unity.Cinemachine.CinemachineCamera",
+        "thirdPersonCamera:Unity.Cinemachine.CinemachineCamera",
+        "interactionCamera:Unity.Cinemachine.CinemachineCamera",
+        "normalPriority:System.Int32",
+        "initialized:System.Boolean"
+      ]
+    },
+    {
+      "type": "JayDailyLoop",
+      "sameFields": true,
+      "oldFields": [
+        "<Current>k__BackingField:JayDailyLoop/Stage",
+        "<Package>k__BackingField:JayDailyLoop/PackageLocation",
+        "<Day>k__BackingField:System.Int32",
+        "<Cash>k__BackingField:System.Int32",
+        "<PackageId>k__BackingField:System.Int32",
+        "<Dirty>k__BackingField:System.Boolean",
+        "<NegotiationResolved>k__BackingField:System.Boolean",
+        "<Feedback>k__BackingField:System.String"
+      ],
+      "newFields": [
+        "<Current>k__BackingField:JayDailyLoop/Stage",
+        "<Package>k__BackingField:JayDailyLoop/PackageLocation",
+        "<Day>k__BackingField:System.Int32",
+        "<Cash>k__BackingField:System.Int32",
+        "<PackageId>k__BackingField:System.Int32",
+        "<Dirty>k__BackingField:System.Boolean",
+        "<NegotiationResolved>k__BackingField:System.Boolean",
+        "<Feedback>k__BackingField:System.String"
+      ]
+    },
+    {
+      "type": "JayDemonstration",
+      "sameFields": true,
+      "oldFields": [
+        "g:JayGameManager",
+        "cc:UnityEngine.CharacterController",
+        "rig:JayCameraRig",
+        "jay:UnityEngine.Animator",
+        "report:JayDemonstration/Report",
+        "output:System.String",
+        "outputRoot:System.String",
+        "recording:System.Boolean",
+        "captureTime:System.Single",
+        "frame:System.Int32",
+        "samples:System.Collections.Generic.List`1<System.Single>"
+      ],
+      "newFields": [
+        "g:JayGameManager",
+        "cc:UnityEngine.CharacterController",
+        "rig:JayCameraRig",
+        "jay:UnityEngine.Animator",
+        "report:JayDemonstration/Report",
+        "output:System.String",
+        "outputRoot:System.String",
+        "recording:System.Boolean",
+        "captureTime:System.Single",
+        "frame:System.Int32",
+        "samples:System.Collections.Generic.List`1<System.Single>"
+      ]
+    },
+    {
+      "type": "JayGameManager",
+      "sameFields": true,
+      "oldFields": [
+        "day:System.Int32",
+        "money:System.Int32",
+        "objective:System.String",
+        "titleText:UnityEngine.UI.Text",
+        "dayText:UnityEngine.UI.Text",
+        "cashText:UnityEngine.UI.Text",
+        "objectiveText:UnityEngine.UI.Text",
+        "promptText:UnityEngine.UI.Text",
+        "messageText:UnityEngine.UI.Text",
+        "dialogueText:UnityEngine.UI.Text",
+        "activePlacement:MoveableObject",
+        "<Loop>k__BackingField:JayDailyLoop",
+        "player:JayPlayerController",
+        "playerCamera:UnityEngine.Camera",
+        "lighting:JayLightingController",
+        "deliveryPackage:LiftableObject",
+        "preparationSlot:UnityEngine.Transform",
+        "counterSlot:UnityEngine.Transform",
+        "returnSlot:UnityEngine.Transform",
+        "carryPoint:UnityEngine.Transform",
+        "hale:TalkableCharacter",
+        "customer:TalkableCharacter",
+        "workspaceClutter:UnityEngine.GameObject",
+        "pausePanel:UnityEngine.GameObject",
+        "customerClothing:UnityEngine.Renderer",
+        "customerVariantA:UnityEngine.Material",
+        "customerVariantB:UnityEngine.Material",
+        "feedbackAudio:UnityEngine.AudioSource",
+        "confirmSound:UnityEngine.AudioClip",
+        "placementSound:UnityEngine.AudioClip",
+        "<CarriedObject>k__BackingField:LiftableObject",
+        "<DialogueActive>k__BackingField:System.Boolean",
+        "<CustomerDialogue>k__BackingField:System.Boolean",
+        "<IsPaused>k__BackingField:System.Boolean",
+        "messageTimer:System.Single",
+        "recoveryTimer:System.Single"
+      ],
+      "newFields": [
+        "day:System.Int32",
+        "money:System.Int32",
+        "objective:System.String",
+        "titleText:UnityEngine.UI.Text",
+        "dayText:UnityEngine.UI.Text",
+        "cashText:UnityEngine.UI.Text",
+        "objectiveText:UnityEngine.UI.Text",
+        "promptText:UnityEngine.UI.Text",
+        "messageText:UnityEngine.UI.Text",
+        "dialogueText:UnityEngine.UI.Text",
+        "activePlacement:MoveableObject",
+        "<Loop>k__BackingField:JayDailyLoop",
+        "player:JayPlayerController",
+        "playerCamera:UnityEngine.Camera",
+        "lighting:JayLightingController",
+        "deliveryPackage:LiftableObject",
+        "preparationSlot:UnityEngine.Transform",
+        "counterSlot:UnityEngine.Transform",
+        "returnSlot:UnityEngine.Transform",
+        "carryPoint:UnityEngine.Transform",
+        "hale:TalkableCharacter",
+        "customer:TalkableCharacter",
+        "workspaceClutter:UnityEngine.GameObject",
+        "pausePanel:UnityEngine.GameObject",
+        "customerClothing:UnityEngine.Renderer",
+        "customerVariantA:UnityEngine.Material",
+        "customerVariantB:UnityEngine.Material",
+        "feedbackAudio:UnityEngine.AudioSource",
+        "confirmSound:UnityEngine.AudioClip",
+        "placementSound:UnityEngine.AudioClip",
+        "<CarriedObject>k__BackingField:LiftableObject",
+        "<DialogueActive>k__BackingField:System.Boolean",
+        "<CustomerDialogue>k__BackingField:System.Boolean",
+        "<IsPaused>k__BackingField:System.Boolean",
+        "messageTimer:System.Single",
+        "recoveryTimer:System.Single"
+      ]
+    },
+    {
+      "type": "WorldLabelBillboard",
+      "sameFields": true,
+      "oldFields": [],
+      "newFields": []
+    },
+    {
+      "type": "JayHumanAnimation",
+      "sameFields": true,
+      "oldFields": [
+        "role:JayHumanAnimation/Role",
+        "game:JayGameManager",
+        "animator:UnityEngine.Animator",
+        "lastHandoffDay:System.Int32"
+      ],
+      "newFields": [
+        "role:JayHumanAnimation/Role",
+        "game:JayGameManager",
+        "animator:UnityEngine.Animator",
+        "lastHandoffDay:System.Int32"
+      ]
+    },
+    {
+      "type": "JayInputValidation",
+      "sameFields": true,
+      "oldFields": [
+        "g:JayGameManager",
+        "result:JayInputValidation/Result"
+      ],
+      "newFields": [
+        "g:JayGameManager",
+        "result:JayInputValidation/Result"
+      ]
+    },
+    {
+      "type": "JayLightingController",
+      "sameFields": true,
+      "oldFields": [
+        "DayCycleSeconds:System.Single",
+        "sun:UnityEngine.Light",
+        "flashlight:UnityEngine.Light",
+        "workspaceLights:UnityEngine.Light[]",
+        "<FlashlightOn>k__BackingField:System.Boolean",
+        "<WorkspaceLightsOn>k__BackingField:System.Boolean",
+        "<CycleTime>k__BackingField:System.Single"
+      ],
+      "newFields": [
+        "DayCycleSeconds:System.Single",
+        "sun:UnityEngine.Light",
+        "flashlight:UnityEngine.Light",
+        "workspaceLights:UnityEngine.Light[]",
+        "<FlashlightOn>k__BackingField:System.Boolean",
+        "<WorkspaceLightsOn>k__BackingField:System.Boolean",
+        "<CycleTime>k__BackingField:System.Single"
+      ]
+    },
+    {
+      "type": "JayPlayerController",
+      "sameFields": true,
+      "oldFields": [
+        "speed:System.Single",
+        "lookSpeed:System.Single",
+        "gravity:System.Single",
+        "interactionRange:System.Single",
+        "minX:System.Single",
+        "maxX:System.Single",
+        "minZ:System.Single",
+        "maxZ:System.Single",
+        "fallRespawnY:System.Single",
+        "outputCamera:UnityEngine.Camera",
+        "game:JayGameManager",
+        "bodyVisual:UnityEngine.Transform",
+        "footsteps:UnityEngine.AudioSource",
+        "asphaltStep:UnityEngine.AudioClip",
+        "concreteStep:UnityEngine.AudioClip",
+        "sandStep:UnityEngine.AudioClip",
+        "controller:UnityEngine.CharacterController",
+        "rig:JayCameraRig",
+        "spawn:UnityEngine.Vector3",
+        "pitch:System.Single",
+        "verticalSpeed:System.Single",
+        "stepTimer:System.Single",
+        "<MovementAmount>k__BackingField:System.Single"
+      ],
+      "newFields": [
+        "speed:System.Single",
+        "lookSpeed:System.Single",
+        "gravity:System.Single",
+        "interactionRange:System.Single",
+        "minX:System.Single",
+        "maxX:System.Single",
+        "minZ:System.Single",
+        "maxZ:System.Single",
+        "fallRespawnY:System.Single",
+        "outputCamera:UnityEngine.Camera",
+        "game:JayGameManager",
+        "bodyVisual:UnityEngine.Transform",
+        "footsteps:UnityEngine.AudioSource",
+        "asphaltStep:UnityEngine.AudioClip",
+        "concreteStep:UnityEngine.AudioClip",
+        "sandStep:UnityEngine.AudioClip",
+        "controller:UnityEngine.CharacterController",
+        "rig:JayCameraRig",
+        "spawn:UnityEngine.Vector3",
+        "pitch:System.Single",
+        "verticalSpeed:System.Single",
+        "stepTimer:System.Single",
+        "<MovementAmount>k__BackingField:System.Single"
+      ]
+    },
+    {
+      "type": "JaySurface",
+      "sameFields": true,
+      "oldFields": [
+        "kind:JaySurface/Kind"
+      ],
+      "newFields": [
+        "kind:JaySurface/Kind"
+      ]
+    }
+  ],
+  "sameRuntimeInitializers": true,
+  "sameAssemblyIdentity": true,
+  "initializers": [
+    "System.Void JayDemonstration::Launch()",
+    "System.Void JayInputValidation::Launch()"
+  ],
+  "sameRootFieldLayouts": true
+}

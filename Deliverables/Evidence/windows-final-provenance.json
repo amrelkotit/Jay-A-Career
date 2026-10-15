@@ -1,0 +1,95 @@
+{
+  "method": "Mono assembly update on the previously built scene data; not a successful fresh BuildPipeline run",
+  "asset_files_compared": 556,
+  "asset_differences_from_prior_build_source": [],
+  "legacy_urp_alias_only_changes": [
+    "Assets/JayACareer/Materials/Realism/CustomerClothingVariantB.mat",
+    "Assets/JayACareer/Materials/Realism/modular_chainlink_fence_wire.mat",
+    "Assets/JayACareer/Materials/Realism/RoofMetal.mat"
+  ],
+  "scene_and_visual_assets_match": true,
+  "deployed_assembly_matches_latest_Unity_compilation": true,
+  "compiled_assembly_sha256": "b3ba38b5d0c6fc98c32234c02fb37e17f1cb203add8e3fd4d19da616120b0e39",
+  "runtime_sources": [
+    {
+      "path": "Assets/JayACareer/Scripts/CleanableStation.cs",
+      "sha256": "c5ceee9cdcd2163812f663eb65488224ea2a351ed43c0abf36ed6d68a630e033"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/ContextualInteractable.cs",
+      "sha256": "f0c49bd140a4c5eaf3f4753fb4c6de6a4eec6573d4c1dd5f6b364e0245e4bd1e"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/DoorInteractable.cs",
+      "sha256": "c3ff399938add483e5a18fb4aaa1d88f8ea14ce2107bd7d22ad1f5cbdad45bb8"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/Interactable.cs",
+      "sha256": "8dc35601bee2d738709a5f691ad5eac7567864482c4e9970f18947d40f645eec"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayCameraRig.cs",
+      "sha256": "55aab0e5764e326ddb2056984e93dc7742900b8d99f8c679f591ee1a0e63dd9e"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayDailyLoop.cs",
+      "sha256": "4098d421b114756cac2811d8aeb5241251bea75a5447dcff53265617a70ad110"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayDemonstration.cs",
+      "sha256": "716510c6f2dc401884fa8332696323ba407de25be70e8bcf35b742bebc0e19ef"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayGameManager.cs",
+      "sha256": "a351eb41c58e11eedfcfc7593cb47fc1bbc4186660fff596ad37d42dfb3f7706"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayHumanAnimation.cs",
+      "sha256": "fe401f72974e1e7e90ebb3769da97a959c6ecd3f7f0122af95fda488dfdb4856"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayIndustrialAssetPass.cs",
+      "sha256": "79718655b0a6c0d00781e5580c6be6852adedf85db9f23e320aeeda3bcd98a7d"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayInputValidation.cs",
+      "sha256": "8700adf34b4b7d0c12c550d7e8e21d4df129eb0c0a1b878a315c523e9645aced"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayLightingController.cs",
+      "sha256": "7f9498a15df876638c8797915cbcaf5c2554f50dda806feb381f523d8e503a5f"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayPackageDock.cs",
+      "sha256": "4113f0ddb5294063565ee89831f5dd2244c7ce297790546eaac0de411ca824c3"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayPlayerController.cs",
+      "sha256": "fb50e6ff00861188ceffee8f2bcee6d8cc0e138bec770938e64a240feb70797a"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayStation.cs",
+      "sha256": "de8747326430c33f38ebedb3a7c669d964f2780344cfb349991f91013192d846"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JaySurface.cs",
+      "sha256": "2c39d8c86c912b23b64f5c1baf52bf0d499bf9f616f2ad57f8ece91171cae154"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/LiftableObject.cs",
+      "sha256": "e38044a521377d6588b7a8d301cbfa23c8eebb885e5883dd69fd2cccfa756287"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/MoveableObject.cs",
+      "sha256": "3b93270cd63f54703d0772dc90e2c114c98a6ee63e96e4c9005403b880542ea7"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/SimpleInteractable.cs",
+      "sha256": "fc69c56d85f3b7155fcbbf7f5b3ba8002a5a39ae2152fda02358a61a21dbd68d"
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/TalkableCharacter.cs",
+      "sha256": "1613d79100bffc0cb3100f3688f271c414ed4afa5b48394c2dedc7e898e24cb3"
+    }
+  ]
+}

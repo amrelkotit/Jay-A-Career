@@ -1,0 +1,170 @@
+[
+  {
+    "name": "Barrel_02",
+    "source": "https://polyhaven.com/a/Barrel_02",
+    "license": "CC0-1.0",
+    "triangles": 2688
+  },
+  {
+    "name": "cardboard_box_01",
+    "source": "https://polyhaven.com/a/cardboard_box_01",
+    "license": "CC0-1.0",
+    "triangles": 12000
+  },
+  {
+    "name": "exterior_aircon_unit",
+    "source": "https://polyhaven.com/a/exterior_aircon_unit",
+    "license": "CC0-1.0",
+    "triangles": 18986
+  },
+  {
+    "name": "modular_chainlink_fence",
+    "source": "https://polyhaven.com/a/modular_chainlink_fence",
+    "license": "CC0-1.0",
+    "triangles": 76130
+  },
+  {
+    "name": "modular_electricity_poles",
+    "source": "https://polyhaven.com/a/modular_electricity_poles",
+    "license": "CC0-1.0",
+    "triangles": 194302
+  },
+  {
+    "name": "steel_frame_shelves_01",
+    "source": "https://polyhaven.com/a/steel_frame_shelves_01",
+    "license": "CC0-1.0",
+    "triangles": 4348
+  },
+  {
+    "name": "street_lamp_01",
+    "source": "https://polyhaven.com/a/street_lamp_01",
+    "license": "CC0-1.0",
+    "triangles": 12000
+  },
+  {
+    "name": "utility_box_02",
+    "source": "https://polyhaven.com/a/utility_box_02",
+    "license": "CC0-1.0",
+    "triangles": 6268
+  },
+  {
+    "name": "LabBench",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 2756
+  },
+  {
+    "name": "SinkBench",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 3540
+  },
+  {
+    "name": "FumeHood",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 1256
+  },
+  {
+    "name": "WallCabinet",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 540
+  },
+  {
+    "name": "Centrifuge",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 1176
+  },
+  {
+    "name": "PrecisionBalance",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 500
+  },
+  {
+    "name": "TestTubeRack",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 3132
+  },
+  {
+    "name": "GraduatedBeaker",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 420
+  },
+  {
+    "name": "ConicalFlask",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 576
+  },
+  {
+    "name": "ReagentBottle",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 616
+  },
+  {
+    "name": "LabStool",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 1000
+  },
+  {
+    "name": "FinishedBed",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 648
+  },
+  {
+    "name": "BedroomDesk",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 540
+  },
+  {
+    "name": "DeskLamp",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 760
+  },
+  {
+    "name": "LabTerminal",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 3672
+  },
+  {
+    "name": "WasteBin",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 568
+  },
+  {
+    "name": "ReturnTray",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 324
+  },
+  {
+    "name": "SafetySign",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 252
+  },
+  {
+    "name": "CableTray",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 1500
+  },
+  {
+    "name": "WorkspaceStain",
+    "source": "Original Blender authoring",
+    "license": "Original project work",
+    "triangles": 12
+  }
+]

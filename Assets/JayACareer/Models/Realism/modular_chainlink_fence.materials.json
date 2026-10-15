@@ -1,0 +1,37 @@
+[
+  {
+    "name": "modular_chainlink_fence_posts",
+    "color": [
+      0.800000011920929,
+      0.800000011920929,
+      0.800000011920929,
+      1.0
+    ],
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "textures": {
+      "Base Color": "modular_chainlink_fence_posts_diff_1k.jpg",
+      "Normal": "modular_chainlink_fence_posts_nor_gl_1k.jpg",
+      "Roughness": "modular_chainlink_fence_posts_arm_1k.jpg",
+      "Metallic": "modular_chainlink_fence_posts_arm_1k.jpg"
+    }
+  },
+  {
+    "name": "modular_chainlink_fence_wire",
+    "color": [
+      0.800000011920929,
+      0.800000011920929,
+      0.800000011920929,
+      1.0
+    ],
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "textures": {
+      "Base Color": "modular_chainlink_fence_wire_diff_1k.jpg",
+      "Normal": "modular_chainlink_fence_wire_nor_gl_1k.jpg",
+      "Roughness": "modular_chainlink_fence_wire_arm_1k.jpg",
+      "Metallic": "modular_chainlink_fence_wire_arm_1k.jpg",
+      "Alpha": "modular_chainlink_fence_wire_diff_1k.jpg"
+    }
+  }
+]

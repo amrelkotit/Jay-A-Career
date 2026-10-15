@@ -1,0 +1,13 @@
+{
+  "built_project": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\JayCareerBuild20261013",
+  "working_project": "E:\\El Gam3a\\Semester 9\\Video Game Design\\Assignment\\Jay A Career",
+  "compared_files": {
+    "Assets": 1366,
+    "Packages": 2,
+    "ProjectSettings": 25
+  },
+  "differences": [],
+  "excluded": "Editor-only ResponseFileFullBuild.cs.meta; Assets/Deliverables evidence output; four generated performance-test metadata files (empty run info/settings and .meta), absent after build and not used by gameplay",
+  "runtime_and_visual_sources_match": true,
+  "packages_and_settings_match": true
+}

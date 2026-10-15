@@ -1,0 +1,19 @@
+{
+  "observedAtUtc": "2026-10-13T22:02:20Z",
+  "project": "E:\\El Gam3a\\Semester 9\\Video Game Design\\Assignment\\Jay A Career",
+  "unityVersion": "6000.3.24f1",
+  "launch": "Unity Hub project row",
+  "menu": "Jay A Career/Build Final Windows Game",
+  "scene": "JayACareer_Realism",
+  "result": "Stalled; Cancel requested",
+  "observedStage": "Compiling Scripts: Extracting script serialization layouts",
+  "buildStartedUtc": "2026-10-13T21:58:22Z",
+  "lastLogUpdateLocal": "2026-10-14 00:58:49",
+  "unchangedLogSeconds": 211,
+  "errorDialog": false,
+  "newBuildSummary": false,
+  "latestSourceBuildCertified": false,
+  "notes": "Editor startup completed. Menu invoked through visible UI. Cancellation displayed Cancelling. Existing Succeeded summary belongs to the earlier build.",
+  "cancellationConfirmed": false,
+  "finalVisibleStatus": "Cancelling; editor still busy after cancellation request"
+}

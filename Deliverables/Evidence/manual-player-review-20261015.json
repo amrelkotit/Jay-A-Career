@@ -1,0 +1,9 @@
+{
+ "reviewer":"User, physical keyboard and mouse",
+ "tested_player":"Windows Fresh 20261015",
+ "quick_checks":"Passed: movement, mouse look, wall collision, pause/Resume, camera toggle, door, flashlight toggle and Quit",
+ "user_statement":"it passed all these but i didnot do the step of lifting and putting as i didnot where and what to lift",
+ "lifting_and_placement":"Not reviewed manually yet; yellow labels requested to make objects identifiable",
+ "lighting_feedback":"Laboratory too bright with flashlight off; requested dim interior and exterior daylight through openings",
+ "scope_note":"Manual pass applies to the earlier full build. Labels/lighting changes require a targeted visual and lift/place review."
+}

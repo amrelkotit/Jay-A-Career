@@ -1,0 +1,6 @@
+# ModKit asset integration
+
+Source: https://github.com/JaronKBragg7337/asset-pack-ue-threejs-blender-unity (release v1.2)
+License: CC0 1.0 Universal; original LICENSE and README are included.
+This kit's modules are 4 m wide, 3 m high, with 0.2 m wall thickness, per upstream README. The Unity runtime pass uses FBX meshes for the laboratory shell and industrial props while retaining the existing gameplay colliders/interactions.
+The kit contains geometric meshes and flat placeholder materials; realistic PBR maps are a separate follow-up.

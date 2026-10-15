@@ -1,0 +1,35 @@
+[
+  {
+    "name": "modular_electricity_poles",
+    "color": [
+      0.800000011920929,
+      0.800000011920929,
+      0.800000011920929,
+      1.0
+    ],
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "textures": {
+      "Base Color": "modular_electricity_poles_diff_1k.jpg",
+      "Normal": "modular_electricity_poles_nor_gl_1k.jpg",
+      "Roughness": "modular_electricity_poles_arm_1k.jpg"
+    }
+  },
+  {
+    "name": "modular_electricity_poles_pieces",
+    "color": [
+      0.800000011920929,
+      0.800000011920929,
+      0.800000011920929,
+      1.0
+    ],
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "textures": {
+      "Base Color": "modular_electricity_poles_pieces_diff_1k.jpg",
+      "Normal": "modular_electricity_poles_pieces_nor_gl_1k.jpg",
+      "Roughness": "modular_electricity_poles_pieces_arm_1k.jpg",
+      "Metallic": "modular_electricity_poles_pieces_arm_1k.jpg"
+    }
+  }
+]

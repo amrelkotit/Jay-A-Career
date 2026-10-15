@@ -1,0 +1,146 @@
+[
+  {
+    "asset": "Barrel_02",
+    "source": "https://polyhaven.com/a/Barrel_02",
+    "author": "Jorge Camacho",
+    "license": "CC0-1.0",
+    "version": "354f0b9ffcebf4f331533ef183b3eb2fc37ab69e",
+    "downloaded": "2026-10-13",
+    "modifications": "1K textures; FBX conversion, scale/pivot adjustment and mesh simplification where required; fence wire opacity packed into diffuse alpha and alpha-tested in URP"
+  },
+  {
+    "asset": "cardboard_box_01",
+    "source": "https://polyhaven.com/a/cardboard_box_01",
+    "author": "Rahul Chaudhary",
+    "license": "CC0-1.0",
+    "version": "2a37ded0aeebc15100db0e1d285ad36cf40b8f42",
+    "downloaded": "2026-10-13",
+    "modifications": "1K textures; FBX conversion, scale/pivot adjustment and mesh simplification where required; fence wire opacity packed into diffuse alpha and alpha-tested in URP"
+  },
+  {
+    "asset": "exterior_aircon_unit",
+    "source": "https://polyhaven.com/a/exterior_aircon_unit",
+    "author": "Monsta3D",
+    "license": "CC0-1.0",
+    "version": "afd5b9eb4b3cfc2544044a00f4acb2a92d2f310e",
+    "downloaded": "2026-10-13",
+    "modifications": "1K textures; FBX conversion, scale/pivot adjustment and mesh simplification where required; fence wire opacity packed into diffuse alpha and alpha-tested in URP"
+  },
+  {
+    "asset": "modular_chainlink_fence",
+    "source": "https://polyhaven.com/a/modular_chainlink_fence",
+    "author": "James Ray Cock, Amal Kumar",
+    "license": "CC0-1.0",
+    "version": "a876696fcfd57a434e5d1dd68baa03e15475b97e",
+    "downloaded": "2026-10-13",
+    "modifications": "1K textures; FBX conversion, scale/pivot adjustment and mesh simplification where required; fence wire opacity packed into diffuse alpha and alpha-tested in URP"
+  },
+  {
+    "asset": "modular_electricity_poles",
+    "source": "https://polyhaven.com/a/modular_electricity_poles",
+    "author": "James Ray Cock",
+    "license": "CC0-1.0",
+    "version": "e40d56f04b77c4357252d49fa63051edce4f92f7",
+    "downloaded": "2026-10-13",
+    "modifications": "1K textures; FBX conversion, scale/pivot adjustment and mesh simplification where required; fence wire opacity packed into diffuse alpha and alpha-tested in URP"
+  },
+  {
+    "asset": "steel_frame_shelves_01",
+    "source": "https://polyhaven.com/a/steel_frame_shelves_01",
+    "author": "James Ray Cock",
+    "license": "CC0-1.0",
+    "version": "07b34991c01f75c3bfe85923ba649bc40de1dd17",
+    "downloaded": "2026-10-13",
+    "modifications": "1K textures; FBX conversion, scale/pivot adjustment and mesh simplification where required; fence wire opacity packed into diffuse alpha and alpha-tested in URP"
+  },
+  {
+    "asset": "street_lamp_01",
+    "source": "https://polyhaven.com/a/street_lamp_01",
+    "author": "Josh Dean",
+    "license": "CC0-1.0",
+    "version": "002d697fa195d73f627e82804612208853212519",
+    "downloaded": "2026-10-13",
+    "modifications": "1K textures; FBX conversion, scale/pivot adjustment and mesh simplification where required; fence wire opacity packed into diffuse alpha and alpha-tested in URP"
+  },
+  {
+    "asset": "utility_box_02",
+    "source": "https://polyhaven.com/a/utility_box_02",
+    "author": "James Ray Cock",
+    "license": "CC0-1.0",
+    "version": "8420d634a09db8508124f2086be28b992d0a26c0",
+    "downloaded": "2026-10-13",
+    "modifications": "1K textures; FBX conversion, scale/pivot adjustment and mesh simplification where required; fence wire opacity packed into diffuse alpha and alpha-tested in URP"
+  },
+  {
+    "asset": "asphalt_03",
+    "source": "https://polyhaven.com/a/asphalt_03",
+    "author": "Dario Barresi, Charlotte Baglioni",
+    "license": "CC0-1.0",
+    "version": "43fb4f1e6c03b6cff2ae0783f403d5b9e52268be",
+    "downloaded": "2026-10-13",
+    "modifications": "1K surface maps; roughness inverted to URP smoothness; normals imported as normal maps"
+  },
+  {
+    "asset": "concrete_floor",
+    "source": "https://polyhaven.com/a/concrete_floor",
+    "author": "eye-candy.xyz",
+    "license": "CC0-1.0",
+    "version": "3e24caf1e8e1de5b0cb430b92215d9809422c9be",
+    "downloaded": "2026-10-13",
+    "modifications": "1K surface maps; roughness inverted to URP smoothness; normals imported as normal maps"
+  },
+  {
+    "asset": "rusty_painted_metal",
+    "source": "https://polyhaven.com/a/rusty_painted_metal",
+    "author": "Amal Kumar",
+    "license": "CC0-1.0",
+    "version": "565279d4180007b072dcdd769755ba77918b5d55",
+    "downloaded": "2026-10-13",
+    "modifications": "1K surface maps; roughness inverted to URP smoothness; normals imported as normal maps"
+  },
+  {
+    "asset": "sand_03",
+    "source": "https://polyhaven.com/a/sand_03",
+    "author": "Charlotte Baglioni",
+    "license": "CC0-1.0",
+    "version": "3c41202150d351ba3800440cfe57512bd4919681",
+    "downloaded": "2026-10-13",
+    "modifications": "1K surface maps; roughness inverted to URP smoothness; normals imported as normal maps"
+  },
+  {
+    "asset": "ModKit v1.2 selected FBX modules",
+    "source": "https://github.com/JaronKBragg7337/asset-pack-ue-threejs-blender-unity",
+    "author": "Jaron K. Bragg",
+    "license": "CC0-1.0",
+    "version": "v1.2 (existing import)",
+    "downloaded": "Existing project before upgrade",
+    "modifications": "Authored placement, consistent materials and stable interaction roots"
+  },
+  {
+    "asset": "MPFB humans and selected MakeHuman system assets",
+    "source": "https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html",
+    "author": "MakeHuman Community / makehuman_system; individual file headers retained in Tools/MPFB/Assets",
+    "license": "CC0-1.0",
+    "version": "MPFB 2.0.18; system-assets CC0 archive snapshot 2026-10-13",
+    "downloaded": "2026-10-13",
+    "modifications": "Three distinct bodies; skins/hair/clothing/shoes; Hale white jacket adaptation; shared humanoid rig; original animations; FBX and separate textures"
+  },
+  {
+    "asset": "Kenney Impact Sounds and Interface Sounds",
+    "source": "https://kenney.nl/assets/impact-sounds ; https://kenney.nl/assets/interface-sounds",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "version": "Website ZIP downloads 2026-10-13; included license files",
+    "downloaded": "2026-10-13",
+    "modifications": "Selected confirmation_001 and impactWood_light_000, reduced playback volume"
+  },
+  {
+    "asset": "Laboratory and bedroom models; ambient and footstep audio; animation clips",
+    "source": "ArtSource/ and Tools/author_environment.py, Tools/author_humans.py",
+    "author": "Original project-specific work authored during this upgrade",
+    "license": "Original work; supplied with this project",
+    "version": "Realism revision 2026-10-13",
+    "downloaded": "Not applicable",
+    "modifications": "Original Blender modeling, synthesized WAV audio, Unity-authored tamper strip, irregular residue, utility crossarm and exterior backdrop"
+  }
+]

@@ -1,0 +1,103 @@
+{
+  "reopened_scene_matches_current_source": true,
+  "menu_compiled": true,
+  "files": [
+    {
+      "path": "Assets/JayACareer/Scripts/CleanableStation.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/ContextualInteractable.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/DoorInteractable.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/Interactable.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayCameraRig.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayDailyLoop.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayDemonstration.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayGameManager.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayHumanAnimation.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayIndustrialAssetPass.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayInputValidation.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayLightingController.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayPackageDock.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayPlayerController.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JayStation.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/JaySurface.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/LiftableObject.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/MoveableObject.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/SimpleInteractable.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scripts/TalkableCharacter.cs",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Scenes/JayACareer_Realism.unity",
+      "matches": true
+    },
+    {
+      "path": "Assets/JayACareer/Editor/RealismBuildEntry.cs",
+      "matches": true
+    },
+    {
+      "path": "Packages/manifest.json",
+      "matches": true
+    },
+    {
+      "path": "Packages/packages-lock.json",
+      "matches": true
+    }
+  ],
+  "method": "SHA-256 comparison with successfully reopened C: copy"
+}

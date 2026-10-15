@@ -1,0 +1,21 @@
+{
+  "status": "Stalled; stopped after over five minutes without build-log progress",
+  "exactFinalSourceBuildCertified": false,
+  "stage": "ScriptAssembliesAndTypeDB / BuildPlayerDataGenerator",
+  "log": "E:\\El Gam3a\\JayCareerFinal20261013\\final-windows-build.log",
+  "stoppedProcessIds": [
+    25304,
+    30476,
+    22488,
+    27656,
+    3600,
+    30024,
+    30532,
+    23184,
+    8244,
+    23852,
+    33700
+  ],
+  "project": "E:\\El Gam3a\\JayCareerFinal20261013",
+  "earlierCleanBuildSucceeded": true
+}

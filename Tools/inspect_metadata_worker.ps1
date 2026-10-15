@@ -1,0 +1,4 @@
+$workers=Get-CimInstance Win32_Process | Where-Object {$_.Name -in @('cmd.exe','netcorerun.exe') -and $_.CommandLine -match 'BuildPlayerDataGenerator.exe'}
+$rows=@(foreach($worker in $workers){$p=Get-Process -Id $worker.ProcessId -ErrorAction SilentlyContinue;[ordered]@{pid=$worker.ProcessId;name=$worker.Name;commandCharacters=$worker.CommandLine.Length;usesResponseFile=[regex]::IsMatch($worker.CommandLine,'\s@');cpuSeconds=$p.CPU;threads=@($p.Threads | ForEach-Object {if($_.ThreadState -eq 'Wait'){$_.WaitReason.ToString()}else{$_.ThreadState.ToString()}})}})
+$rows | ConvertTo-Json -Depth 4
+$rows | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath 'E:\El Gam3a\Semester 9\Video Game Design\Assignment\Jay A Career\Deliverables\Evidence\response-file-worker-state-20261015.json' -Encoding UTF8

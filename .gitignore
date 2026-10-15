@@ -22,3 +22,13 @@
 .env
 .env.*
 !.env.example
+
+# Release archives and local capture/review outputs
+*.zip
+*.mp4
+*.log
+__pycache__/
+Deliverables/Document Review/
+Deliverables/Requirements Review/
+Tools/SubmissionReview/
+Tools/Blender/

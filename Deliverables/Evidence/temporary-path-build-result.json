@@ -1,0 +1,11 @@
+{
+  "jobWorkerCount": 2,
+  "stoppedAfterStallOrLimit": true,
+  "buildSucceeded": false,
+  "seconds": 330.5660135,
+  "log": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\JayCareerBuild20261013\\build.log",
+  "project": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\JayCareerBuild20261013",
+  "importMode": "InProcess",
+  "pathWithoutSpaces": true,
+  "sceneReopened": true
+}

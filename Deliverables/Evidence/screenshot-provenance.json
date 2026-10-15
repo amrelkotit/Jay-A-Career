@@ -1,0 +1,17 @@
+{
+  "environment": "Unity Editor",
+  "rendered_resolution": [
+    1920,
+    1080
+  ],
+  "route_completed": true,
+  "source_directory": "E:\\El Gam3a\\Semester 9\\Video Game Design\\Assignment\\Jay A Career\\Evidence\\Demo\\20261013-075201",
+  "frames": {
+    "lab-final.png": 665,
+    "exterior-final.png": 630,
+    "customer-final.png": 280,
+    "bedroom-final.png": 560,
+    "dialogue-final.png": 700,
+    "lights-final.png": 435
+  }
+}

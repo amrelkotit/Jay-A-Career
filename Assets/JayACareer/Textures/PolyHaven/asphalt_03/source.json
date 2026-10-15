@@ -1,0 +1,902 @@
+{
+  "source": "https://polyhaven.com/a/asphalt_03",
+  "license": "CC0-1.0",
+  "info": {
+    "name": "Asphalt 03",
+    "categories": [
+      "outdoor",
+      "man made",
+      "dirty",
+      "road",
+      "asphalt"
+    ],
+    "type": 1,
+    "tags": [
+      "rough",
+      "worn",
+      "dirty",
+      "floor",
+      "road",
+      "asphalt",
+      "city",
+      "urban"
+    ],
+    "info": null,
+    "dimensions": [
+      2049.999713897705,
+      2049.999713897705
+    ],
+    "date_published": 1675900800,
+    "staging": null,
+    "max_resolution": [
+      8192,
+      8192
+    ],
+    "files_hash": "43fb4f1e6c03b6cff2ae0783f403d5b9e52268be",
+    "description": "Free 8K worn asphalt texture with rough, matte surface, fine granular grit and subtle dirt staining across a dark brown-black urban road material.",
+    "authors": {
+      "Dario Barresi": "processing",
+      "Charlotte Baglioni": "photography"
+    },
+    "category_id": "8871debe-40cf-5e4d-a5e5-1ddfe979f14f",
+    "category": "Asphalt & Bitumen/Asphalt/Worn Road Surface",
+    "attributes": {
+      "surface_use": "floor",
+      "condition": [
+        "weathered",
+        "worn"
+      ],
+      "origin": "man_made",
+      "setting": "outdoor"
+    },
+    "img_version": "277de809",
+    "download_count": 14311,
+    "thumbnail_url": "https://cdn.polyhaven.com/asset_img/thumbs/asphalt_03.png?width=256&height=256&format=webp&v=277de809"
+  },
+  "files": {
+    "Diffuse": {
+      "8k": {
+        "jpg": {
+          "size": 74402717,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/asphalt_03/asphalt_03_diff_8k.jpg",
+          "md5": "b7ceea082c12ab9c13ba8a2c365da37a"
+        },
+        "png": {
+          "size": 385171551,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/asphalt_03/asphalt_03_diff_8k.png",
+          "md5": "72637a6fd58eb8089a38d60d6034e6f7"
+        },
+        "exr": {
+          "size": 116712118,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/asphalt_03/asphalt_03_diff_8k.exr",
+          "md5": "5453187035e87a3e4dd215e0ec7c06e6"
+        }
+      },
+      "4k": {
+        "jpg": {
+          "size": 16988885,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/asphalt_03/asphalt_03_diff_4k.jpg",
+          "md5": "56ba62dca46bd80bdf5f857803a05d21"
+        },
+        "png": {
+          "size": 94639685,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/asphalt_03/asphalt_03_diff_4k.png",
+          "md5": "79721596ec493e95d174a2523bb761b1"
+        },
+        "exr": {
+          "size": 29691685,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/asphalt_03/asphalt_03_diff_4k.exr",
+          "md5": "34c0275358a51db8160ea2b227fbfa61"
+        }
+      },
+      "2k": {
+        "jpg": {
+          "size": 3723686,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/asphalt_03/asphalt_03_diff_2k.jpg",
+          "md5": "d7080e625013068e073a799cee3d8deb"
+        },
+        "png": {
+          "size": 23209080,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/asphalt_03/asphalt_03_diff_2k.png",
+          "md5": "fe8b3d96d3784aa7225cc3012ff314af"
+        },
+        "exr": {
+          "size": 7121009,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/asphalt_03/asphalt_03_diff_2k.exr",
+          "md5": "6c70cad62cb8ae490667fd64f67db0eb"
+        }
+      },
+      "1k": {
+        "jpg": {
+          "size": 788840,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_03/asphalt_03_diff_1k.jpg",
+          "md5": "1dba74b167b3d8460717776b22ca42c5"
+        },
+        "png": {
+          "size": 5656580,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/asphalt_03/asphalt_03_diff_1k.png",
+          "md5": "6cce7ca2cbf9b212246daf48fd2884eb"
+        },
+        "exr": {
+          "size": 1614916,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/asphalt_03/asphalt_03_diff_1k.exr",
+          "md5": "ba667dbc5af68996f8e09033271e4480"
+        }
+      }
+    },
+    "nor_dx": {
+      "8k": {
+        "jpg": {
+          "size": 51254042,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/asphalt_03/asphalt_03_nor_dx_8k.jpg",
+          "md5": "4ebe636e439770a90639b20751703bb8"
+        },
+        "png": {
+          "size": 338860339,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/asphalt_03/asphalt_03_nor_dx_8k.png",
+          "md5": "8619ae31363dd4148518463e658767d0"
+        },
+        "exr": {
+          "size": 95038969,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/asphalt_03/asphalt_03_nor_dx_8k.exr",
+          "md5": "5604f14ac1cbf7b5369a87dbeaa81033"
+        }
+      },
+      "4k": {
+        "jpg": {
+          "size": 16392529,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/asphalt_03/asphalt_03_nor_dx_4k.jpg",
+          "md5": "2089bf20f0fc87413b13698d87695036"
+        },
+        "png": {
+          "size": 89964501,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/asphalt_03/asphalt_03_nor_dx_4k.png",
+          "md5": "4709991a23254fe3354056c47e4d0d25"
+        },
+        "exr": {
+          "size": 33106082,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/asphalt_03/asphalt_03_nor_dx_4k.exr",
+          "md5": "dd2afc66a8deeddbb9dada2b7cbfccb1"
+        }
+      },
+      "2k": {
+        "jpg": {
+          "size": 4339454,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/asphalt_03/asphalt_03_nor_dx_2k.jpg",
+          "md5": "b3b962f3eec1032f6ef309f4f0a73db5"
+        },
+        "png": {
+          "size": 22952596,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/asphalt_03/asphalt_03_nor_dx_2k.png",
+          "md5": "0601720500edbe268002b25800e6766a"
+        },
+        "exr": {
+          "size": 8969713,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/asphalt_03/asphalt_03_nor_dx_2k.exr",
+          "md5": "71c5b9855c02cc602dab811a63b35af1"
+        }
+      },
+      "1k": {
+        "jpg": {
+          "size": 974691,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_03/asphalt_03_nor_dx_1k.jpg",
+          "md5": "d4217fb72739495c3b0f96af9089ba5f"
+        },
+        "png": {
+          "size": 5746631,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/asphalt_03/asphalt_03_nor_dx_1k.png",
+          "md5": "7b2d8deee8a88272ea4517c89376a338"
+        },
+        "exr": {
+          "size": 2141169,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/asphalt_03/asphalt_03_nor_dx_1k.exr",
+          "md5": "f849b3e407056ba5b0e258939ef7a1db"
+        }
+      }
+    },
+    "nor_gl": {
+      "8k": {
+        "jpg": {
+          "size": 51226942,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/asphalt_03/asphalt_03_nor_gl_8k.jpg",
+          "md5": "0e1cb0f0f2507395743f0266c6102094"
+        },
+        "png": {
+          "size": 348950812,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/asphalt_03/asphalt_03_nor_gl_8k.png",
+          "md5": "ec980d37c8212376f5d5e39e6cb89b2e"
+        },
+        "exr": {
+          "size": 95148049,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/asphalt_03/asphalt_03_nor_gl_8k.exr",
+          "md5": "9716de5a939b252fbe940299f7ac2338"
+        }
+      },
+      "4k": {
+        "jpg": {
+          "size": 16380876,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/asphalt_03/asphalt_03_nor_gl_4k.jpg",
+          "md5": "6eb910f0170f9e30d2289276666a6495"
+        },
+        "png": {
+          "size": 89990148,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/asphalt_03/asphalt_03_nor_gl_4k.png",
+          "md5": "b170d482ebe751b5a867624480e1c0ec"
+        },
+        "exr": {
+          "size": 33142209,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/asphalt_03/asphalt_03_nor_gl_4k.exr",
+          "md5": "99ffa91655d7388e090ca8c401036b57"
+        }
+      },
+      "2k": {
+        "jpg": {
+          "size": 4336458,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/asphalt_03/asphalt_03_nor_gl_2k.jpg",
+          "md5": "4bd0ac3bd1067e23edfd8731744bba38"
+        },
+        "png": {
+          "size": 22958354,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/asphalt_03/asphalt_03_nor_gl_2k.png",
+          "md5": "69300de87fa39c4d6f4008f69fda5c3a"
+        },
+        "exr": {
+          "size": 8975669,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/asphalt_03/asphalt_03_nor_gl_2k.exr",
+          "md5": "f98756e21c4a3c7d64efad82fb81ddeb"
+        }
+      },
+      "1k": {
+        "jpg": {
+          "size": 974676,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_03/asphalt_03_nor_gl_1k.jpg",
+          "md5": "e24cfa2b2c30c16374424eecbebfc201"
+        },
+        "png": {
+          "size": 5748053,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/asphalt_03/asphalt_03_nor_gl_1k.png",
+          "md5": "110dfef5e7c3a0b684e7385363e596c6"
+        },
+        "exr": {
+          "size": 2139625,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/asphalt_03/asphalt_03_nor_gl_1k.exr",
+          "md5": "495af1f6d848ddd2ade38db76057bf82"
+        }
+      }
+    },
+    "blend": {
+      "8k": {
+        "blend": {
+          "include": {
+            "textures/asphalt_03_diff_8k.jpg": {
+              "size": 74402717,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/asphalt_03/asphalt_03_diff_8k.jpg",
+              "md5": "b7ceea082c12ab9c13ba8a2c365da37a"
+            },
+            "textures/asphalt_03_nor_gl_8k.exr": {
+              "size": 95148049,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/asphalt_03/asphalt_03_nor_gl_8k.exr",
+              "md5": "9716de5a939b252fbe940299f7ac2338"
+            },
+            "textures/asphalt_03_disp_8k.png": {
+              "size": 77312158,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/asphalt_03/asphalt_03_disp_8k.png",
+              "md5": "c547179da1b0984373119ca6814ffd61"
+            },
+            "textures/asphalt_03_rough_8k.exr": {
+              "size": 49576450,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/asphalt_03/asphalt_03_rough_8k.exr",
+              "md5": "44030c6cebdb3b59938246741bee4f10"
+            }
+          },
+          "size": 225834,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/blend/8k/asphalt_03/asphalt_03_8k.blend",
+          "md5": "ce878185960c02c43b7815bb751db399"
+        }
+      },
+      "4k": {
+        "blend": {
+          "include": {
+            "textures/asphalt_03_disp_4k.png": {
+              "size": 24511291,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/asphalt_03/asphalt_03_disp_4k.png",
+              "md5": "bf2eba3fb4b46dea8e33eaa522c51a46"
+            },
+            "textures/asphalt_03_rough_4k.exr": {
+              "size": 12345758,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/asphalt_03/asphalt_03_rough_4k.exr",
+              "md5": "805425c775943b136ded3bfcb65f8fb9"
+            },
+            "textures/asphalt_03_nor_gl_4k.exr": {
+              "size": 33142209,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/asphalt_03/asphalt_03_nor_gl_4k.exr",
+              "md5": "99ffa91655d7388e090ca8c401036b57"
+            },
+            "textures/asphalt_03_diff_4k.jpg": {
+              "size": 16988885,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/asphalt_03/asphalt_03_diff_4k.jpg",
+              "md5": "56ba62dca46bd80bdf5f857803a05d21"
+            }
+          },
+          "size": 225988,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/blend/4k/asphalt_03/asphalt_03_4k.blend",
+          "md5": "190004858335a9c6cf70eb7554c480d1"
+        }
+      },
+      "2k": {
+        "blend": {
+          "include": {
+            "textures/asphalt_03_rough_2k.exr": {
+              "size": 2857590,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/asphalt_03/asphalt_03_rough_2k.exr",
+              "md5": "38a54b3050a3438cbffc079bdbad0463"
+            },
+            "textures/asphalt_03_nor_gl_2k.exr": {
+              "size": 8975669,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/asphalt_03/asphalt_03_nor_gl_2k.exr",
+              "md5": "f98756e21c4a3c7d64efad82fb81ddeb"
+            },
+            "textures/asphalt_03_diff_2k.jpg": {
+              "size": 3723686,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/asphalt_03/asphalt_03_diff_2k.jpg",
+              "md5": "d7080e625013068e073a799cee3d8deb"
+            },
+            "textures/asphalt_03_disp_2k.png": {
+              "size": 6485766,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/asphalt_03/asphalt_03_disp_2k.png",
+              "md5": "7e7022119f77d8a70a6d6277da5ffddf"
+            }
+          },
+          "size": 225779,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/blend/2k/asphalt_03/asphalt_03_2k.blend",
+          "md5": "de94266a23e2de87018345709d946d71"
+        }
+      },
+      "1k": {
+        "blend": {
+          "include": {
+            "textures/asphalt_03_disp_1k.png": {
+              "size": 1663273,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/asphalt_03/asphalt_03_disp_1k.png",
+              "md5": "9fcf5e3c6da231fed0a17e7a275a68ba"
+            },
+            "textures/asphalt_03_diff_1k.jpg": {
+              "size": 788840,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_03/asphalt_03_diff_1k.jpg",
+              "md5": "1dba74b167b3d8460717776b22ca42c5"
+            },
+            "textures/asphalt_03_rough_1k.exr": {
+              "size": 619187,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/asphalt_03/asphalt_03_rough_1k.exr",
+              "md5": "dc5554ec89a9ddbd26867367290ca0b0"
+            },
+            "textures/asphalt_03_nor_gl_1k.exr": {
+              "size": 2139625,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/asphalt_03/asphalt_03_nor_gl_1k.exr",
+              "md5": "495af1f6d848ddd2ade38db76057bf82"
+            }
+          },
+          "size": 225680,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/blend/1k/asphalt_03/asphalt_03_1k.blend",
+          "md5": "94873a6e570d2c3fe0fcb91d2028be52"
+        }
+      }
+    },
+    "gltf": {
+      "8k": {
+        "gltf": {
+          "include": {
+            "textures/asphalt_03_diff_8k.jpg": {
+              "size": 74402717,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/asphalt_03/asphalt_03_diff_8k.jpg",
+              "md5": "b7ceea082c12ab9c13ba8a2c365da37a"
+            },
+            "asphalt_03.bin": {
+              "size": 2370484,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/8k/asphalt_03/asphalt_03.bin",
+              "md5": "9a01dc328469abefcbdcf921647e4d02"
+            },
+            "textures/asphalt_03_nor_gl_8k.jpg": {
+              "size": 51226942,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/asphalt_03/asphalt_03_nor_gl_8k.jpg",
+              "md5": "0e1cb0f0f2507395743f0266c6102094"
+            },
+            "textures/asphalt_03_arm_8k.jpg": {
+              "size": 68564303,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/asphalt_03/asphalt_03_arm_8k.jpg",
+              "md5": "90102f831d6061539ac829cbede44fe9"
+            }
+          },
+          "size": 2766,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/8k/asphalt_03/asphalt_03_8k.gltf",
+          "md5": "6accdf54de49c35812fea56fabcaaf84"
+        }
+      },
+      "4k": {
+        "gltf": {
+          "include": {
+            "textures/asphalt_03_arm_4k.jpg": {
+              "size": 18439062,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/asphalt_03/asphalt_03_arm_4k.jpg",
+              "md5": "da544eef3a4f3c632779f56de4cd74f0"
+            },
+            "asphalt_03.bin": {
+              "size": 2370484,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/8k/asphalt_03/asphalt_03.bin",
+              "md5": "9a01dc328469abefcbdcf921647e4d02"
+            },
+            "textures/asphalt_03_diff_4k.jpg": {
+              "size": 16988885,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/asphalt_03/asphalt_03_diff_4k.jpg",
+              "md5": "56ba62dca46bd80bdf5f857803a05d21"
+            },
+            "textures/asphalt_03_nor_gl_4k.jpg": {
+              "size": 16380876,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/asphalt_03/asphalt_03_nor_gl_4k.jpg",
+              "md5": "6eb910f0170f9e30d2289276666a6495"
+            }
+          },
+          "size": 2766,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/4k/asphalt_03/asphalt_03_4k.gltf",
+          "md5": "d4ef1b7f33df554704ecd95e5672c65b"
+        }
+      },
+      "2k": {
+        "gltf": {
+          "include": {
+            "textures/asphalt_03_nor_gl_2k.jpg": {
+              "size": 4336458,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/asphalt_03/asphalt_03_nor_gl_2k.jpg",
+              "md5": "4bd0ac3bd1067e23edfd8731744bba38"
+            },
+            "asphalt_03.bin": {
+              "size": 2370484,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/8k/asphalt_03/asphalt_03.bin",
+              "md5": "9a01dc328469abefcbdcf921647e4d02"
+            },
+            "textures/asphalt_03_arm_2k.jpg": {
+              "size": 4591780,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/asphalt_03/asphalt_03_arm_2k.jpg",
+              "md5": "5e51df1c44e23a93ffed8d59e1baf859"
+            },
+            "textures/asphalt_03_diff_2k.jpg": {
+              "size": 3723686,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/asphalt_03/asphalt_03_diff_2k.jpg",
+              "md5": "d7080e625013068e073a799cee3d8deb"
+            }
+          },
+          "size": 2766,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/2k/asphalt_03/asphalt_03_2k.gltf",
+          "md5": "43b0337fe595af846b10cbcb62a01a19"
+        }
+      },
+      "1k": {
+        "gltf": {
+          "include": {
+            "asphalt_03.bin": {
+              "size": 2370484,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/8k/asphalt_03/asphalt_03.bin",
+              "md5": "9a01dc328469abefcbdcf921647e4d02"
+            },
+            "textures/asphalt_03_diff_1k.jpg": {
+              "size": 788840,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_03/asphalt_03_diff_1k.jpg",
+              "md5": "1dba74b167b3d8460717776b22ca42c5"
+            },
+            "textures/asphalt_03_arm_1k.jpg": {
+              "size": 1053867,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_03/asphalt_03_arm_1k.jpg",
+              "md5": "e77204c8d988d17553bd2d77b936541c"
+            },
+            "textures/asphalt_03_nor_gl_1k.jpg": {
+              "size": 974676,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_03/asphalt_03_nor_gl_1k.jpg",
+              "md5": "e24cfa2b2c30c16374424eecbebfc201"
+            }
+          },
+          "size": 2766,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/gltf/1k/asphalt_03/asphalt_03_1k.gltf",
+          "md5": "b9fb4c2d3d500070325c3e7750349b40"
+        }
+      }
+    },
+    "arm": {
+      "8k": {
+        "jpg": {
+          "size": 68564303,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/asphalt_03/asphalt_03_arm_8k.jpg",
+          "md5": "90102f831d6061539ac829cbede44fe9"
+        },
+        "png": {
+          "size": 275786957,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/asphalt_03/asphalt_03_arm_8k.png",
+          "md5": "e7bc474905ebf191e04bfd6d7d55af52"
+        },
+        "exr": {
+          "size": 126856798,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/asphalt_03/asphalt_03_arm_8k.exr",
+          "md5": "14d13717039c30ce8b1799d8c5ca7360"
+        }
+      },
+      "4k": {
+        "jpg": {
+          "size": 18439062,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/asphalt_03/asphalt_03_arm_4k.jpg",
+          "md5": "da544eef3a4f3c632779f56de4cd74f0"
+        },
+        "png": {
+          "size": 73006395,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/asphalt_03/asphalt_03_arm_4k.png",
+          "md5": "b54d790b036fd1c47c74953daee10b50"
+        },
+        "exr": {
+          "size": 33418010,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/asphalt_03/asphalt_03_arm_4k.exr",
+          "md5": "36e948c2aaf5adf5d449cdcbb272de9e"
+        }
+      },
+      "2k": {
+        "jpg": {
+          "size": 4591780,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/asphalt_03/asphalt_03_arm_2k.jpg",
+          "md5": "5e51df1c44e23a93ffed8d59e1baf859"
+        },
+        "png": {
+          "size": 18838157,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/asphalt_03/asphalt_03_arm_2k.png",
+          "md5": "52645610437c437422bfd016005e0d26"
+        },
+        "exr": {
+          "size": 8439726,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/asphalt_03/asphalt_03_arm_2k.exr",
+          "md5": "1c4f31093b119fb91cc8be66961b141c"
+        }
+      },
+      "1k": {
+        "jpg": {
+          "size": 1053867,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_03/asphalt_03_arm_1k.jpg",
+          "md5": "e77204c8d988d17553bd2d77b936541c"
+        },
+        "png": {
+          "size": 4613599,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/asphalt_03/asphalt_03_arm_1k.png",
+          "md5": "56105176c679149df5eb84d7a22b9a66"
+        },
+        "exr": {
+          "size": 2029607,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/asphalt_03/asphalt_03_arm_1k.exr",
+          "md5": "ce042ee45bf99cdac60b7c37bde00c3d"
+        }
+      }
+    },
+    "AO": {
+      "8k": {
+        "jpg": {
+          "size": 49225744,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/asphalt_03/asphalt_03_ao_8k.jpg",
+          "md5": "4121509db9897f7e18e18f5e341b1c54"
+        },
+        "png": {
+          "size": 102401877,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/asphalt_03/asphalt_03_ao_8k.png",
+          "md5": "6e02beace8f1c83be4ee113a24b5ebdd"
+        },
+        "exr": {
+          "size": 83127148,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/asphalt_03/asphalt_03_ao_8k.exr",
+          "md5": "17522865edaff88b77f4bda8a55f1137"
+        }
+      },
+      "4k": {
+        "jpg": {
+          "size": 15022654,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/asphalt_03/asphalt_03_ao_4k.jpg",
+          "md5": "84650e5848368e3c8bcac64cbcfbaa11"
+        },
+        "png": {
+          "size": 30235098,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/asphalt_03/asphalt_03_ao_4k.png",
+          "md5": "edcf7023c696163195bfd238deb7a5ae"
+        },
+        "exr": {
+          "size": 21674164,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/asphalt_03/asphalt_03_ao_4k.exr",
+          "md5": "3001e4660e4b8b4d35ed5ff6b76bc042"
+        }
+      },
+      "2k": {
+        "jpg": {
+          "size": 4234023,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/asphalt_03/asphalt_03_ao_2k.jpg",
+          "md5": "695bcae515fdd31f3d347ab6c5b580f2"
+        },
+        "png": {
+          "size": 8050503,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/asphalt_03/asphalt_03_ao_2k.png",
+          "md5": "cec87e2b02f140af66bc27eaa9f0cf63"
+        },
+        "exr": {
+          "size": 5569073,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/asphalt_03/asphalt_03_ao_2k.exr",
+          "md5": "504a4b1268bb41c5067720aed38a3c3e"
+        }
+      },
+      "1k": {
+        "jpg": {
+          "size": 1064778,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_03/asphalt_03_ao_1k.jpg",
+          "md5": "42c7a6189e3416d175cb2e18e055b994"
+        },
+        "png": {
+          "size": 2022482,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/asphalt_03/asphalt_03_ao_1k.png",
+          "md5": "17c0173f2376c2f0e1ec850e6a4366a8"
+        },
+        "exr": {
+          "size": 1389097,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/asphalt_03/asphalt_03_ao_1k.exr",
+          "md5": "89039994ad79e7678cab5621092f3a9f"
+        }
+      }
+    },
+    "Rough": {
+      "8k": {
+        "jpg": {
+          "size": 52707437,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/asphalt_03/asphalt_03_rough_8k.jpg",
+          "md5": "59b869e8c3f1bbec911287b52cdaf71a"
+        },
+        "png": {
+          "size": 288575774,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/asphalt_03/asphalt_03_rough_8k.png",
+          "md5": "9cb92fe0714d81f4958266c506433f63"
+        },
+        "exr": {
+          "size": 49576450,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/asphalt_03/asphalt_03_rough_8k.exr",
+          "md5": "44030c6cebdb3b59938246741bee4f10"
+        }
+      },
+      "4k": {
+        "jpg": {
+          "size": 13120338,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/asphalt_03/asphalt_03_rough_4k.jpg",
+          "md5": "2079796fb586599a822ce49e46b1550a"
+        },
+        "png": {
+          "size": 41456608,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/asphalt_03/asphalt_03_rough_4k.png",
+          "md5": "9215c5d0146bb19f2c5baf184de75d8e"
+        },
+        "exr": {
+          "size": 12345758,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/asphalt_03/asphalt_03_rough_4k.exr",
+          "md5": "805425c775943b136ded3bfcb65f8fb9"
+        }
+      },
+      "2k": {
+        "jpg": {
+          "size": 2918347,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/asphalt_03/asphalt_03_rough_2k.jpg",
+          "md5": "09b228040ecbd91e889715be7d50582a"
+        },
+        "png": {
+          "size": 10258289,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/asphalt_03/asphalt_03_rough_2k.png",
+          "md5": "8a4b381a39d40d834398057d3493ca57"
+        },
+        "exr": {
+          "size": 2857590,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/asphalt_03/asphalt_03_rough_2k.exr",
+          "md5": "38a54b3050a3438cbffc079bdbad0463"
+        }
+      },
+      "1k": {
+        "jpg": {
+          "size": 590105,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_03/asphalt_03_rough_1k.jpg",
+          "md5": "475b1ae5bce5abb88a73b14abc5eab5d"
+        },
+        "png": {
+          "size": 2503197,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/asphalt_03/asphalt_03_rough_1k.png",
+          "md5": "04f80f0c865d1b95cf401d9311b49f28"
+        },
+        "exr": {
+          "size": 619187,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/asphalt_03/asphalt_03_rough_1k.exr",
+          "md5": "dc5554ec89a9ddbd26867367290ca0b0"
+        }
+      }
+    },
+    "Displacement": {
+      "8k": {
+        "jpg": {
+          "size": 10158217,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/asphalt_03/asphalt_03_disp_8k.jpg",
+          "md5": "b5d52c81cdceeead24d323638c4b8ac0"
+        },
+        "png": {
+          "size": 77312158,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/asphalt_03/asphalt_03_disp_8k.png",
+          "md5": "c547179da1b0984373119ca6814ffd61"
+        },
+        "exr": {
+          "size": 36212937,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/asphalt_03/asphalt_03_disp_8k.exr",
+          "md5": "c1c80af5a5aaa4d92eb49f18a9c466ff"
+        }
+      },
+      "4k": {
+        "jpg": {
+          "size": 3445552,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/asphalt_03/asphalt_03_disp_4k.jpg",
+          "md5": "23ce07406dd6e18161ef37057a943ae4"
+        },
+        "png": {
+          "size": 24511291,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/asphalt_03/asphalt_03_disp_4k.png",
+          "md5": "bf2eba3fb4b46dea8e33eaa522c51a46"
+        },
+        "exr": {
+          "size": 12259207,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/asphalt_03/asphalt_03_disp_4k.exr",
+          "md5": "a9bf732d44d5c607044f162a92404fa0"
+        }
+      },
+      "2k": {
+        "jpg": {
+          "size": 1149608,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/asphalt_03/asphalt_03_disp_2k.jpg",
+          "md5": "08b21fa3e52dc67b4e1bb971203dd3c6"
+        },
+        "png": {
+          "size": 6485766,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/asphalt_03/asphalt_03_disp_2k.png",
+          "md5": "7e7022119f77d8a70a6d6277da5ffddf"
+        },
+        "exr": {
+          "size": 3407706,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/asphalt_03/asphalt_03_disp_2k.exr",
+          "md5": "3e4e91b3bb9b1e6a0e58cf5ea857261d"
+        }
+      },
+      "1k": {
+        "jpg": {
+          "size": 347933,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_03/asphalt_03_disp_1k.jpg",
+          "md5": "d43c8940fd1dbe2790fc4fc2442fbb25"
+        },
+        "png": {
+          "size": 1663273,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/asphalt_03/asphalt_03_disp_1k.png",
+          "md5": "9fcf5e3c6da231fed0a17e7a275a68ba"
+        },
+        "exr": {
+          "size": 897647,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/asphalt_03/asphalt_03_disp_1k.exr",
+          "md5": "4fc80aef3391f642919f79606987babe"
+        }
+      }
+    },
+    "mtlx": {
+      "8k": {
+        "mtlx": {
+          "include": {
+            "textures/asphalt_03_diff_8k.jpg": {
+              "size": 74402717,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/8k/asphalt_03/asphalt_03_diff_8k.jpg",
+              "md5": "b7ceea082c12ab9c13ba8a2c365da37a"
+            },
+            "textures/asphalt_03_nor_gl_8k.exr": {
+              "size": 95148049,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/asphalt_03/asphalt_03_nor_gl_8k.exr",
+              "md5": "9716de5a939b252fbe940299f7ac2338"
+            },
+            "textures/asphalt_03_disp_8k.png": {
+              "size": 77312158,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/asphalt_03/asphalt_03_disp_8k.png",
+              "md5": "c547179da1b0984373119ca6814ffd61"
+            },
+            "textures/asphalt_03_rough_8k.exr": {
+              "size": 49576450,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/8k/asphalt_03/asphalt_03_rough_8k.exr",
+              "md5": "44030c6cebdb3b59938246741bee4f10"
+            }
+          },
+          "size": 4677,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/mtlx/8k/asphalt_03/asphalt_03_8k.mtlx",
+          "md5": "6697726b8162471fbffbbf3c7a5ba1ab"
+        }
+      },
+      "4k": {
+        "mtlx": {
+          "include": {
+            "textures/asphalt_03_disp_4k.png": {
+              "size": 24511291,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/asphalt_03/asphalt_03_disp_4k.png",
+              "md5": "bf2eba3fb4b46dea8e33eaa522c51a46"
+            },
+            "textures/asphalt_03_rough_4k.exr": {
+              "size": 12345758,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/asphalt_03/asphalt_03_rough_4k.exr",
+              "md5": "805425c775943b136ded3bfcb65f8fb9"
+            },
+            "textures/asphalt_03_nor_gl_4k.exr": {
+              "size": 33142209,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/4k/asphalt_03/asphalt_03_nor_gl_4k.exr",
+              "md5": "99ffa91655d7388e090ca8c401036b57"
+            },
+            "textures/asphalt_03_diff_4k.jpg": {
+              "size": 16988885,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/asphalt_03/asphalt_03_diff_4k.jpg",
+              "md5": "56ba62dca46bd80bdf5f857803a05d21"
+            }
+          },
+          "size": 4677,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/mtlx/4k/asphalt_03/asphalt_03_4k.mtlx",
+          "md5": "e59478ad85e50c088fc2325950d3e0b9"
+        }
+      },
+      "2k": {
+        "mtlx": {
+          "include": {
+            "textures/asphalt_03_rough_2k.exr": {
+              "size": 2857590,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/asphalt_03/asphalt_03_rough_2k.exr",
+              "md5": "38a54b3050a3438cbffc079bdbad0463"
+            },
+            "textures/asphalt_03_nor_gl_2k.exr": {
+              "size": 8975669,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/2k/asphalt_03/asphalt_03_nor_gl_2k.exr",
+              "md5": "f98756e21c4a3c7d64efad82fb81ddeb"
+            },
+            "textures/asphalt_03_diff_2k.jpg": {
+              "size": 3723686,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/asphalt_03/asphalt_03_diff_2k.jpg",
+              "md5": "d7080e625013068e073a799cee3d8deb"
+            },
+            "textures/asphalt_03_disp_2k.png": {
+              "size": 6485766,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/asphalt_03/asphalt_03_disp_2k.png",
+              "md5": "7e7022119f77d8a70a6d6277da5ffddf"
+            }
+          },
+          "size": 4677,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/mtlx/2k/asphalt_03/asphalt_03_2k.mtlx",
+          "md5": "c4ead3e9eec4218dd2f7ecf4c82f1266"
+        }
+      },
+      "1k": {
+        "mtlx": {
+          "include": {
+            "textures/asphalt_03_disp_1k.png": {
+              "size": 1663273,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/asphalt_03/asphalt_03_disp_1k.png",
+              "md5": "9fcf5e3c6da231fed0a17e7a275a68ba"
+            },
+            "textures/asphalt_03_diff_1k.jpg": {
+              "size": 788840,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_03/asphalt_03_diff_1k.jpg",
+              "md5": "1dba74b167b3d8460717776b22ca42c5"
+            },
+            "textures/asphalt_03_rough_1k.exr": {
+              "size": 619187,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/asphalt_03/asphalt_03_rough_1k.exr",
+              "md5": "dc5554ec89a9ddbd26867367290ca0b0"
+            },
+            "textures/asphalt_03_nor_gl_1k.exr": {
+              "size": 2139625,
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/exr/1k/asphalt_03/asphalt_03_nor_gl_1k.exr",
+              "md5": "495af1f6d848ddd2ade38db76057bf82"
+            }
+          },
+          "size": 4677,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/mtlx/1k/asphalt_03/asphalt_03_1k.mtlx",
+          "md5": "29de9a453e9de9dc96572a19892cf46e"
+        }
+      }
+    }
+  }
+}

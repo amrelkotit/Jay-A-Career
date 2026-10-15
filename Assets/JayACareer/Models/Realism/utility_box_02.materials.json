@@ -1,0 +1,19 @@
+[
+  {
+    "name": "utility_box_02",
+    "color": [
+      0.800000011920929,
+      0.800000011920929,
+      0.800000011920929,
+      1.0
+    ],
+    "metallic": 0.0,
+    "roughness": 0.5,
+    "textures": {
+      "Base Color": "utility_box_02_diff_1k.jpg",
+      "Normal": "utility_box_02_nor_gl_1k.jpg",
+      "Roughness": "utility_box_02_arm_1k.jpg",
+      "Metallic": "utility_box_02_arm_1k.jpg"
+    }
+  }
+]

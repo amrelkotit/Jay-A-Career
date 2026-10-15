@@ -1,0 +1,14 @@
+{
+  "release_method": "Fresh full Unity BuildPipeline.BuildPlayer build with Bee response-file launcher",
+  "windows_player_folder": "Windows Labeled 20261015",
+  "windows_player_checks_passed": 40,
+  "visible_route_passed": true,
+  "average_fps": 59.83457946777344,
+  "percentile_1_fps": 58.63039016723633,
+  "fresh_full_build_succeeded": true,
+  "build_errors": 0,
+  "build_warnings": 1,
+  "physical_input_review": "Passed on preceding Windows Fresh player; labeled revision regression checks passed",
+  "physical_lift_place_and_lighting_review": "Pending user feedback",
+  "original_submission_preserved": true
+}

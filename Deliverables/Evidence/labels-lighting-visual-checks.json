@@ -1,0 +1,16 @@
+{
+  "environment": "Windows player",
+  "captures": 7,
+  "average_grayscale_0_to_255": {
+    "daylight-lights-off": 10.694182870370371,
+    "night-lights-off": 10.443875,
+    "night-flashlight": 11.778223958333333,
+    "night-lab-switch-on": 41.7835630787037,
+    "daylight-window": 27.757654513888887,
+    "night-window": 14.521933449074075
+  },
+  "deep_room_remains_subdued": true,
+  "window_view_darkens_at_night": true,
+  "flashlight_and_lab_switch_increase_illumination": true,
+  "day_night_and_switch_contrast_passed": true
+}

@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "command": "command build_status",
+  "data": {
+    "command": "build_status",
+    "parameters": {},
+    "result": {
+      "status": "building",
+      "buildId": "build_81330758093c",
+      "elapsedMs": 1382611
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "E:\\El Gam3a\\Semester 9\\Video Game Design\\Assignment\\Jay A Career"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}
