@@ -31,6 +31,7 @@ public class JayPlayerController : MonoBehaviour
         if(!game || !outputCamera)return;
         if(Pressed(Key.Escape)){if(game.activePlacement!=null)game.activePlacement.Cancel();else game.TogglePause();return;}
         if(game.IsPaused)return;
+        if(game.IsPerformingAction){MovementAmount=0;game.SetPrompt("Action in progress...");return;}
         // Dialogue owns response keys before movement, cleaning or rotation.
         if(game.DialogueActive)
         {
@@ -69,13 +70,14 @@ public class JayPlayerController : MonoBehaviour
             game.SetPrompt("[L] Place "+game.CarriedObject.DisplayName+"   [R] Rotate\nAim at the counter or return shelf to hand off the package.");
             if(Pressed(Key.R))game.CarriedObject.RotateCarried();
             if(Pressed(Key.L))game.DropCarried();
+            if(Pressed(Key.T))game.ShowMessage("Look down at the customer counter and press [L] to place the package. Then look at the customer and press [T].");
             return;
         }
         var ray=new Ray(outputCamera.transform.position,outputCamera.transform.forward);
         if(Physics.SphereCast(ray,.1f,out var hit,interactionRange))
         {
             var target=hit.collider.GetComponentInParent<ContextualInteractable>();
-            game.SetPrompt(target?target.PromptText:"");
+            game.SetPrompt(target==game.customer?game.CustomerPrompt:target?target.PromptText:"");
             if(!target)return;
             if(target is LiftableObject && Pressed(Key.L))target.Interact(game);
             else if(target is TalkableCharacter && Pressed(Key.T))target.Interact(game);

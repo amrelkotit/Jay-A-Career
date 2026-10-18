@@ -13,8 +13,11 @@ public class JayGameManager : MonoBehaviour
     public JayPlayerController player;
     public Camera playerCamera;
     public JayLightingController lighting;
+    public JayActionPresentation actions;
+    public bool IsPerformingAction => actions && actions.IsBusy;
     public LiftableObject deliveryPackage;
     public Transform preparationSlot, counterSlot, returnSlot, carryPoint;
+    public JayPackageDock customerCounter;
     public TalkableCharacter hale, customer;
     public GameObject workspaceClutter, pausePanel;
     public Renderer customerClothing;
@@ -50,6 +53,7 @@ public class JayGameManager : MonoBehaviour
             {
                 Vector3 p = deliveryPackage.transform.position;
                 if (p.y < -2 || p.x < -22 || p.x > 22 || p.z < -3 || p.z > 24) RecoverPackage();
+                else if(RegisterPackageOnCounter())ShowMessage(Loop.Feedback);
             }
         }
     }
@@ -71,6 +75,13 @@ public class JayGameManager : MonoBehaviour
     }
     public void Prepare()
     {
+        if(IsPaused || DialogueActive || IsPerformingAction || CarriedObject)return;
+        if(Loop.Current==JayDailyLoop.Stage.Preparation && actions)
+        {actions.Begin(JayActionPresentation.Kind.Prepare,CompletePreparation);return;}
+        CompletePreparation();
+    }
+    void CompletePreparation()
+    {
         if (Loop.Prepare())
         {
             deliveryPackage.ResetAt(preparationSlot);
@@ -89,7 +100,7 @@ public class JayGameManager : MonoBehaviour
     }
     public void BeginCarry(LiftableObject item)
     {
-        if (IsPaused || DialogueActive || CarriedObject || !carryPoint) return;
+        if (IsPaused || DialogueActive || IsPerformingAction || CarriedObject || !carryPoint) return;
         if (item == deliveryPackage && !Loop.PickUp()) { ShowMessage(Loop.Feedback); return; }
         CarriedObject = item; item.PickUp(carryPoint); Play(placementSound);
         ShowMessage(item.DisplayName + " picked up. [L] Place  [R] Rotate");
@@ -127,12 +138,32 @@ public class JayGameManager : MonoBehaviour
         item.Drop(candidate, placementRotation); CarriedObject = null;
         Play(placementSound); ShowMessage("Object placed.");
     }
+    public string CustomerPrompt => Loop.CanNegotiate ? "[T] Talk to Customer - package received"
+        : Loop.Current==JayDailyLoop.Stage.Delivery ? "Place the package on this counter [L], then talk [T]."
+        : Loop.Objective;
+    bool RegisterPackageOnCounter()
+    {
+        // A normal surface drop may land on the worktop without hitting its dock component.
+        // Recognise that same physical package only when it rests on this counter.
+        if(Loop.Current!=JayDailyLoop.Stage.Delivery || Loop.Package!=JayDailyLoop.PackageLocation.World || !customerCounter || !deliveryPackage || !counterSlot)return false;
+        var surface=customerCounter.GetComponent<BoxCollider>();
+        var package=deliveryPackage.GetComponent<Collider>();
+        if(!surface || !package || !package.enabled)return false;
+        var a=surface.bounds;var b=package.bounds;
+        if(b.min.x<a.min.x-.03f || b.max.x>a.max.x+.03f || b.min.z<a.min.z-.03f || b.max.z>a.max.z+.03f || Mathf.Abs(b.min.y-a.max.y)>.12f)return false;
+        if(!Loop.PickUp() || !Loop.Drop(JayDailyLoop.PackageLocation.Counter))return false;
+        deliveryPackage.ResetAt(counterSlot);
+        return true;
+    }
     public void TalkTo(TalkableCharacter speaker)
     {
-        if (DialogueActive || CarriedObject || IsPaused) return;
-        CustomerDialogue = speaker == customer;
+        if (DialogueActive || IsPaused || IsPerformingAction) return;
+        if(CarriedObject){ShowMessage("Put the package on the customer counter first: look down at the worktop and press [L], then look at the customer and press [T].");return;}
         if (speaker != hale && speaker != customer) return;
-        if (CustomerDialogue && !Loop.CanNegotiate) { ShowMessage(Loop.Objective); return; }
+        bool isCustomer=speaker==customer;
+        if(isCustomer)RegisterPackageOnCounter();
+        if (isCustomer && !Loop.CanNegotiate) { ShowMessage(CustomerPrompt); return; }
+        CustomerDialogue = isCustomer;
         DialogueActive = true;
         if(player.bodyVisual)player.bodyVisual.gameObject.SetActive(false);
         if (dialogueText) dialogueText.text = CustomerDialogue
@@ -171,10 +202,24 @@ public class JayGameManager : MonoBehaviour
     }
     public void CleanWorkspace()
     {
+        if(IsPaused || DialogueActive || IsPerformingAction || CarriedObject)return;
+        if(Loop.Current==JayDailyLoop.Stage.Cleaning && actions)
+        {actions.Begin(JayActionPresentation.Kind.Clean,CompleteCleaning);return;}
+        CompleteCleaning();
+    }
+    void CompleteCleaning()
+    {
         if (Loop.Clean()) { workspaceClutter.SetActive(false); Play(confirmSound); }
         ShowMessage(Loop.Feedback);
     }
     public void Sleep()
+    {
+        if(IsPaused || DialogueActive || IsPerformingAction || CarriedObject)return;
+        if(Loop.Current==JayDailyLoop.Stage.Sleep && actions)
+        {actions.Begin(JayActionPresentation.Kind.Sleep,CompleteSleep);return;}
+        CompleteSleep();
+    }
+    void CompleteSleep()
     {
         if (Loop.Sleep())
         {

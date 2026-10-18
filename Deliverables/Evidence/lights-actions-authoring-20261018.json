@@ -1,0 +1,56 @@
+{
+  "scene": "Assets/JayACareer/Scenes/JayACareer_Realism.unity",
+  "roadLights": 2,
+  "bedroomLights": [
+    "BedroomWarmLight"
+  ],
+  "bedroomSwitch": [
+    7.125,
+    1.35,
+    8.1
+  ],
+  "animations": [
+    "Prepare",
+    "Clean",
+    "Sleep"
+  ],
+  "animator": "Visual",
+  "avatar": "JayAvatar",
+  "clips": [
+    {
+      "name": "HumanoidRig|Idle",
+      "length": 1.96666682,
+      "humanMotion": true
+    },
+    {
+      "name": "HumanoidRig|Walk",
+      "length": 0.9666667,
+      "humanMotion": true
+    },
+    {
+      "name": "HumanoidRig|Talk",
+      "length": 1.96666682,
+      "humanMotion": true
+    },
+    {
+      "name": "HumanoidRig|Handoff",
+      "length": 1.63333344,
+      "humanMotion": true
+    },
+    {
+      "name": "Prepare",
+      "length": 3.2,
+      "humanMotion": true
+    },
+    {
+      "name": "Clean",
+      "length": 3.2,
+      "humanMotion": true
+    },
+    {
+      "name": "Sleep",
+      "length": 5.0,
+      "humanMotion": true
+    }
+  ]
+}

@@ -18,6 +18,7 @@ public class JayCameraRig : MonoBehaviour
     [SerializeField] CinemachineCamera interactionCamera;
     int normalPriority = 20;
     bool initialized;
+    CinemachineCamera actionCamera;
 
     public void Initialize(Camera camera)
     {
@@ -114,6 +115,22 @@ public class JayCameraRig : MonoBehaviour
         interactionCamera.Priority = 0;
         SetNormalPriorities();
     }
+
+    public void BeginActionView(Transform shot)
+    {
+        if(!initialized || !shot)return;
+        if(!actionCamera)
+        {
+            actionCamera=CreateCamera("CM Daily Action",shot,0);
+            var follow=actionCamera.gameObject.AddComponent<CinemachineFollow>();
+            follow.FollowOffset=Vector3.zero;
+            follow.TrackerSettings=new TrackerSettings{BindingMode=BindingMode.LockToTargetWithWorldUp,PositionDamping=Vector3.zero};
+            actionCamera.gameObject.AddComponent<CinemachineRotateWithFollowTarget>();
+        }
+        var target=actionCamera.Target;target.TrackingTarget=shot;actionCamera.Target=target;
+        actionCamera.Priority=40;
+    }
+    public void EndActionView(){if(actionCamera)actionCamera.Priority=0;SetNormalPriorities();}
 
     void SetNormalPriorities()
     {
