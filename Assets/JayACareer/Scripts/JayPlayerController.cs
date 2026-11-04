@@ -29,9 +29,14 @@ public class JayPlayerController : MonoBehaviour
     void Update()
     {
         if(!game || !outputCamera)return;
+        // Assignment 3: cutscenes and the notebook own the keyboard while they are open.
+        if(CutsceneController.IsPlaying){MovementAmount=0;game.SetPrompt("");return;}
+        if(NotebookUI.IsOpen){MovementAmount=0;return;}
         if(Pressed(Key.Escape)){if(game.activePlacement!=null)game.activePlacement.Cancel();else game.TogglePause();return;}
         if(game.IsPaused)return;
         if(game.IsPerformingAction){MovementAmount=0;game.SetPrompt("Action in progress...");return;}
+        // Story conversations handle their own keys inside DialogueManager.
+        if(DialogueManager.IsOpen){MovementAmount=0;game.SetPrompt("");return;}
         // Dialogue owns response keys before movement, cleaning or rotation.
         if(game.DialogueActive)
         {
@@ -53,8 +58,9 @@ public class JayPlayerController : MonoBehaviour
     void UpdateWorldInput()
     {
         Vector2 delta=Mouse.current!=null?Mouse.current.delta.ReadValue():Vector2.zero;
-        transform.Rotate(Vector3.up,delta.x*lookSpeed*.05f);
-        pitch=Mathf.Clamp(pitch-delta.y*lookSpeed*.05f,-80,80);
+        float sensitivity=lookSpeed*.05f*SettingsManager.MouseSensitivity;
+        transform.Rotate(Vector3.up,delta.x*sensitivity);
+        pitch=Mathf.Clamp(pitch-delta.y*sensitivity*(SettingsManager.InvertY?-1:1),-80,80);
         rig.LookPivot.localEulerAngles=new Vector3(pitch,0,0);
         Vector2 input=Keyboard.current==null?Vector2.zero:new Vector2((Held(Key.D)?1:0)-(Held(Key.A)?1:0),(Held(Key.W)?1:0)-(Held(Key.S)?1:0));
         input=Vector2.ClampMagnitude(input,1); MovementAmount=input.magnitude;
@@ -65,12 +71,14 @@ public class JayPlayerController : MonoBehaviour
         if(bodyVisual)bodyVisual.gameObject.SetActive(rig.IsThirdPerson);
         if(Pressed(Key.F)){game.lighting.ToggleFlashlight();game.ShowMessage(game.lighting.FlashlightOn?"Flashlight on.":"Flashlight off.");}
         UpdateFootsteps();
+        // One interact key: [E]. The A2 keys (L, T, O, C, Q) still work as aliases.
+        bool use=Pressed(Key.E)&&DialogueManager.LastClosedFrame!=Time.frameCount;
         if(game.CarriedObject)
         {
-            game.SetPrompt("[L] Place "+game.CarriedObject.DisplayName+"   [R] Rotate\nAim at the counter or return shelf to hand off the package.");
+            game.SetPrompt("[E] Place "+game.CarriedObject.DisplayName+"   [R] Rotate\nAim at the counter or return shelf to hand off the package.");
             if(Pressed(Key.R))game.CarriedObject.RotateCarried();
-            if(Pressed(Key.L))game.DropCarried();
-            if(Pressed(Key.T))game.ShowMessage("Look down at the customer counter and press [L] to place the package. Then look at the customer and press [T].");
+            if(use||Pressed(Key.L))game.DropCarried();
+            if(Pressed(Key.T))game.ShowMessage("Look down at the customer counter and press [E] to place the package. Then look at the customer and press [E].");
             return;
         }
         var ray=new Ray(outputCamera.transform.position,outputCamera.transform.forward);
@@ -79,11 +87,12 @@ public class JayPlayerController : MonoBehaviour
             var target=hit.collider.GetComponentInParent<ContextualInteractable>();
             game.SetPrompt(target==game.customer?game.CustomerPrompt:target?target.PromptText:"");
             if(!target)return;
-            if(target is LiftableObject && Pressed(Key.L))target.Interact(game);
-            else if(target is TalkableCharacter && Pressed(Key.T))target.Interact(game);
-            else if(target is CleanableStation && Pressed(Key.C))target.Interact(game);
-            else if(target is DoorInteractable door){if(Pressed(Key.O))door.Open(game);else if(Pressed(Key.Q))door.Close(game);}
-            else if((target is JayStation || target is SimpleInteractable || target is MoveableObject) && Pressed(Key.O))target.Interact(game);
+            if(target is LiftableObject && (use||Pressed(Key.L)))target.Interact(game);
+            else if(target is TalkableCharacter && (use||Pressed(Key.T)))target.Interact(game);
+            else if(target is CleanableStation && (use||Pressed(Key.C)))target.Interact(game);
+            else if(target is DoorInteractable door){if(use)door.Interact(game);else if(Pressed(Key.O))door.Open(game);else if(Pressed(Key.Q))door.Close(game);}
+            else if((target is JayStation || target is SimpleInteractable || target is MoveableObject) && (use||Pressed(Key.O)))target.Interact(game);
+            else if(use)target.Interact(game);   // LoreItem and any other story interactable
         }
         else game.SetPrompt("");
     }

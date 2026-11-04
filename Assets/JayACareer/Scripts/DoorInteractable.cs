@@ -2,7 +2,12 @@ using UnityEngine;
 public class DoorInteractable : ContextualInteractable
 {
     public override string DisplayName=>"Door";
-    public override string PromptText=>IsOpen?"[Q] Close door":"[O] Open door";
+    public override string PromptText=>IsOpen?"[E] Close door":Locked?lockedMessage:"[E] Open door";
+    [Header("Assignment 3: story lock")]
+    [Tooltip("The door stays locked until these story conditions are met (e.g. briefingDone).")]
+    public System.Collections.Generic.List<StoryCondition> unlockConditions=new System.Collections.Generic.List<StoryCondition>();
+    public string lockedMessage="Locked.";
+    public bool Locked=>unlockConditions.Count>0&&!StoryCondition.AllMet(unlockConditions,StoryStateManager.Instance);
     public bool IsOpen {get;private set;}
     public bool HideVisual;
     public float openAngle=-95;
@@ -15,6 +20,7 @@ public class DoorInteractable : ContextualInteractable
     public void Open(JayGameManager game)
     {
         if(IsOpen)return;
+        if(Locked){game.ShowMessage(lockedMessage);return;}
         // Keep the collider on the panel as it swings around the authored hinge.
         IsOpen=true;transform.localRotation=closedRotation*Quaternion.Euler(0,openAngle,0);
         foreach(var c in doorColliders)c.enabled=true;

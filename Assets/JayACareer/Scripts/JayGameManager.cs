@@ -1,7 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>Scene references and presentation for the deterministic session rules.</summary>
+/// <summary>
+/// Scene references and presentation for the deterministic session rules.
+/// Assignment 3: the delivery loop now reports every step through <see cref="LoopEvent"/> and
+/// mirrors its stage into the StoryStateManager, so story conditions can react to it. Talking
+/// to a character plays a data-driven DialogueData conversation through the DialogueManager
+/// when one is available; the original A2 hard-coded dialogue remains only as a fallback.
+/// </summary>
 public class JayGameManager : MonoBehaviour
 {
     public int day = 1, money = 100;
@@ -25,7 +31,13 @@ public class JayGameManager : MonoBehaviour
     public AudioSource feedbackAudio;
     public AudioClip confirmSound, placementSound;
     public LiftableObject CarriedObject { get; private set; }
-    public bool DialogueActive { get; private set; }
+    bool legacyDialogueActive;
+    /// <summary>True during the old A2 dialogue OR a story conversation.</summary>
+    public bool DialogueActive => legacyDialogueActive || DialogueManager.IsOpen;
+    /// <summary>Raised for every completed loop step: briefed, prepared, pickedup, delivered, sold, refused, returned, cleaned, slept.</summary>
+    public event System.Action<string> LoopEvent;
+    /// <summary>True when the scene runs as an Assignment 3 story level.</summary>
+    public bool StoryMode => FindFirstObjectByType<LevelDirector>() != null;
     public bool CustomerDialogue { get; private set; }
     public bool IsPaused { get; private set; }
     float messageTimer, recoveryTimer;
@@ -38,7 +50,7 @@ public class JayGameManager : MonoBehaviour
         if (pausePanel) pausePanel.SetActive(false);
         if (dialogueText) dialogueText.text = "";
         RefreshHud();
-        ShowMessage("Day 1. Speak to Dr. Hale inside the laboratory.");
+        if (!StoryMode) ShowMessage("Day 1. Speak to Dr. Hale inside the laboratory.");
     }
     void Update()
     {
@@ -71,8 +83,17 @@ public class JayGameManager : MonoBehaviour
         day = Loop.Day; money = Loop.Cash; objective = Loop.Objective;
         if (dayText) dayText.text = "DAY " + day;
         if (cashText) cashText.text = "$" + money;
-        if (objectiveText) objectiveText.text = objective;
+        if (objectiveText && !ObjectiveManager.Instance) objectiveText.text = objective;
+        if (StoryStateManager.Exists) MirrorLoopToStory();
     }
+    /// <summary>Copies the loop stage into story values ("loop.stage", "loop.canNegotiate") for conditions.</summary>
+    public void MirrorLoopToStory()
+    {
+        var s = StoryStateManager.Instance;
+        s.SetText(StoryKeys.LoopStage, Loop.Current.ToString());
+        s.SetFlag(StoryKeys.CanNegotiate, Loop.CanNegotiate);
+    }
+    void Raise(string loopEvent) { MirrorLoopToStory(); LoopEvent?.Invoke(loopEvent); }
     public void Prepare()
     {
         if(IsPaused || DialogueActive || IsPerformingAction || CarriedObject)return;
@@ -88,6 +109,7 @@ public class JayGameManager : MonoBehaviour
             deliveryPackage.gameObject.SetActive(true);
             workspaceClutter.SetActive(true);
             Play(confirmSound);
+            ShowMessage(Loop.Feedback); Raise("prepared"); return;
         }
         else if ((Loop.Current == JayDailyLoop.Stage.Delivery || Loop.Current == JayDailyLoop.Stage.Return) && Loop.Package != JayDailyLoop.PackageLocation.Carried)
         { RecoverPackage(); return; }
@@ -103,14 +125,18 @@ public class JayGameManager : MonoBehaviour
         if (IsPaused || DialogueActive || IsPerformingAction || CarriedObject || !carryPoint) return;
         if (item == deliveryPackage && !Loop.PickUp()) { ShowMessage(Loop.Feedback); return; }
         CarriedObject = item; item.PickUp(carryPoint); Play(placementSound);
-        ShowMessage(item.DisplayName + " picked up. [L] Place  [R] Rotate");
+        ShowMessage(item.DisplayName + " picked up. [E] Place  [R] Rotate");
+        if (item == deliveryPackage) Raise("pickedup");
     }
     public bool PlacePackageAt(JayDailyLoop.PackageLocation destination)
     {
         if (CarriedObject != deliveryPackage || !Loop.Drop(destination)) { ShowMessage(Loop.Feedback); return false; }
         Transform slot = destination == JayDailyLoop.PackageLocation.Counter ? counterSlot : destination == JayDailyLoop.PackageLocation.Returned ? returnSlot : preparationSlot;
         deliveryPackage.Drop(slot.position, slot.rotation); CarriedObject = null;
-        Play(placementSound); ShowMessage(Loop.Feedback); return true;
+        Play(placementSound); ShowMessage(Loop.Feedback);
+        if (destination == JayDailyLoop.PackageLocation.Counter) Raise("delivered");
+        else if (destination == JayDailyLoop.PackageLocation.Returned) Raise("returned");
+        return true;
     }
     public void DropCarried()
     {
@@ -138,8 +164,9 @@ public class JayGameManager : MonoBehaviour
         item.Drop(candidate, placementRotation); CarriedObject = null;
         Play(placementSound); ShowMessage("Object placed.");
     }
-    public string CustomerPrompt => Loop.CanNegotiate ? "[T] Talk to Customer - package received"
-        : Loop.Current==JayDailyLoop.Stage.Delivery ? "Place the package on this counter [L], then talk [T]."
+    public string CustomerPrompt => Loop.CanNegotiate ? "[E] Talk to " + (customer ? customer.Name : "Customer") + " - package received"
+        : Loop.Current==JayDailyLoop.Stage.Delivery ? "Place the package on this counter [E], then talk [E]."
+        : customer && customer.PickConversation() ? "[E] Talk to " + customer.Name
         : Loop.Objective;
     bool RegisterPackageOnCounter()
     {
@@ -153,18 +180,22 @@ public class JayGameManager : MonoBehaviour
         if(b.min.x<a.min.x-.03f || b.max.x>a.max.x+.03f || b.min.z<a.min.z-.03f || b.max.z>a.max.z+.03f || Mathf.Abs(b.min.y-a.max.y)>.12f)return false;
         if(!Loop.PickUp() || !Loop.Drop(JayDailyLoop.PackageLocation.Counter))return false;
         deliveryPackage.ResetAt(counterSlot);
+        Raise("delivered");
         return true;
     }
     public void TalkTo(TalkableCharacter speaker)
     {
         if (DialogueActive || IsPaused || IsPerformingAction) return;
         if(CarriedObject){ShowMessage("Put the package on the customer counter first: look down at the worktop and press [L], then look at the customer and press [T].");return;}
-        if (speaker != hale && speaker != customer) return;
         bool isCustomer=speaker==customer;
         if(isCustomer)RegisterPackageOnCounter();
+        // Assignment 3: data-driven story conversation (preconditions pick the right one).
+        var story = DialogueManager.Instance ? speaker.PickConversation() : null;
+        if (story) { StartStoryDialogue(story, speaker, null); return; }
+        if (speaker != hale && speaker != customer) return;
         if (isCustomer && !Loop.CanNegotiate) { ShowMessage(CustomerPrompt); return; }
         CustomerDialogue = isCustomer;
-        DialogueActive = true;
+        legacyDialogueActive = true;
         if(player.bodyVisual)player.bodyVisual.gameObject.SetActive(false);
         if (dialogueText) dialogueText.text = CustomerDialogue
             ? "CUSTOMER\nI'll pay $50 for the sealed package.\n[A] Accept $50   [C] Counter $75 (50% chance)   [R] Reject\nOne decision per day. A refused counter pays $0."
@@ -193,9 +224,46 @@ public class JayGameManager : MonoBehaviour
         }
         EndDialogue();
     }
+    // ------------------------------------------------------------------ Assignment 3 story dialogue
+    /// <summary>Plays a DialogueData conversation with camera focus on the speaker.</summary>
+    public void StartStoryDialogue(DialogueData dialogue, TalkableCharacter speaker, Transform focus)
+    {
+        if (!dialogue || !DialogueManager.Instance) return;
+        CustomerDialogue = speaker && speaker == customer;
+        if (player && player.bodyVisual) player.bodyVisual.gameObject.SetActive(false);
+        Transform target = focus ? focus : speaker ? (speaker.headTarget ? speaker.headTarget : speaker.transform) : null;
+        if (target) FocusCamera(target);
+        DialogueManager.Instance.Begin(dialogue, OnStoryChoice, EndDialogue);
+    }
+
+    /// <summary>Applies a choice's consequence to the delivery loop (briefing done, sale, refusal).</summary>
+    void OnStoryChoice(DialogueChoice choice)
+    {
+        if (choice == null) return;
+        switch (choice.loopAction)
+        {
+            case DialogueLoopAction.CompleteBriefing:
+                if (Loop.Brief()) Raise("briefed");
+                break;
+            case DialogueLoopAction.SellPackage:
+                RegisterPackageOnCounter();
+                if (Loop.ResolveStory(true, choice.payment))
+                {
+                    deliveryPackage.gameObject.SetActive(false);
+                    StoryStateManager.Instance.AddInt(StoryKeys.Cash, choice.payment);
+                    Play(confirmSound); ShowMessage(Loop.Feedback); Raise("sold");
+                }
+                break;
+            case DialogueLoopAction.RefusePackage:
+                RegisterPackageOnCounter();
+                if (Loop.ResolveStory(false, 0)) { ShowMessage(Loop.Feedback); Raise("refused"); }
+                break;
+        }
+    }
+
     public void EndDialogue()
     {
-        DialogueActive = false; CustomerDialogue = false;
+        legacyDialogueActive = false; CustomerDialogue = false;
         if(player && player.bodyVisual)player.bodyVisual.gameObject.SetActive(player.GetComponent<JayCameraRig>().IsThirdPerson);
         if (dialogueText) dialogueText.text = "";
         if (player && player.GetComponent<JayCameraRig>()) player.GetComponent<JayCameraRig>().EndFocus();
@@ -209,7 +277,7 @@ public class JayGameManager : MonoBehaviour
     }
     void CompleteCleaning()
     {
-        if (Loop.Clean()) { workspaceClutter.SetActive(false); Play(confirmSound); }
+        if (Loop.Clean()) { workspaceClutter.SetActive(false); Play(confirmSound); ShowMessage(Loop.Feedback); Raise("cleaned"); return; }
         ShowMessage(Loop.Feedback);
     }
     public void Sleep()
@@ -221,6 +289,12 @@ public class JayGameManager : MonoBehaviour
     }
     void CompleteSleep()
     {
+        if (StoryMode)
+        {
+            // Story levels: sleeping ends the day; the LevelDirector loads the next level.
+            if (Loop.Sleep()) { deliveryPackage.gameObject.SetActive(false); Play(confirmSound); Raise("slept"); }
+            ShowMessage(Loop.Feedback); return;
+        }
         if (Loop.Sleep())
         {
             deliveryPackage.gameObject.SetActive(false); lighting.BeginNextDay();
@@ -249,9 +323,9 @@ public class JayGameManager : MonoBehaviour
     public void BeginPlacement(MoveableObject item) { activePlacement = item; ShowMessage("Place the prop with WASD; Q/R rotate, Enter confirms."); }
     public void RegisterInteraction(string unused) { }
     public void FocusCamera(Transform target) { if (player) player.GetComponent<JayCameraRig>()?.Focus(target); }
-    public void ShowMessage(string text) { if (messageText) messageText.text = text; messageTimer = 5; }
+    public void ShowMessage(string text) { if (StoryHUD.Instance) { StoryHUD.Toast(text); return; } if (messageText) messageText.text = text; messageTimer = 5; }
     public void ShowDialogue(string text) { if (dialogueText) dialogueText.text = text; }
-    public void SetPrompt(string text) { if (promptText) promptText.text = text; }
+    public void SetPrompt(string text) { if (StoryHUD.Instance) { StoryHUD.SetPrompt(text); return; } if (promptText) promptText.text = text; }
     public void Play(AudioClip clip) { if (feedbackAudio && clip) feedbackAudio.PlayOneShot(clip, .35f); }
 }
 public class WorldLabelBillboard : MonoBehaviour

@@ -22,7 +22,16 @@ public class JayHumanAnimation : MonoBehaviour
         if (!game || !animator || !animator.runtimeAnimatorController) return;
         if(role==Role.Jay && game.IsPerformingAction)return;
         animator.SetFloat("Speed",role==Role.Jay ? game.player.MovementAmount : 0);
-        animator.SetBool("Talking",game.DialogueActive && (role==Role.Hale && !game.CustomerDialogue || role==Role.Customer && game.CustomerDialogue));
+        bool talking;
+        if(DialogueManager.IsOpen)
+        {
+            // Story dialogue: only the character whose line is on screen animates.
+            var speaker=DialogueManager.Instance.CurrentSpeaker;
+            var self=role==Role.Hale?game.hale:role==Role.Customer?game.customer:null;
+            talking=speaker&&self&&self.profile==speaker;
+        }
+        else talking=game.DialogueActive && (role==Role.Hale && !game.CustomerDialogue || role==Role.Customer && game.CustomerDialogue);
+        animator.SetBool("Talking",talking);
         if (game.Loop.NegotiationResolved && lastHandoffDay!=game.Loop.Day)
         { lastHandoffDay=game.Loop.Day; if(role!=Role.Hale) animator.SetTrigger("Handoff"); }
     }

@@ -17,13 +17,13 @@ public sealed class JayDailyLoop
     public string Feedback { get; private set; } = "Talk to Dr. Hale to begin.";
     public string Objective => Current switch
     {
-        Stage.Briefing => "Talk to Dr. Hale [T].",
-        Stage.Preparation => "Prepare one sealed package at the preparation bench [O].",
-        Stage.Delivery => "Carry the package [L] to the customer counter; aim at the counter and drop [L].",
-        Stage.Negotiation => "Talk to the customer [T]; choose one offer.",
-        Stage.Return => "Return the unsold package to the laboratory return shelf [L].",
-        Stage.Cleaning => "Clean the marked workspace at the sink [C].",
-        _ => "Sleep at the bedroom bed [O] to begin another day."
+        Stage.Briefing => "Talk to Dr. Hale [E].",
+        Stage.Preparation => "Prepare one sealed package at the preparation bench [E].",
+        Stage.Delivery => "Carry the package [E] to the customer counter; aim at the counter and place it [E].",
+        Stage.Negotiation => "Talk to the customer [E]; choose one offer.",
+        Stage.Return => "Return the unsold package to the laboratory return shelf [E].",
+        Stage.Cleaning => "Clean the marked workspace at the sink [E].",
+        _ => "Sleep at the bedroom bed [E] to begin another day."
     };
     bool Deny(string text) { Feedback = text; return false; }
     public bool Brief()
@@ -72,6 +72,29 @@ public sealed class JayDailyLoop
         else { Current = Stage.Return; Feedback = "No sale and no payment. Return this package to the lab shelf."; }
         return true;
     }
+    // ---------------------------------------------------------------- Assignment 3 story hooks
+    /// <summary>Story levels set the day and the cash carried over from earlier levels.</summary>
+    public void SetDay(int day) { Day = Math.Max(1, day); }
+    public void SetCash(int cash) { Cash = Math.Max(0, cash); }
+
+    /// <summary>
+    /// Deterministic deal used by the story levels: the buyer's dialogue choice decides the
+    /// outcome and payment (no 50% coin flip), so a choice always has the consequence the
+    /// player read on screen.
+    /// </summary>
+    public bool ResolveStory(bool sold, int payment)
+    {
+        if (!CanNegotiate) return Deny(Objective);
+        NegotiationResolved = true;
+        if (sold)
+        {
+            Cash += Math.Max(0, payment); Package = PackageLocation.Sold; Current = Stage.Cleaning;
+            Feedback = "Sale complete. Payment received: $" + payment + ".";
+        }
+        else { Current = Stage.Return; Feedback = "No sale. Return the package to the lab shelf."; }
+        return true;
+    }
+
     public bool Clean()
     {
         if (Current != Stage.Cleaning) return Deny(Objective);

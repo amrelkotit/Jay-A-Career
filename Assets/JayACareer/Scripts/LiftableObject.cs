@@ -1,7 +1,7 @@
 using UnityEngine;
 public class LiftableObject : ContextualInteractable
 {
-    public string DisplayLabel="Object"; public override string DisplayName=>string.IsNullOrWhiteSpace(DisplayLabel)?gameObject.name:DisplayLabel; public override string PromptText=>DisplayName+"\n[L] Lift   [R] Rotate while carrying";
+    public string DisplayLabel="Object"; public override string DisplayName=>string.IsNullOrWhiteSpace(DisplayLabel)?gameObject.name:DisplayLabel; public override string PromptText=>DisplayName+"\n[E] Lift   [R] Rotate while carrying";
     [HideInInspector] public bool IsCarried; Rigidbody body; Collider[] colliders; float carriedYaw;
     public override void Interact(JayGameManager game){game.BeginCarry(this);}
     public void PickUp(Transform carryPoint){if(IsCarried)return;IsCarried=true;carriedYaw=0;foreach(Transform child in GetComponentsInChildren<Transform>(true))if(child.name.EndsWith("_LiftMarker"))child.gameObject.SetActive(false);body=GetComponent<Rigidbody>();if(body){body.isKinematic=true;body.detectCollisions=false;}colliders=GetComponentsInChildren<Collider>();foreach(var c in colliders)c.enabled=false;transform.SetParent(carryPoint);transform.localPosition=Vector3.zero;transform.localRotation=Quaternion.identity;}

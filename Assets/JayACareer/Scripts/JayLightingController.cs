@@ -21,17 +21,28 @@ public class JayLightingController : MonoBehaviour
     public bool FlashlightOn {get;private set;}
     public bool WorkspaceLightsOn {get;private set;}
     public float CycleTime {get;private set;}
+    [Header("Assignment 3: story-driven time of day")]
+    [Tooltip("When false the sun only moves when a LevelDirector sets the time (story pacing).")]
+    public bool autoAdvance=true;
+    [Tooltip("Set by StreetLampController, which then drives the road lamps itself (staggered + flicker).")]
+    public bool externalRoadLamps;
+    /// <summary>Position in the day cycle: 0 = midday, .25 = afternoon, .4 = dusk, .5 = midnight, .75 = dawn.</summary>
+    public float CycleFraction=>Mathf.Repeat(CycleTime/Mathf.Max(30,DayCycleSeconds),1);
+    /// <summary>0 in daylight, 1 at night. Street lamps read this.</summary>
+    public float Evening {get;private set;}
+    public void SetCycleFraction(float fraction){CycleTime=Mathf.Repeat(fraction,1)*Mathf.Max(30,DayCycleSeconds);UpdateDaylight();}
     void Awake(){WorkspaceLightsOn=workspaceLightsStartOn;BedroomLightsOn=bedroomLightsStartOn;ApplyWorkspaceLights();ApplyBedroomLights();UpdateDaylight();}
-    void Update(){CycleTime+=Time.deltaTime;UpdateDaylight();}
+    void Update(){if(autoAdvance)CycleTime+=Time.deltaTime;UpdateDaylight();}
     void UpdateDaylight()
     {
         if(!sun)return;
         float daylight=.5f+.5f*Mathf.Cos(CycleTime/Mathf.Max(30,DayCycleSeconds)*Mathf.PI*2);
         // Begin at dusk and reach full output before the darkest part of the cycle.
         float evening=1-Mathf.SmoothStep(0,1,Mathf.InverseLerp(.12f,.4f,daylight));
-        foreach(var light in roadLights??System.Array.Empty<Light>())if(light){light.enabled=evening>.001f;light.intensity=roadLightIntensity*evening;}
+        Evening=evening;
+        if(!externalRoadLamps)foreach(var light in roadLights??System.Array.Empty<Light>())if(light){light.enabled=evening>.001f;light.intensity=roadLightIntensity*evening;}
         if(roadLampProperties==null)roadLampProperties=new MaterialPropertyBlock();
-        foreach(var bulb in roadLampBulbs??System.Array.Empty<Renderer>())if(bulb)
+        if(!externalRoadLamps)foreach(var bulb in roadLampBulbs??System.Array.Empty<Renderer>())if(bulb)
         {
             bulb.GetPropertyBlock(roadLampProperties);
             roadLampProperties.SetColor("_EmissionColor",new Color(1,.69f,.32f)*4*evening);
