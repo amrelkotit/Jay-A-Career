@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f670f815c51170442b47b92f4a03f3f7, type: 3}
+  m_Name: L1_LeoHint
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  id: L1_LeoHint
+  lines:
+  - speaker: {fileID: 11400000, guid: 4ece559b3152d1045b879712b640ae72, type: 2}
+    text: Who else? Man, I don't... look. Everybody knows Hale's stuff is the only
+      stuff Paul's people don't touch.
+    conditions: []
+  - speaker: {fileID: 11400000, guid: 37fb9708d40dec141b361114c996e24e, type: 2}
+    text: Who's Paul?
+    conditions: []
+  - speaker: {fileID: 11400000, guid: 4ece559b3152d1045b879712b640ae72, type: 2}
+    text: Nobody. Forget I said it. Can we, uh, can we just do this?
+    conditions: []
+  choices:
+  - text: Count the money and hand over the carton.
+    conditions: []
+    effects:
+    - type: 0
+      key: leoPaid
+      intValue: 0
+      textValue: 
+    loopAction: 2
+    payment: 100
+    next: {fileID: 11400000, guid: 6ebd5ed141d169f4ca14693675ade2cb, type: 2}
+  onComplete:
+  - type: 5
+    key: paul
+    intValue: 0
+    textValue: 'A name: Paul|Leo let a name slip: Paul. Whoever he is, "Paul''s people"
+      leave Hale''s orders alone. Leo looked scared just saying it.'
+  loopActionOnComplete: 0
+  playOnce: 0

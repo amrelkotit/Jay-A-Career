@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84c8f1f8335ed74b9ba4a4b42fe48c4, type: 3}
+  m_Name: Jay
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterProfile
+  displayName: Jay
+  portrait: {fileID: 0}
+  nameColor: {r: 0.56078434, g: 0.78039217, b: 1, a: 1}
+  shortBio: 23, broke, three days from eviction. The player.

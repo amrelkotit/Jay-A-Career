@@ -125,7 +125,8 @@ public static class Assignment3Builder
         foreach (var t in new[] { typeof(JayDemonstration), typeof(JayInputValidation), typeof(JayActionsReview), typeof(JayLightingReview) })
             foreach (var c in Object.FindObjectsByType(t, FindObjectsInactive.Include, FindObjectsSortMode.None)) Object.DestroyImmediate(c);
 
-        lv.sink = Object.FindFirstObjectByType<CleanableStation>(FindObjectsInactive.Include)?.transform;
+        var sinkStation = Object.FindFirstObjectByType<CleanableStation>(FindObjectsInactive.Include);
+        lv.sink = sinkStation ? sinkStation.transform : null;
         foreach (var s in Object.FindObjectsByType<JayStation>(FindObjectsInactive.Include, FindObjectsSortMode.None))
         {
             if (s.action == JayStation.Action.Sleep) lv.bed = s.transform;

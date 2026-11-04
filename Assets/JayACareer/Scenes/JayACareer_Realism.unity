@@ -21895,6 +21895,8 @@ MonoBehaviour:
   - {fileID: 481996075}
   bedroomLightsStartOn: 1
   bedroomSwitchRocker: {fileID: 784234764}
+  autoAdvance: 1
+  externalRoadLamps: 0
 --- !u!1 &1366498661
 GameObject:
   m_ObjectHideFlags: 0

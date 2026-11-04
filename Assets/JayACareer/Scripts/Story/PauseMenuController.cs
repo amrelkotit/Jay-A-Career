@@ -15,9 +15,9 @@ public class PauseMenuController : MonoBehaviour
     void Start()
     {
         if (!game) game = FindFirstObjectByType<JayGameManager>();
-        if (resumeButton) resumeButton.onClick.AddListener(() => game?.Resume());
+        if (resumeButton) resumeButton.onClick.AddListener(() => { if (game) game.Resume(); });
         if (restartButton) restartButton.onClick.AddListener(LevelTransitionManager.RestartLevel);
-        if (settingsButton) settingsButton.onClick.AddListener(() => settings?.Open());
+        if (settingsButton) settingsButton.onClick.AddListener(() => { if (settings) settings.Open(); });
         if (mainMenuButton) mainMenuButton.onClick.AddListener(LevelTransitionManager.ToMainMenu);
         if (quitButton) quitButton.onClick.AddListener(LevelTransitionManager.Quit);
     }

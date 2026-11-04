@@ -21,7 +21,7 @@ public class MainMenuController : MonoBehaviour
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.None; Cursor.visible = true;
         if (newGameButton) { newGameButton.onClick.AddListener(NewGame); newGameButton.Select(); }
-        if (settingsButton) settingsButton.onClick.AddListener(() => settings?.Open());
+        if (settingsButton) settingsButton.onClick.AddListener(() => { if (settings) settings.Open(); });
         if (creditsButton) creditsButton.onClick.AddListener(() => ShowCredits(true));
         if (creditsCloseButton) creditsCloseButton.onClick.AddListener(() => ShowCredits(false));
         if (quitButton) quitButton.onClick.AddListener(LevelTransitionManager.Quit);

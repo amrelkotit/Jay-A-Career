@@ -90,7 +90,7 @@ public static class Assignment3UI
 
     public static CanvasGroup Group(GameObject go, float alpha = 1)
     {
-        var g = go.GetComponent<CanvasGroup>() ?? go.AddComponent<CanvasGroup>();
+        if (!go.TryGetComponent<CanvasGroup>(out var g)) g = go.AddComponent<CanvasGroup>();
         g.alpha = alpha; return g;
     }
 

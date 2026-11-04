@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f670f815c51170442b47b92f4a03f3f7, type: 3}
+  m_Name: L2_LukaBefore
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  id: L2_LukaBefore
+  lines:
+  - speaker: {fileID: 11400000, guid: bdc6da8f8fad4c342b2ff70dc0a53dcd, type: 2}
+    text: The carton goes on the counter. Then we talk. That's how grown-ups do business.
+    conditions: []
+  choices: []
+  onComplete: []
+  loopActionOnComplete: 0
+  playOnce: 0

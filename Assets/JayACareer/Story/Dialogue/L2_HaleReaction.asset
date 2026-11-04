@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f670f815c51170442b47b92f4a03f3f7, type: 3}
+  m_Name: L2_HaleReaction
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  id: L2_HaleReaction
+  lines:
+  - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
+    text: He paid what he offered? Fine. Clean. Forgettable. Good.
+    conditions:
+    - type: 4
+      key: lukaDeal
+      intValue: 0
+      textValue: accepted
+  - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
+    text: Forgettable is how men like me stay alive out here.
+    conditions:
+    - type: 4
+      key: lukaDeal
+      intValue: 0
+      textValue: accepted
+  - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
+    text: Two hundred and fifty.
+    conditions:
+    - type: 4
+      key: lukaDeal
+      intValue: 0
+      textValue: pushed
+  - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
+    text: You made us visible, Jay. Do you understand what that means out here? It
+      means somebody writes our names down.
+    conditions:
+    - type: 4
+      key: lukaDeal
+      intValue: 0
+      textValue: pushed
+  - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
+    text: You sent Luka away.
+    conditions:
+    - type: 4
+      key: lukaDeal
+      intValue: 0
+      textValue: refused
+  - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
+    text: ...That took more nerve than you know. More than I had at your age.
+    conditions:
+    - type: 4
+      key: lukaDeal
+      intValue: 0
+      textValue: refused
+  - speaker: {fileID: 11400000, guid: 37fb9708d40dec141b361114c996e24e, type: 2}
+    text: Luka got a message. From someone who signs as "P."
+    conditions:
+    - type: 0
+      key: phoneNoteFound
+      intValue: 0
+      textValue: 
+  - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
+    text: Don't say that letter inside my lab again. Clean the bench. Go home.
+    conditions:
+    - type: 0
+      key: phoneNoteFound
+      intValue: 0
+      textValue: 
+  - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
+    text: Clean up. Go home. Tomorrow will be... different.
+    conditions:
+    - type: 1
+      key: phoneNoteFound
+      intValue: 0
+      textValue: 
+  choices: []
+  onComplete:
+  - type: 0
+    key: haleReacted
+    intValue: 0
+    textValue: 
+  loopActionOnComplete: 0
+  playOnce: 1

@@ -6,8 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/JayACareer/Scenes/JayACareer_Realism.unity
-    guid: 7c9cb44459832244687aee6f20d04c52
+    path: Assets/JayACareer/Scenes/MainMenu.unity
+    guid: 89bcc35017de1514896338ee582b9169
+  - enabled: 1
+    path: Assets/JayACareer/Scenes/Loading.unity
+    guid: ed6cef1fbd0f61f43b85ccb637fab600
+  - enabled: 1
+    path: Assets/JayACareer/Scenes/L1_FirstDelivery.unity
+    guid: e6b59ebb3b11d2446930ad7f0e0156f3
+  - enabled: 1
+    path: Assets/JayACareer/Scenes/L2_Middleman.unity
+    guid: ed981797e98a84a46be0d267761c247b
+  - enabled: 1
+    path: Assets/JayACareer/Scenes/L3_BigBuyer.unity
+    guid: 0c565a5c9ce679443b221b62cda9d3ef
+  - enabled: 1
+    path: Assets/JayACareer/Scenes/Ending.unity
+    guid: a16370c30eb529a46bb4c60bdfd17701
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
