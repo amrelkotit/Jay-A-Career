@@ -46,6 +46,8 @@ public class CutsceneController : MonoBehaviour
     [Tooltip("Used only when no Timeline is assigned: cameras cut in order.")]
     public List<Shot> fallbackShots = new List<Shot>();
     public bool playOnStart;
+    [Tooltip("Start automatically the moment startConditions become true (e.g. paulMet).")]
+    public bool playWhenConditionsMet;
     public List<StoryCondition> startConditions = new List<StoryCondition>();
     public List<Subtitle> subtitles = new List<Subtitle>();
 
@@ -70,6 +72,22 @@ public class CutsceneController : MonoBehaviour
     {
         if (skipHint) skipHint.alpha = 0;
         if (playOnStart) Play();
+        if (playWhenConditionsMet) { StoryStateManager.Instance.Changed += OnStoryChanged; OnStoryChanged(); }
+    }
+
+    void OnDestroy() { if (StoryStateManager.Exists) StoryStateManager.Instance.Changed -= OnStoryChanged; }
+
+    void OnStoryChanged()
+    {
+        if (active || finished) return;
+        if (startConditions.Count > 0 && StoryCondition.AllMet(startConditions, StoryStateManager.Instance)) StartCoroutine(PlayWhenFree());
+    }
+
+    IEnumerator PlayWhenFree()
+    {
+        // Let the conversation that set the condition close before the cutscene takes over.
+        while (DialogueManager.IsOpen) yield return null;
+        Play();
     }
 
     /// <summary>Plays the cutscene unless it has already been seen or its conditions fail.</summary>
@@ -84,6 +102,7 @@ public class CutsceneController : MonoBehaviour
     IEnumerator Run()
     {
         active = this; finished = false; elapsed = 0; skipHeld = 0;
+        Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false;
         StoryHUD.SetGameplayVisible(false);
         foreach (var g in hideWhilePlaying) if (g) g.SetActive(false);
         if (skipHint) skipHint.alpha = 1;
@@ -151,12 +170,16 @@ public class CutsceneController : MonoBehaviour
         if (skipHint) skipHint.alpha = 0;
         foreach (var g in hideWhilePlaying) if (g) g.SetActive(true);
         StoryHUD.SetGameplayVisible(true);
-        active = null;
+        active = null; finished = true;
         var state = StoryStateManager.Instance;
         if (!string.IsNullOrEmpty(flagOnFinish)) state.SetFlag(flagOnFinish, true);
         StoryEffect.ApplyAll(effectsOnFinish, state);
         onFinished?.Invoke();
-        if (!string.IsNullOrEmpty(loadSceneOnFinish)) LevelTransitionManager.LoadLevel(loadSceneOnFinish, loadTitle, loadRecap);
+        if (!string.IsNullOrEmpty(loadSceneOnFinish))
+        {
+            if (string.IsNullOrEmpty(loadTitle) && string.IsNullOrEmpty(loadRecap)) UnityEngine.SceneManagement.SceneManager.LoadScene(loadSceneOnFinish);
+            else LevelTransitionManager.LoadLevel(loadSceneOnFinish, loadTitle, loadRecap);
+        }
     }
 
     void OnDisable() { if (active == this) active = null; }

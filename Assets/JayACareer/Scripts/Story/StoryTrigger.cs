@@ -35,6 +35,9 @@ public class StoryTrigger : MonoBehaviour
     public DialogueData dialogue;
     [Tooltip("Camera focus during the conversation (optional).")]
     public Transform dialogueFocus;
+    [System.Serializable] public class Move { public Transform target; public Transform destination; }
+    [Tooltip("Teleport characters/props to marker transforms when the beat fires (e.g. Hale to the doorway).")]
+    public List<Move> moves = new List<Move>();
     public GameObject[] activateObjects;
     public GameObject[] deactivateObjects;
     public AudioSource playAudio;
@@ -84,6 +87,7 @@ public class StoryTrigger : MonoBehaviour
         if (delay > 0) yield return new WaitForSeconds(delay);
         // Never interrupt a running cutscene; wait for it to finish first.
         while (CutsceneController.IsPlaying) yield return null;
+        foreach (var m in moves) if (m != null && m.target && m.destination) m.target.SetPositionAndRotation(m.destination.position, m.destination.rotation);
         foreach (var g in activateObjects) if (g) g.SetActive(true);
         foreach (var g in deactivateObjects) if (g) g.SetActive(false);
         if (playAudio) playAudio.Play();

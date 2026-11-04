@@ -194,6 +194,16 @@ public class StoryStateManager : MonoBehaviour
         return true;
     }
 
+    /// <summary>Replaces {cash}, {rent}, {short}, {trust}, {heat} in authored text with live values.</summary>
+    public string Format(string text)
+    {
+        if (string.IsNullOrEmpty(text)) return text;
+        int cash = GetInt(StoryKeys.Cash);
+        return text.Replace("{cash}", cash.ToString()).Replace("{rent}", StoryKeys.RentDue.ToString())
+                   .Replace("{short}", Mathf.Max(0, StoryKeys.RentDue - cash).ToString())
+                   .Replace("{trust}", GetInt(StoryKeys.Trust).ToString()).Replace("{heat}", GetInt(StoryKeys.Heat).ToString());
+    }
+
     /// <summary>Readable dump for debugging and for the GDD's state-flag screenshots.</summary>
     public override string ToString()
     {

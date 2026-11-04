@@ -77,6 +77,7 @@ public enum StoryEffectType
     SetInt,         // integer "key" = intValue
     SetText,        // text "key" = textValue
     AddJournal,     // journal entry: key = id, textValue = "Title|Body"
+    AddItem,        // inventory item: key = id, textValue = "Title|Description"
     ShowMessage     // short on-screen toast: textValue
 }
 
@@ -97,6 +98,8 @@ public class StoryEffect
     public static StoryEffect Add(string key, int amount) => new StoryEffect(StoryEffectType.AddInt, key, amount);
     public static StoryEffect Text(string key, string value) => new StoryEffect(StoryEffectType.SetText, key, 0, value);
     public static StoryEffect Journal(string id, string title, string body) => new StoryEffect(StoryEffectType.AddJournal, id, 0, title + "|" + body);
+    public static StoryEffect Item(string id, string title, string description) => new StoryEffect(StoryEffectType.AddItem, id, 0, title + "|" + description);
+    public static StoryEffect SetNumber(string key, int value) => new StoryEffect(StoryEffectType.SetInt, key, value);
     public static StoryEffect Message(string text) => new StoryEffect(StoryEffectType.ShowMessage, "", 0, text);
 
     public void Apply(StoryStateManager state)
@@ -114,6 +117,10 @@ public class StoryEffect
                 string title = split >= 0 ? textValue.Substring(0, split) : textValue;
                 string body = split >= 0 ? textValue.Substring(split + 1) : "";
                 state.AddJournalEntry(key, title, body);
+                break;
+            case StoryEffectType.AddItem:
+                int cut = textValue.IndexOf('|');
+                state.AddItem(key, cut >= 0 ? textValue.Substring(0, cut) : textValue, cut >= 0 ? textValue.Substring(cut + 1) : "");
                 break;
             case StoryEffectType.ShowMessage: StoryHUD.Toast(textValue); break;
         }

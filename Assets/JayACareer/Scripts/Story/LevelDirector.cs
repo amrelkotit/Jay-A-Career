@@ -94,6 +94,15 @@ public class LevelDirector : MonoBehaviour
         if (lighting) lighting.autoAdvance = false;
         state.Changed += OnStateChanged;
         OnStateChanged();
+        StartCoroutine(ChapterCardWhenFree());
+    }
+
+    /// <summary>The chapter card waits until an opening cutscene has finished.</summary>
+    IEnumerator ChapterCardWhenFree()
+    {
+        yield return null;
+        while (CutsceneController.IsPlaying) yield return null;
+        yield return new WaitForSeconds(.4f);
         StoryHUD.ShowChapter(chapterTitle, chapterSubtitle);
     }
 
@@ -157,6 +166,6 @@ public class LevelDirector : MonoBehaviour
         var state = StoryStateManager.Instance;
         string recap = "";
         foreach (var r in recaps) if (StoryCondition.AllMet(r.conditions, state)) { recap = r.recap; break; }
-        LevelTransitionManager.LoadLevel(nextScene, nextTitle, recap);
+        LevelTransitionManager.LoadLevel(nextScene, nextTitle, state.Format(recap));
     }
 }

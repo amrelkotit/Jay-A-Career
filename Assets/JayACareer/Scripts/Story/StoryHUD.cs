@@ -52,8 +52,8 @@ public class StoryHUD : MonoBehaviour
         Instance = this;
         if (toastGroup) toastGroup.alpha = 0;
         if (chapterGroup) chapterGroup.alpha = 0;
-        if (subtitleText) { subtitleBaseSize = subtitleText.fontSize; subtitleText.text = ""; }
-        if (promptText) promptText.text = "";
+        if (subtitleText) { subtitleBaseSize = subtitleText.fontSize; subtitleText.text = ""; ShowBacking(subtitleText, false); }
+        if (promptText) { promptText.text = ""; ShowBacking(promptText, false); }
         while (earlyToasts.Count > 0) toasts.Enqueue(earlyToasts.Dequeue());
     }
 
@@ -80,14 +80,29 @@ public class StoryHUD : MonoBehaviour
         }
     }
 
-    public static void SetPrompt(string text) { if (Instance && Instance.promptText) Instance.promptText.text = text ?? ""; }
+    public static void SetPrompt(string text)
+    {
+        if (!Instance || !Instance.promptText) return;
+        text ??= "";
+        if (Instance.promptText.text == text) return;
+        Instance.promptText.text = text;
+        ShowBacking(Instance.promptText, text.Length > 0);
+    }
+
+    /// <summary>Prompt and subtitle text sit on an auto-sized dark backing that is hidden when empty.</summary>
+    static void ShowBacking(TMP_Text text, bool visible)
+    {
+        var backing = text.transform.parent;
+        if (backing && backing.GetComponent<Image>() && backing != Instance?.transform) backing.gameObject.SetActive(visible);
+    }
 
     public static void SetSubtitle(string speaker, string text)
     {
         if (!Instance || !Instance.subtitleText) return;
         Instance.subtitleText.fontSize = Instance.subtitleBaseSize * SettingsManager.SubtitleScale;
         Instance.subtitleText.text = string.IsNullOrEmpty(text) ? "" :
-            (string.IsNullOrEmpty(speaker) ? text : "<b>" + speaker.ToUpperInvariant() + ":</b> " + text);
+            (string.IsNullOrEmpty(speaker) ? "<i>" + text + "</i>" : "<b>" + speaker.ToUpperInvariant() + ":</b> " + text);
+        ShowBacking(Instance.subtitleText, !string.IsNullOrEmpty(text));
     }
 
     /// <summary>Hides gameplay HUD during cutscenes (subtitles stay visible).</summary>
@@ -142,6 +157,8 @@ public class StoryHUD : MonoBehaviour
     // ------------------------------------------------------------------ animations (unscaled so they work while paused)
     void EnqueueToast(string message)
     {
+        // Keep feedback current: never let more than two messages wait in line.
+        while (toasts.Count >= 2) toasts.Dequeue();
         toasts.Enqueue(message);
         if (toastRoutine == null && isActiveAndEnabled) toastRoutine = StartCoroutine(ShowToasts());
     }
@@ -154,7 +171,7 @@ public class StoryHUD : MonoBehaviour
         {
             if (toastText) toastText.text = toasts.Dequeue();
             yield return Fade(toastGroup, 0, 1, .2f);
-            yield return new WaitForSecondsRealtime(toasts.Count > 0 ? 2.2f : 3.6f);
+            yield return new WaitForSecondsRealtime(toasts.Count > 0 ? 1.8f : 3.2f);
             yield return Fade(toastGroup, 1, 0, .3f);
         }
         toastRoutine = null;
