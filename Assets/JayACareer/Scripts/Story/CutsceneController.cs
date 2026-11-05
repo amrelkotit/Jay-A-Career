@@ -53,6 +53,12 @@ public class CutsceneController : MonoBehaviour
     public List<StoryCondition> startConditions = new List<StoryCondition>();
     public List<Subtitle> subtitles = new List<Subtitle>();
 
+    [Header("Music (brief Step 7: camera, animation, music and subtitles)")]
+    [Tooltip("Score for this cutscene; fades in when it starts and out when it ends or is skipped.")]
+    public AudioSource music;
+    [Range(0, 1)] public float musicVolume = .55f;
+    public float musicFadeIn = 1.5f, musicFadeOut = 1.8f;
+
     [Header("Skip")]
     public float holdToSkipSeconds = .8f;
     public CanvasGroup skipHint;
@@ -108,6 +114,7 @@ public class CutsceneController : MonoBehaviour
         StoryHUD.SetGameplayVisible(false);
         foreach (var g in hideWhilePlaying) if (g) g.SetActive(false);
         if (skipHint) skipHint.alpha = 1;
+        if (music) { music.volume = 0; music.Play(); }
         length = 0;
         if (director && director.playableAsset)
         {
@@ -124,6 +131,7 @@ public class CutsceneController : MonoBehaviour
             if (!director || !director.playableAsset) UpdateFallbackShots(ref shotIndex, ref shotStart);
             UpdateSubtitles();
             UpdateSkip();
+            if (music) music.volume = Mathf.Min(musicVolume, musicVolume * elapsed / Mathf.Max(.01f, musicFadeIn));
             yield return null;
         }
         Finish();
@@ -167,6 +175,8 @@ public class CutsceneController : MonoBehaviour
     void Finish()
     {
         if (director) director.Stop();
+        // Let the score ring out; if a new scene loads, it carries over and fades under it.
+        if (music && music.isPlaying) AudioFadeOut.Begin(music, musicFadeOut, !string.IsNullOrEmpty(loadSceneOnFinish));
         foreach (var s in fallbackShots) if (s.camera) s.camera.Priority = 0;
         StoryHUD.SetSubtitle(null, null);
         if (skipHint) skipHint.alpha = 0;

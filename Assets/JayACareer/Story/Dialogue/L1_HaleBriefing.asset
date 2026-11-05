@@ -15,10 +15,10 @@ MonoBehaviour:
   id: L1_HaleBriefing
   lines:
   - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
-    text: You're the Jay who called. You're early. Good. Early is rare in this town.
+    text: You're Jay. You're early. Good. Nobody in this town is early.
     conditions: []
   - speaker: {fileID: 11400000, guid: 37fb9708d40dec141b361114c996e24e, type: 2}
-    text: You said there was work. I need it. Like, yesterday.
+    text: You said there was work. My rent's due in three days.
     conditions: []
   - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
     text: The work is simple. You seal the order at the preparation bench, carry

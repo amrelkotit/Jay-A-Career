@@ -15,7 +15,7 @@ MonoBehaviour:
   id: L1_LeoWaiting
   lines:
   - speaker: {fileID: 11400000, guid: 4ece559b3152d1045b879712b640ae72, type: 2}
-    text: Just... waiting for my ride. Don't look at me. Please.
+    text: My ride's late. Paul's people are never late. ...Forget I said that.
     conditions: []
   choices: []
   onComplete: []

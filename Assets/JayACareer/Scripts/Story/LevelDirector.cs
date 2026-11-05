@@ -89,6 +89,7 @@ public class LevelDirector : MonoBehaviour
             StoryEffect.ApplyAll(directPlayDefaults, state);
         }
         state.SetInt(StoryKeys.Day, dayNumber);
+        MainMenuController.UnlockChapter(dayNumber);      // the chapter list grows in story order
         state.TakeLevelSnapshot();
         if (game)
         {

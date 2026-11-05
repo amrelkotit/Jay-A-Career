@@ -15,7 +15,7 @@ MonoBehaviour:
   id: L2_HaleWarning
   lines:
   - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
-    text: Sit down. No, stand. It doesn't matter.
+    text: 'Before you seal anything: today is different.'
     conditions: []
   - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
     text: Today's buyer is Luka. Luka is not a customer, Jay. Luka collects for someone
@@ -33,10 +33,10 @@ MonoBehaviour:
       I want to see what you do with it.
     conditions: []
   - speaker: {fileID: 11400000, guid: 37fb9708d40dec141b361114c996e24e, type: 2}
-    text: No pressure.
+    text: And if I get it wrong?
     conditions: []
   - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
-    text: Pressure is the only thing in this town that's free.
+    text: Then we both find out what kind of man I hired.
     conditions: []
   choices: []
   onComplete:

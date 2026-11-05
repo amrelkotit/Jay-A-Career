@@ -15,9 +15,26 @@ MonoBehaviour:
   id: L2_EndOfDay
   lines:
   - speaker: {fileID: 11400000, guid: 37fb9708d40dec141b361114c996e24e, type: 2}
-    text: The street lights came on in the middle of the deal. Felt like somebody
-      flipped a switch on me, too.
-    conditions: []
+    text: '"P." Leo went pale saying that name. Hale went pale hearing it.'
+    conditions:
+    - type: 0
+      key: phoneNoteFound
+      intValue: 0
+      textValue: 
+  - speaker: {fileID: 11400000, guid: 37fb9708d40dec141b361114c996e24e, type: 2}
+    text: Whoever P. is, my name is on his phone now.
+    conditions:
+    - type: 0
+      key: phoneNoteFound
+      intValue: 0
+      textValue: 
+  - speaker: {fileID: 11400000, guid: 37fb9708d40dec141b361114c996e24e, type: 2}
+    text: Luka is going to tell somebody about me tonight. I just don't know who.
+    conditions:
+    - type: 1
+      key: phoneNoteFound
+      intValue: 0
+      textValue: 
   choices: []
   onComplete: []
   loopActionOnComplete: 0

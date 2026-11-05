@@ -270,6 +270,7 @@ public static class Assignment3Builder
         // Realism & environmental storytelling.
         Grade(lv, "L1_Morning", 14, 4, 8, 6, new Color(1f, .97f, .92f), .22f, .35f);
         CommonDecals(lv);
+        Cue(lv.systems.transform, "LabHum", LabHumPosition, Clip("Lab_Hum", false), .2f, 9f, true);
         WallProp(lv, "EvictionNotice", "notice", new Vector3(9.1f, 1.5f, 5.61f), 180, new Vector2(.42f, .56f));
         WallProp(lv, "RentCalendar", "calendar", new Vector3(11.6f, 1.62f, 11.39f), 0, new Vector2(.48f, .6f));
 
@@ -292,6 +293,7 @@ public static class Assignment3Builder
             Sub(15.2f, 3.4f, "Jay", "Nobody but me, apparently."),
         });
         intro.playOnStart = true;
+        intro.music = MusicSource(intro.transform, "Theme_Intro"); intro.musicVolume = .5f;
         intro.effectsOnFinish.Add(E.Item("eviction", "Eviction notice", "\"Unpaid rent: $400. Vacate within 3 days.\" Taped to Jay's door at 6 a.m. The landlord underlined \"3 days\" twice."));
         intro.effectsOnFinish.Add(E.Message("Objective markers point the way. [E] interacts, [Tab] inventory, [J] journal."));
         Save(lv);
@@ -339,6 +341,8 @@ public static class Assignment3Builder
             "\"P.\"", "Someone who signs as \"P.\" is asking Luka about me. P... Paul? Leo said Paul's people leave Hale's orders alone.",
             "L2_PhoneThought", new[] { C.Flag(StoryKeys.LukaDealt) }, E.Set(StoryKeys.PhoneNoteFound));
         phone.removeFromWorld = false; phone.lockedMessage = "";
+        Cue(phone.transform, "PhoneBuzz", phone.transform.position + Vector3.up * .05f, Clip("Phone_Buzz", false), .75f, 12f, true,
+            C.Flag(StoryKeys.LukaDealt), C.NotFlag(StoryKeys.PhoneNoteFound));
         AddScreen(phone.transform, Mat("PhoneScreen", new Color(.3f, .55f, 1f), 2.5f));
 
         var steps = new List<ObjectiveStep>
@@ -360,6 +364,7 @@ public static class Assignment3Builder
         }
         Grade(lv, "L2_Dusk", 28, 8, 14, 4, new Color(1f, .9f, .82f), .3f, .7f);
         CommonDecals(lv);
+        Cue(lv.systems.transform, "LabHum", LabHumPosition, Clip("Lab_Hum", false), .2f, 9f, true);
         TyreTracks(lv);
         WallProp(lv, "EvictionNotice", "notice", new Vector3(9.1f, 1.5f, 5.61f), 180, new Vector2(.42f, .56f));
         WallProp(lv, "RentCalendar", "calendar", new Vector3(11.6f, 1.62f, 11.39f), 0, new Vector2(.48f, .6f));
@@ -424,6 +429,8 @@ public static class Assignment3Builder
         returns.moves.Add(new StoryTrigger.Move { target = hale.transform, destination = haleEntrance });
         returns.activateObjects = new[] { hale.gameObject };
         returns.dialogueFocus = null;
+        var stepsGo = new GameObject("HaleFootsteps"); stepsGo.transform.SetParent(lv.systems.transform, false); stepsGo.transform.position = haleEntrance.position + Vector3.up;
+        returns.playAudio = Sound(stepsGo, Clip("Footsteps", false), false, .9f, true, 2f, 18f);
 
         // Paul's arrival: headlights at the end of the road.
         var headlights = new GameObject("PaulHeadlights").transform;
@@ -434,6 +441,8 @@ public static class Assignment3Builder
             l.transform.SetPositionAndRotation(new Vector3(2.0f + s * .75f, .75f, 23.2f), Quaternion.LookRotation(new Vector3(8.5f, .4f, 14.5f) - new Vector3(2f, .75f, 23.2f)));
             l.shadows = LightShadows.None;
         }
+        var engine = new GameObject("Engine"); engine.transform.SetParent(headlights); engine.transform.position = new Vector3(2f, .6f, 23.6f);
+        Sound(engine, Clip("Car_Idle", false), true, .5f, true, 2.5f, 32f).playOnAwake = true;
         headlights.gameObject.SetActive(false);
         var arrival = Trigger(lv, "L3_PaulArrives", StoryTrigger.Activation.WhenConditionsMet, null, 1f, new[] { C.Flag(StoryKeys.ConfessionHeard) },
             E.Message("Headlights at the end of the road. A car stops by the counter."));
@@ -451,6 +460,7 @@ public static class Assignment3Builder
 
         Grade(lv, "L3_Night", -24, -4, 16, -18, new Color(.86f, .92f, 1f), .38f, .9f);
         CommonDecals(lv);
+        Cue(lv.systems.transform, "LabHum", LabHumPosition, Clip("Lab_Hum", false), .2f, 9f, true, C.Flag(StoryKeys.NotesFound));
         TyreTracks(lv);
         WallProp(lv, "EvictionNotice", "notice", new Vector3(9.1f, 1.5f, 5.61f), 180, new Vector2(.42f, .56f));
         WallProp(lv, "RentCalendar", "calendar", new Vector3(11.6f, 1.62f, 11.39f), 0, new Vector2(.48f, .6f));
@@ -481,6 +491,7 @@ public static class Assignment3Builder
             Sub(17f, 4.4f, "Jay", "Whose career is this?"),
         });
         outro.playOnStart = false; outro.playWhenConditionsMet = true;
+        outro.music = MusicSource(outro.transform, "Theme_Ending"); outro.musicVolume = .6f; outro.musicFadeOut = 5f;
         outro.startConditions = new List<C> { C.Flag(StoryKeys.PaulMet) };
         outro.loadSceneOnFinish = LevelTransitionManager.EndingScene;
         outro.loadTitle = ""; outro.loadRecap = "";
@@ -732,6 +743,58 @@ public static class Assignment3Builder
     struct ShotSpec { public Vector3 from, to, look; public float start, duration; }
     static ShotSpec Shot(Vector3 from, Vector3 to, Vector3 look, float start, float duration)
         => new ShotSpec { from = from, to = to, look = look, start = start, duration = duration };
+    // ------------------------------------------------------------------ story audio
+    // Clips are original, generated by Tools/synth_story_audio.py (see REALISM_ASSET_CREDITS.md).
+    const string AudioFolder = "Assets/JayACareer/Story/Audio/";
+    static readonly Vector3 LabHumPosition = new Vector3(-7f, 2.6f, 10.5f);
+
+    static AudioClip Clip(string name, bool music)
+    {
+        string path = AudioFolder + name + ".wav";
+        if (!(AssetImporter.GetAtPath(path) is AudioImporter)) AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
+        if (AssetImporter.GetAtPath(path) is AudioImporter importer)
+        {
+            var settings = importer.defaultSampleSettings;
+            settings.loadType = music ? AudioClipLoadType.CompressedInMemory : AudioClipLoadType.DecompressOnLoad;
+            settings.compressionFormat = AudioCompressionFormat.Vorbis;
+            settings.quality = music ? .7f : .85f;
+            importer.defaultSampleSettings = settings;
+            importer.forceToMono = !music;
+            importer.loadInBackground = music;
+            importer.SaveAndReimport();
+        }
+        var clip = AssetDatabase.LoadAssetAtPath<AudioClip>(path);
+        if (!clip) Debug.LogWarning("[Assignment 3] Story audio missing: " + path);
+        return clip;
+    }
+
+    static AudioSource Sound(GameObject host, AudioClip clip, bool loop, float volume, bool spatial, float minDistance = 1.5f, float maxDistance = 25f)
+    {
+        var a = host.AddComponent<AudioSource>();
+        a.clip = clip; a.loop = loop; a.volume = volume; a.playOnAwake = false; a.dopplerLevel = 0;
+        a.spatialBlend = spatial ? 1 : 0; a.rolloffMode = AudioRolloffMode.Linear; a.minDistance = minDistance; a.maxDistance = maxDistance;
+        return a;
+    }
+
+    /// <summary>A looping sound that plays only while the story conditions hold (StoryAudioCue).</summary>
+    static StoryAudioCue Cue(Transform parent, string name, Vector3 position, AudioClip clip, float volume, float maxDistance, bool spatial, params C[] playWhile)
+    {
+        var go = new GameObject(name);
+        go.transform.SetParent(parent, false); go.transform.position = position;
+        Sound(go, clip, true, 0, spatial, 1f, maxDistance);
+        var cue = go.AddComponent<StoryAudioCue>();
+        cue.volume = volume; cue.playWhile = new List<C>(playWhile);
+        return cue;
+    }
+
+    /// <summary>A 2D music source on its own child object, so it can outlive the cutscene's scene.</summary>
+    static AudioSource MusicSource(Transform parent, string clipName)
+    {
+        var go = new GameObject("Music_" + clipName);
+        go.transform.SetParent(parent, false);
+        return Sound(go, Clip(clipName, true), false, 0, false);
+    }
+
     static CutsceneController.Subtitle Sub(float time, float duration, string speaker, string text)
         => new CutsceneController.Subtitle { time = time, duration = duration, speaker = speaker, text = text };
 
@@ -923,10 +986,11 @@ public static class Assignment3Builder
         UI.Img(canvas, "LeftShade", new Color(0, 0, 0, .62f), new Vector2(0, 0), new Vector2(0, 1), new Vector2(0, .5f), Vector2.zero, new Vector2(760, 0), false);
         UI.Txt(canvas, "Title", "JAY A CAREER", 92, UI.Text, TextAlignmentOptions.Left, new Vector2(0, 1), new Vector2(0, 1), new Vector2(0, 1), new Vector2(90, -150), new Vector2(900, 110), FontStyles.Bold);
         UI.Txt(canvas, "Tagline", "Three days. Three buyers. One career.", 32, UI.Accent, TextAlignmentOptions.Left, new Vector2(0, 1), new Vector2(0, 1), new Vector2(0, 1), new Vector2(94, -262), new Vector2(900, 44), FontStyles.Italic);
-        var col = UI.Column(canvas, "Buttons", new Vector2(0, 1), new Vector2(0, 1), new Vector2(90, -380), new Vector2(440, 360), 16);
+        var col = UI.Column(canvas, "Buttons", new Vector2(0, 1), new Vector2(0, 1), new Vector2(90, -380), new Vector2(440, 440), 16);
         col.childAlignment = TextAnchor.UpperLeft;
         var menu = canvas.gameObject.AddComponent<MainMenuController>();
         menu.newGameButton = UI.Btn(col.transform, "NewGame", "New Game", new Vector2(440, 68), 30);
+        menu.chaptersButton = UI.Btn(col.transform, "Chapters", "Chapters", new Vector2(440, 68), 30);
         menu.settingsButton = UI.Btn(col.transform, "Settings", "Settings", new Vector2(440, 68), 30);
         menu.creditsButton = UI.Btn(col.transform, "Credits", "Credits", new Vector2(440, 68), 30);
         menu.quitButton = UI.Btn(col.transform, "Quit", "Quit", new Vector2(440, 68), 30);
@@ -939,15 +1003,49 @@ public static class Assignment3Builder
         UI.Txt(credits.transform, "Body",
             "<b>Design, story, code:</b> Amr El Kotit (with AI assistance)\n\n" +
             "<b>Engine:</b> Unity 6 · URP · Cinemachine 3 · Timeline · TextMeshPro · Input System\n\n" +
-            "<b>Environment & props:</b> Poly Haven (CC0) · ModKit modular pack (CC0) · original Blender models\n\n" +
-            "<b>Characters:</b> MakeHuman / MPFB (CC0 output) · Mixamo animations\n\n" +
-            "<b>Audio:</b> see ASSET_CREDITS.md in the repository\n\n" +
-            "All characters, places and products are fictional.",
+            "<b>Environment & props:</b> Poly Haven (CC0) · ModKit v1.2 (CC0) · original Blender models\n\n" +
+            "<b>Characters:</b> Jay and Dr. Hale — MakeHuman / MPFB (CC0), original animation clips · Leo, Luka and Paul — Microsoft Rocketbox (MIT)\n\n" +
+            "<b>Music & story sounds:</b> original, synthesised for this game · UI and impact sounds: Kenney (CC0)\n\n" +
+            "Full list: REALISM_ASSET_CREDITS.md. All characters, places and products are fictional.",
             24, UI.Text, TextAlignmentOptions.TopLeft, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, 1), new Vector2(40, -110), new Vector2(-80, 460));
         menu.creditsCloseButton = UI.Btn(credits.transform, "Close", "Back", new Vector2(220, 56));
         var crt = menu.creditsCloseButton.GetComponent<RectTransform>(); crt.anchorMin = crt.anchorMax = new Vector2(1, 0); crt.pivot = new Vector2(1, 0); crt.anchoredPosition = new Vector2(-40, 30);
+        BuildChapterPanel(canvas, menu);
+        Cue(camGo.transform, "MenuMusic", camGo.transform.position, Clip("Theme_Menu", true), .45f, 50f, false).fadeSeconds = 2.5f;
         menu.settings = BuildSettingsPanel(canvas, col.gameObject);
         EditorSceneManager.SaveScene(scene);
+    }
+
+    /// <summary>Chapter select: the three days in story order; later days unlock when reached.</summary>
+    static void BuildChapterPanel(Transform canvas, MainMenuController menu)
+    {
+        var panel = UI.Img(canvas, "ChaptersPanel", new Color(.07f, .07f, .08f, .97f), new Vector2(.5f, .5f), new Vector2(.5f, .5f), new Vector2(.5f, .5f), Vector2.zero, new Vector2(1000, 620));
+        menu.chaptersPanel = UI.Group(panel.gameObject, 0);
+        UI.Txt(panel.transform, "Title", "CHAPTERS", 40, UI.Text, TextAlignmentOptions.Left, new Vector2(0, 1), new Vector2(0, 1), new Vector2(0, 1), new Vector2(40, -30), new Vector2(600, 56), FontStyles.Bold);
+        UI.Txt(panel.transform, "Hint", "Play the days in story order. Each day unlocks the first time you reach it.", 22, UI.Muted, TextAlignmentOptions.Left,
+            new Vector2(0, 1), new Vector2(0, 1), new Vector2(0, 1), new Vector2(40, -88), new Vector2(920, 32));
+        var specs = new[]
+        {
+            (LevelTransitionManager.Level1, "DAY 1 — FIRST DELIVERY", "Day 1 — First Delivery", "Morning. Hale's rules, Leo's order and a name nobody should say.", menu.openingRecap),
+            (LevelTransitionManager.Level2, "DAY 2 — THE MIDDLEMAN", "Day 2 — The Middleman", "Dusk. Luka names a price. Your choice follows you.",
+                "Yesterday Leo paid $100 and let a name slip: Paul. Hale's old badge says he was a senior chemist at Corvane.\nToday's buyer is Luka, and Hale does not trust him."),
+            (LevelTransitionManager.Level3, "DAY 3 — THE BIG BUYER", "Day 3 — The Big Buyer", "Midnight. The lights are off at Hale's.",
+                "Jay took Luka's price. A message on Luka's phone, signed \"P.\", asked whether the old man's new boy is reliable.\nIt is midnight. The lights are off at Hale's."),
+        };
+        menu.chapters = new MainMenuController.Chapter[specs.Length];
+        for (int i = 0; i < specs.Length; i++)
+        {
+            var (scene, title, label, blurb, recap) = specs[i];
+            var b = UI.Btn(panel.transform, "Chapter" + (i + 1), "", new Vector2(920, 110), 28);
+            var rt = b.GetComponent<RectTransform>(); rt.anchorMin = rt.anchorMax = new Vector2(0, 1); rt.pivot = new Vector2(0, 1); rt.anchoredPosition = new Vector2(40, -140 - i * 126);
+            var lbl = b.transform.Find("Label"); if (lbl) Object.DestroyImmediate(lbl.gameObject);
+            UI.Txt(b.transform, "Name", label, 30, UI.Text, TextAlignmentOptions.Left, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, 1), new Vector2(28, -14), new Vector2(-56, 42), FontStyles.Bold);
+            UI.Txt(b.transform, "Blurb", blurb, 21, UI.Muted, TextAlignmentOptions.Left, new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 0), new Vector2(28, 14), new Vector2(-260, 44));
+            var status = UI.Txt(b.transform, "Status", "", 20, UI.Accent, TextAlignmentOptions.Right, new Vector2(1, 0), new Vector2(1, 0), new Vector2(1, 0), new Vector2(-24, 14), new Vector2(320, 44), FontStyles.Italic);
+            menu.chapters[i] = new MainMenuController.Chapter { scene = scene, title = title, recap = recap, button = b, status = status };
+        }
+        menu.chaptersCloseButton = UI.Btn(panel.transform, "Close", "Back", new Vector2(220, 56));
+        var crt = menu.chaptersCloseButton.GetComponent<RectTransform>(); crt.anchorMin = crt.anchorMax = new Vector2(1, 0); crt.pivot = new Vector2(1, 0); crt.anchoredPosition = new Vector2(-40, 26);
     }
 
     static void AddStreetLampsToScene(JayLightingController lighting)
@@ -995,6 +1093,7 @@ public static class Assignment3Builder
     static void BuildEnding()
     {
         var scene = NewUIScene("Ending", out var canvas);
+        Cue(canvas, "EndMusic", Vector3.zero, Clip("Theme_Menu", true), .4f, 50f, false).fadeSeconds = 4f;
         var ctl = canvas.gameObject.AddComponent<EndScreenController>();
         ctl.titleText = UI.Txt(canvas, "Title", "TO BE CONTINUED", 76, UI.Text, TextAlignmentOptions.Center, new Vector2(.5f, 1), new Vector2(.5f, 1), new Vector2(.5f, 1), new Vector2(0, -150), new Vector2(1400, 100), FontStyles.Bold);
         ctl.summaryText = UI.Txt(canvas, "Summary", "", 30, UI.Text, TextAlignmentOptions.Top, new Vector2(.5f, 1), new Vector2(.5f, 1), new Vector2(.5f, 1), new Vector2(0, -290), new Vector2(1300, 480));

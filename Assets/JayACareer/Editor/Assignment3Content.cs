@@ -92,8 +92,8 @@ public static class Assignment3Content
     static void BuildLevel1()
     {
         D("L1_HaleBriefing", true)
-            .L(Hale, "You're the Jay who called. You're early. Good. Early is rare in this town.")
-            .L(Jay, "You said there was work. I need it. Like, yesterday.")
+            .L(Hale, "You're Jay. You're early. Good. Nobody in this town is early.")
+            .L(Jay, "You said there was work. My rent's due in three days.")
             .L(Hale, "The work is simple. You seal the order at the preparation bench, carry it across the road to the counter, and take the money.")
             .L(Hale, "Then you come back, clean the bench, and go home. You do not open the cartons. You do not talk about the cartons.")
             .L(Jay, "What's in them?")
@@ -123,15 +123,15 @@ public static class Assignment3Content
         hint.Choice("Count the money and hand over the carton.", DialogueLoopAction.SellPackage, 100, after, E.Set(StoryKeys.LeoPaid));
 
         var deal = D("L1_LeoDeal")
-            .L(Leo, "Hey. Hey, you're the new guy? Hale said someone new. Cool. Cool cool.")
+            .L(Leo, "You're the new guy? Hale never hires anyone. Huh. Okay.")
             .L(Leo, "Is that mine? Sealed and everything. Hale's stuff is always sealed. That's why people trust it.")
             .L(Jay, "A hundred, right? That's what he said.")
             .L(Leo, "Yeah, yeah, a hundred, it's all here. Small bills, sorry. It's how they pay me.");
         deal.Choice("Count the money and hand over the carton.", DialogueLoopAction.SellPackage, 100, after, E.Set(StoryKeys.LeoPaid));
         deal.Choice("\"Who else buys from Hale?\"", DialogueLoopAction.None, 0, hint);
 
-        D("L1_LeoWaiting").L(Leo, "Just... waiting for my ride. Don't look at me. Please.");
-        D("L1_LeoBefore").L(Leo, "Hale's new guy! Is my order ready? Put it on the counter, I'll wait. I'm good at waiting. Kind of.");
+        D("L1_LeoWaiting").L(Leo, "My ride's late. Paul's people are never late. ...Forget I said that.");
+        D("L1_LeoBefore").L(Leo, "Put it on the counter first. Nothing goes hand to hand. Hale's rule, not mine.");
 
         D("L1_EndOfDay", true)
             .L(Jay, "A hundred bucks for carrying a box across a road.")
@@ -142,13 +142,13 @@ public static class Assignment3Content
     static void BuildLevel2()
     {
         var warn = D("L2_HaleWarning", true)
-            .L(Hale, "Sit down. No, stand. It doesn't matter.")
+            .L(Hale, "Before you seal anything: today is different.")
             .L(Hale, "Today's buyer is Luka. Luka is not a customer, Jay. Luka collects for someone else.")
             .L(Jay, "Collects for who?")
             .L(Hale, "For people who notice things. He'll offer you a price. He'll expect you to argue, and he'll expect you to lose.")
             .L(Hale, "Take his price, push for more, or send him away. It's your counter today. I want to see what you do with it.")
-            .L(Jay, "No pressure.")
-            .L(Hale, "Pressure is the only thing in this town that's free.");
+            .L(Jay, "And if I get it wrong?")
+            .L(Hale, "Then we both find out what kind of man I hired.");
         warn.loopActionOnComplete = DialogueLoopAction.CompleteBriefing;
         warn.onComplete.Add(E.Set(StoryKeys.LukaWarned));
 
@@ -199,14 +199,16 @@ public static class Assignment3Content
         reaction.onComplete.Add(E.Set(StoryKeys.HaleReacted));
 
         D("L2_EndOfDay", true)
-            .L(Jay, "The street lights came on in the middle of the deal. Felt like somebody flipped a switch on me, too.");
+            .L(Jay, "\"P.\" Leo went pale saying that name. Hale went pale hearing it.", C.Flag(StoryKeys.PhoneNoteFound))
+            .L(Jay, "Whoever P. is, my name is on his phone now.", C.Flag(StoryKeys.PhoneNoteFound))
+            .L(Jay, "Luka is going to tell somebody about me tonight. I just don't know who.", C.NotFlag(StoryKeys.PhoneNoteFound));
     }
 
     // ================================================================== LEVEL 3 — The Big Buyer
     static void BuildLevel3()
     {
         D("L3_JayWakes", true)
-            .L(Jay, "Midnight. Hale's lab is dark. He never leaves before midnight.")
+            .L(Jay, "Midnight, and Hale's lab is dark. Three days, and I've never seen his lights off.")
             .L(Jay, "And that car has been parked out there for an hour.");
         D("L3_LabEmpty", true)
             .L(Jay, "Dr. Hale? ...His coat is still on the hook. He never goes anywhere without that coat.")

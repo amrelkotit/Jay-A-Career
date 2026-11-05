@@ -187,3 +187,9 @@ Original MakeHuman file headers and Kenney License.txt files are retained. Poly 
 ## Packages
 
 TextMesh Pro (bundled with com.unity.ugui 2.0), Timeline and Unity Recorder 5.1.6 (editor-only, used to capture the prototype video) are Unity packages under the Unity Companion License. No paid assets are used. No fonts are redistributed beyond TMP's bundled LiberationSans SDF.
+
+## Music and story sound cues (Assignment 3, revision 2)
+
+- **Source:** Assets/JayACareer/Story/Audio (Theme_Intro, Theme_Ending, Theme_Menu, Phone_Buzz, Car_Idle, Lab_Hum, Footsteps)
+- **Author:** Original project-specific work, synthesised by Tools/synth_story_audio.py (no samples)
+- **License:** Original work; supplied with this project

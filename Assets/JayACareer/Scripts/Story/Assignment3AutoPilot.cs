@@ -62,7 +62,20 @@ public class Assignment3AutoPilot : MonoBehaviour
             Beat("Main menu");
             yield return Pause(5f, .3f);
             Shot("00_main_menu");
-            FindFirstObjectByType<MainMenuController>().NewGame();
+            yield return Captured();
+            var menu = FindFirstObjectByType<MainMenuController>();
+            Check(menu.chaptersButton && menu.chapters.Length == 3, "Main menu offers New Game and the three chapters in story order");
+            Check(Playing("MenuMusic"), "Main menu theme is playing");
+            if (Cine && menu.chaptersButton)
+            {
+                menu.chaptersButton.onClick.Invoke();
+                yield return Pause(2.5f, .1f);
+                Shot("00b_chapters");
+                yield return Captured();
+                if (menu.chaptersCloseButton) menu.chaptersCloseButton.onClick.Invoke();
+                yield return Pause(.8f, .1f);
+            }
+            menu.NewGame();
         }
         else StoryStateManager.Instance.StartNewGame();
 
@@ -157,8 +170,10 @@ public class Assignment3AutoPilot : MonoBehaviour
         Shot("17_status_after_choice");
 
         Beat("Clue: the \"P.\" message on Luka's phone");
+        yield return WaitFor(() => Playing("PhoneBuzz"), 3, "Luka's phone buzzes on the counter (sound cue)");
         yield return Collect("phone", "18_phone");
         Check(s.GetFlag(StoryKeys.PhoneNoteFound), "Phone sets phoneNoteFound");
+        yield return WaitFor(() => !Playing("PhoneBuzz"), 3, "The phone stops buzzing once the message is read");
         if (branch == "refused") yield return ReturnCarton();
         yield return Go("HALE");
         Beat("Hale reacts to the choice");
@@ -176,6 +191,8 @@ public class Assignment3AutoPilot : MonoBehaviour
         var s = StoryStateManager.Instance;
         Check(s.GetText(StoryKeys.LukaDeal) == branch, "Choice carried into Level 3");
         Check(!G.hale.gameObject.activeInHierarchy && !G.customer.gameObject.activeInHierarchy, "Hale and Paul are absent at the start of the night");
+        Check(!G.lighting.WorkspaceLightsOn && !Playing("LabHum"), "Hale's lab is dark and silent");
+        Check(PlayerPrefs.GetInt(MainMenuController.ChapterKey, 1) >= 3, "Day 3 is unlocked in the chapter list");
         yield return FlushDialogue("25_jay_wakes");
         Beat("Jay walks to the dark lab");
         yield return Go("LAB_A");
@@ -189,6 +206,7 @@ public class Assignment3AutoPilot : MonoBehaviour
         yield return WaitFor(() => s.GetFlag(StoryKeys.NotesFound), 10, "Three clues set notesFound");
         yield return FlushDialogue(null);
         yield return WaitFor(() => G.hale.gameObject.activeInHierarchy, 5, "Hale returns after the clues are found");
+        yield return WaitFor(() => G.lighting.WorkspaceLightsOn && Playing("LabHum"), 4, "Hale's return switches the lab lights (and their hum) back on");
         yield return Go("HALE3");
         Beat("Hale's confession (varies with the Luka choice)");
         yield return Talk(G.hale, "29_confession");
@@ -251,6 +269,7 @@ public class Assignment3AutoPilot : MonoBehaviour
     {
         yield return new WaitForSeconds(.5f);
         if (!CutsceneController.IsPlaying) yield break;
+        Check(AnyMusicPlaying(), "Cutscene " + prefix + " plays its score");
         if (!Cine) { yield return new WaitForSeconds(.5f); Check(true, "Cutscene " + prefix + " playing"); CutsceneController.SkipActive(); yield return null; yield break; }
         for (int i = 0; i < count && CutsceneController.IsPlaying; i++) { yield return new WaitForSeconds(4.5f); Shot(prefix + "_" + (i + 1)); }
         while (CutsceneController.IsPlaying) yield return null;
@@ -513,6 +532,21 @@ public class Assignment3AutoPilot : MonoBehaviour
         Log((ok ? "PASS  " : "FAIL  ") + what);
     }
     void Fail(string what) => Check(false, what);
+
+    static bool Playing(string objectName)
+    {
+        var go = GameObject.Find(objectName);
+        if (!go) return false;
+        var a = go.GetComponent<AudioSource>();
+        return a && a.isPlaying;
+    }
+
+    static bool AnyMusicPlaying()
+    {
+        foreach (var a in FindObjectsByType<AudioSource>(FindObjectsSortMode.None))
+            if (a.isPlaying && a.name.StartsWith("Music_")) return true;
+        return false;
+    }
 
     void Beat(string what)
     {

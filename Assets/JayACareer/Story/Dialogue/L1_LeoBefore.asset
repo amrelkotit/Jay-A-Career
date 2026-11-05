@@ -15,8 +15,8 @@ MonoBehaviour:
   id: L1_LeoBefore
   lines:
   - speaker: {fileID: 11400000, guid: 4ece559b3152d1045b879712b640ae72, type: 2}
-    text: Hale's new guy! Is my order ready? Put it on the counter, I'll wait. I'm
-      good at waiting. Kind of.
+    text: Put it on the counter first. Nothing goes hand to hand. Hale's rule, not
+      mine.
     conditions: []
   choices: []
   onComplete: []

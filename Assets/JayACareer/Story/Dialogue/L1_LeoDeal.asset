@@ -15,7 +15,7 @@ MonoBehaviour:
   id: L1_LeoDeal
   lines:
   - speaker: {fileID: 11400000, guid: 4ece559b3152d1045b879712b640ae72, type: 2}
-    text: Hey. Hey, you're the new guy? Hale said someone new. Cool. Cool cool.
+    text: You're the new guy? Hale never hires anyone. Huh. Okay.
     conditions: []
   - speaker: {fileID: 11400000, guid: 4ece559b3152d1045b879712b640ae72, type: 2}
     text: Is that mine? Sealed and everything. Hale's stuff is always sealed. That's
