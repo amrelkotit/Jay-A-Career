@@ -1,0 +1,100 @@
+AutoPilot Cinematic branch=pushed 11/5/2026 4:16:58 AM
+[00:00] Main menu
+[00:07] Loading screen: Day 1 recap
+PASS  L1_FirstDelivery loaded with its game manager
+[00:16] L1_FirstDelivery starts
+[00:16] Opening cutscene (Timeline + Cinemachine)
+PASS  Intro cutscene finishes and sets introSeen
+PASS  Eviction notice added to the inventory by the intro
+PASS  Objective shown after the intro: Cross the road and talk to Dr. Hale in his laboratory
+[00:43] Dr. Hale's briefing
+PASS  Conversation with Dr. Hale opens
+PASS  Briefing sets briefingDone and starts preparation
+[01:38] Lore: Hale's Corvane badge
+PASS  Lore item collected: Corvane staff badge
+PASS  Badge sets badgeFound and adds a journal entry
+PASS  Lore item collected: Face-down certificate
+[02:08] Seal the order at the preparation bench
+PASS  Preparation action finishes
+PASS  Carton sealed; stage = Delivery
+PASS  Sealing the carton sets cartonSealed
+PASS  Jay picks up the sealed carton
+[02:11] Carry the carton across the road
+PASS  Carton placed on the counter; negotiation available
+[02:24] Leo's deal (asks about Paul first)
+PASS  Conversation with Leo opens
+   choice in L1_LeoDeal: option 2
+   choice in L1_LeoHint: option 1
+PASS  Leo pays $100 (cash $150)
+PASS  Leo's slip about Paul is added to the journal
+PASS  Lore item collected: Unpaid bills
+[03:55] Clean the bench
+PASS  Cleaning action finishes
+PASS  Workspace clean; stage = Sleep
+[04:20] Sleep: the day ends
+PASS  Sleep action finishes
+PASS  Sleeping sets act1Complete
+[04:29] Loading screen: Day 2 recap
+PASS  L2_Middleman loaded with its game manager
+[04:37] L2_Middleman starts
+PASS  Level 1 progress carried into Level 2
+[04:41] Hale warns about Luka
+PASS  Conversation with Dr. Hale opens
+PASS  Warning sets lukaWarned
+[05:27] Seal the order at the preparation bench
+PASS  Preparation action finishes
+PASS  Carton sealed; stage = Delivery
+PASS  Jay picks up the sealed carton
+[05:30] Carry the carton across the road
+PASS  Carton placed on the counter; negotiation available
+[05:43] Dusk falls: street lamps switch on
+[05:51] Luka's deal — meaningful choice: pushed
+PASS  Conversation with Luka opens
+   choice in L2_LukaDeal: option 2
+PASS  lukaDeal recorded as pushed
+PASS  Push: $400, trust 1, heat 2 (got $400, 1, 2)
+[06:33] Clue: the "P." message on Luka's phone
+PASS  Lore item collected: Luka's phone
+PASS  Phone sets phoneNoteFound
+[06:53] Hale reacts to the choice
+PASS  Conversation with Dr. Hale opens
+PASS  Hale's reaction sets haleReacted
+[07:27] Clean the bench
+PASS  Cleaning action finishes
+PASS  Workspace clean; stage = Sleep
+[07:50] Sleep: the day ends
+PASS  Sleep action finishes
+PASS  Sleeping sets act2Complete
+[07:58] Loading screen: Day 3 recap
+PASS  L3_BigBuyer loaded with its game manager
+[08:07] L3_BigBuyer starts
+PASS  Choice carried into Level 3
+PASS  Hale and Paul are absent at the start of the night
+[08:18] Jay walks to the dark lab
+PASS  Entering the lab sets haleMissingSeen
+[08:40] Flashlight search: ledger, letter, lockbox
+PASS  Lore item collected: Hale's ledger
+PASS  Lore item collected: Unsent letter
+PASS  Lore item collected: Forced lockbox
+PASS  Three clues set notesFound
+PASS  Hale returns after the clues are found
+[09:26] Hale's confession (varies with the Luka choice)
+PASS  Conversation with Dr. Hale opens
+PASS  Confession sets confessionHeard
+PASS  Paul arrives after the confession
+[10:23] Seal the order at the preparation bench
+PASS  Preparation action finishes
+PASS  Carton sealed; stage = Delivery
+PASS  Jay picks up the sealed carton
+[10:26] Carry the carton across the road
+PASS  Carton placed on the counter; negotiation available
+[10:39] Paul's deal and offer
+PASS  Conversation with Paul opens
+   choice in L3_PaulDeal: option 2
+   choice in L3_PaulAboutHale: option 1
+PASS  Paul pays $200 and sets paulMet
+[11:21] Closing cutscene: the card and Hale in the doorway
+PASS  Ending cutscene starts after Paul's conversation
+PASS  End screen shows the summary and the cliffhanger line
+[11:45] End screen: consequences summary
+RESULT: PASS — 61/61 checks passed

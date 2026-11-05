@@ -1,0 +1,14 @@
+{
+    "name": "JayACareer.Recorder",
+    "rootNamespace": "",
+    "references": [ "Unity.Recorder", "Unity.Recorder.Editor" ],
+    "includePlatforms": [ "Editor" ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [ "JAY_RECORDER" ],
+    "versionDefines": [ { "name": "com.unity.recorder", "expression": "5.0.0", "define": "JAY_RECORDER" } ],
+    "noEngineReferences": false
+}

@@ -1,0 +1,32 @@
+00:00  Main menu
+00:07  Loading screen: Day 1 recap
+00:16  L1_FirstDelivery starts
+00:16  Opening cutscene (Timeline + Cinemachine)
+00:43  Dr. Hale's briefing
+01:38  Lore: Hale's Corvane badge
+02:08  Seal the order at the preparation bench
+02:11  Carry the carton across the road
+02:24  Leo's deal (asks about Paul first)
+03:55  Clean the bench
+04:20  Sleep: the day ends
+04:29  Loading screen: Day 2 recap
+04:37  L2_Middleman starts
+04:41  Hale warns about Luka
+05:27  Seal the order at the preparation bench
+05:30  Carry the carton across the road
+05:43  Dusk falls: street lamps switch on
+05:51  Luka's deal — meaningful choice: pushed
+06:33  Clue: the "P." message on Luka's phone
+06:53  Hale reacts to the choice
+07:27  Clean the bench
+07:50  Sleep: the day ends
+07:58  Loading screen: Day 3 recap
+08:07  L3_BigBuyer starts
+08:18  Jay walks to the dark lab
+08:40  Flashlight search: ledger, letter, lockbox
+09:26  Hale's confession (varies with the Luka choice)
+10:23  Seal the order at the preparation bench
+10:26  Carry the carton across the road
+10:39  Paul's deal and offer
+11:21  Closing cutscene: the card and Hale in the doorway
+11:45  End screen: consequences summary

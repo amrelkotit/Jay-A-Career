@@ -56,6 +56,12 @@ public class LevelDirector : MonoBehaviour
     public List<LoopEventEffects> loopEventEffects = new List<LoopEventEffects>();
     public List<TimeOfDayKey> timeOfDay = new List<TimeOfDayKey>();
 
+    [Header("Hale's lab fixtures")]
+    [Tooltip("Lab ceiling fixtures at the start of the level (Hale is working in daytime levels).")]
+    public bool labLightsAtStart = true;
+    [Tooltip("Optional: the fixtures switch on once these conditions are met (e.g. Hale walks back in).")]
+    public List<StoryCondition> labLightsOnWhen = new List<StoryCondition>();
+
     [Header("Completion")]
     public string completionFlag = "act1Complete";
     public string nextScene = LevelTransitionManager.Level2;
@@ -91,7 +97,7 @@ public class LevelDirector : MonoBehaviour
             game.LoopEvent += OnLoopEvent;
             game.MirrorLoopToStory();
         }
-        if (lighting) lighting.autoAdvance = false;
+        if (lighting) { lighting.autoAdvance = false; SetLabLights(labLightsAtStart); }
         state.Changed += OnStateChanged;
         OnStateChanged();
         StartCoroutine(ChapterCardWhenFree());
@@ -124,11 +130,18 @@ public class LevelDirector : MonoBehaviour
     {
         var state = StoryStateManager.Instance;
         UpdateTimeOfDay(state);
+        // Environmental storytelling: the dark lab lights up when Hale returns.
+        if (labLightsOnWhen.Count > 0 && StoryCondition.AllMet(labLightsOnWhen, state)) SetLabLights(true);
         if (!leaving && !string.IsNullOrEmpty(completionFlag) && state.GetFlag(completionFlag))
         {
             leaving = true;
             StartCoroutine(Leave());
         }
+    }
+
+    void SetLabLights(bool on)
+    {
+        if (lighting && lighting.WorkspaceLightsOn != on) lighting.ToggleWorkspaceLights();
     }
 
     // ------------------------------------------------------------------ time of day

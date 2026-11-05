@@ -131,6 +131,13 @@ public class StoryHUD : MonoBehaviour
     // ------------------------------------------------------------------ objective marker
     void LateUpdate()
     {
+        // The interaction prompt never shows behind a conversation or a cutscene.
+        if (promptText)
+        {
+            bool wantPrompt = promptText.text.Length > 0 && !DialogueManager.IsOpen && !CutsceneController.IsPlaying;
+            var backing = promptText.transform.parent;
+            if (backing && backing != transform && backing.GetComponent<Image>() && backing.gameObject.activeSelf != wantPrompt) backing.gameObject.SetActive(wantPrompt);
+        }
         if (!marker) return;
         var cam = Camera.main;
         bool show = markerTarget && cam && markerTarget.gameObject.activeInHierarchy && !DialogueManager.IsOpen && !CutsceneController.IsPlaying;

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Leo
   m_EditorClassIdentifier: Assembly-CSharp::CharacterProfile
   displayName: Leo
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 5b2f4fc69eb76494cb629a22b66b5b89, type: 3}
   nameColor: {r: 0.60784316, g: 0.8901961, b: 0.60784316, a: 1}
   shortBio: Nervous small-time buyer. Pays in small bills, talks too much.

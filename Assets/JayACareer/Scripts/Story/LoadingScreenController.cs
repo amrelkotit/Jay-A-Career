@@ -20,6 +20,9 @@ public class LoadingScreenController : MonoBehaviour
         "Press [F] for the flashlight when the lab is dark."
     };
 
+    /// <summary>Set by the automated playthrough: continue on its own after this many seconds (-1 = wait for the player).</summary>
+    public static float AutoContinueAfter = -1;
+
     IEnumerator Start()
     {
         string scene = string.IsNullOrEmpty(LevelTransitionManager.PendingScene) ? LevelTransitionManager.MainMenuScene : LevelTransitionManager.PendingScene;
@@ -39,8 +42,10 @@ public class LoadingScreenController : MonoBehaviour
         }
         if (progressFill) progressFill.fillAmount = 1;
         if (statusText) statusText.text = "Press [E], [Space] or click to continue";
+        float readyAt = Time.realtimeSinceStartup;
         while (true)
         {
+            if (AutoContinueAfter >= 0 && Time.realtimeSinceStartup - readyAt >= AutoContinueAfter) break;
             var k = UnityEngine.InputSystem.Keyboard.current; var m = UnityEngine.InputSystem.Mouse.current;
             if ((k != null && (k.eKey.wasPressedThisFrame || k.spaceKey.wasPressedThisFrame || k.enterKey.wasPressedThisFrame))
                 || (m != null && m.leftButton.wasPressedThisFrame)) break;

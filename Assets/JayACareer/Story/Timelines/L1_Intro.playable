@@ -1,6 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8917018603973075326
+--- !u!114 &-8821080815014661079
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
+  m_Name: CinemachineShot
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineShot
+  DisplayName: 
+  VirtualCamera:
+    exposedName: 4bffaae537ebde847be28bc5c301d67a
+    defaultValue: {fileID: 0}
+--- !u!114 &-8424347846009231318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
+  m_Name: CinemachineShot
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineShot
+  DisplayName: 
+  VirtualCamera:
+    exposedName: c899ff28dcd9b5d40b54b9058d601696
+    defaultValue: {fileID: 0}
+--- !u!114 &-6715661512324097615
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
+  m_Name: CinemachineShot
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineShot
+  DisplayName: 
+  VirtualCamera:
+    exposedName: 9beff7e09c65d4d4e96563449bbe618f
+    defaultValue: {fileID: 0}
+--- !u!114 &-4554397234243203867
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24,10 +72,10 @@ MonoBehaviour:
   - m_Version: 1
     m_Start: 0
     m_ClipIn: 0
-    m_Asset: {fileID: 1981345126165196852}
+    m_Asset: {fileID: 8138328664111739018}
     m_Duration: 3.0250000655651093
     m_TimeScale: 1
-    m_ParentTrack: {fileID: -8917018603973075326}
+    m_ParentTrack: {fileID: -4554397234243203867}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
@@ -75,10 +123,10 @@ MonoBehaviour:
   - m_Version: 1
     m_Start: 0.05000000074505806
     m_ClipIn: 0
-    m_Asset: {fileID: 6757751521913809566}
+    m_Asset: {fileID: -6715661512324097615}
     m_Duration: 5.449999999254942
     m_TimeScale: 1
-    m_ParentTrack: {fileID: -8917018603973075326}
+    m_ParentTrack: {fileID: -4554397234243203867}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: 2.975000064820051
@@ -108,10 +156,10 @@ MonoBehaviour:
   - m_Version: 1
     m_Start: 5
     m_ClipIn: 0
-    m_Asset: {fileID: -2391078507555678030}
+    m_Asset: {fileID: -4015112801496849427}
     m_Duration: 3.0250000655651093
     m_TimeScale: 1
-    m_ParentTrack: {fileID: -8917018603973075326}
+    m_ParentTrack: {fileID: -4554397234243203867}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: 0.5
@@ -141,10 +189,10 @@ MonoBehaviour:
   - m_Version: 1
     m_Start: 5.050000000745058
     m_ClipIn: 0
-    m_Asset: {fileID: -7798335913963913999}
+    m_Asset: {fileID: -8424347846009231318}
     m_Duration: 5.449999999254942
     m_TimeScale: 1
-    m_ParentTrack: {fileID: -8917018603973075326}
+    m_ParentTrack: {fileID: -4554397234243203867}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: 2.975000064820051
@@ -174,10 +222,10 @@ MonoBehaviour:
   - m_Version: 1
     m_Start: 10
     m_ClipIn: 0
-    m_Asset: {fileID: -2459416812342381031}
+    m_Asset: {fileID: -8821080815014661079}
     m_Duration: 3.0250000655651093
     m_TimeScale: 1
-    m_ParentTrack: {fileID: -8917018603973075326}
+    m_ParentTrack: {fileID: -4554397234243203867}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: 0.5
@@ -207,10 +255,10 @@ MonoBehaviour:
   - m_Version: 1
     m_Start: 10.050000000745058
     m_ClipIn: 0
-    m_Asset: {fileID: -4989609396174529366}
+    m_Asset: {fileID: 1066306120112345310}
     m_Duration: 5.449999999254942
     m_TimeScale: 1
-    m_ParentTrack: {fileID: -8917018603973075326}
+    m_ParentTrack: {fileID: -4554397234243203867}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: 2.975000064820051
@@ -240,10 +288,10 @@ MonoBehaviour:
   - m_Version: 1
     m_Start: 15
     m_ClipIn: 0
-    m_Asset: {fileID: -8041815402638928340}
+    m_Asset: {fileID: 2405608434631238855}
     m_Duration: 2.200000047683716
     m_TimeScale: 1
-    m_ParentTrack: {fileID: -8917018603973075326}
+    m_ParentTrack: {fileID: -4554397234243203867}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: 0.5
@@ -273,10 +321,10 @@ MonoBehaviour:
   - m_Version: 1
     m_Start: 15.050000000745058
     m_ClipIn: 0
-    m_Asset: {fileID: -6270014296138490775}
+    m_Asset: {fileID: 5198391247684102872}
     m_Duration: 3.949999999254942
     m_TimeScale: 1
-    m_ParentTrack: {fileID: -8917018603973075326}
+    m_ParentTrack: {fileID: -4554397234243203867}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: 2.1500000469386578
@@ -324,7 +372,7 @@ MonoBehaviour:
   m_Markers:
     m_Objects: []
   TrackPriority: 0
---- !u!114 &-8041815402638928340
+--- !u!114 &-4015112801496849427
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -338,87 +386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineShot
   DisplayName: 
   VirtualCamera:
-    exposedName: 7fc8197709b8c3e4e87f9ed37ea23c10
-    defaultValue: {fileID: 0}
---- !u!114 &-7798335913963913999
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
-  m_Name: CinemachineShot
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineShot
-  DisplayName: 
-  VirtualCamera:
-    exposedName: be15e9fa3771e5c4b927eaf44b9483ae
-    defaultValue: {fileID: 0}
---- !u!114 &-6270014296138490775
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
-  m_Name: CinemachineShot
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineShot
-  DisplayName: 
-  VirtualCamera:
-    exposedName: c161884a1e526084a8e6ecf1f8d905fe
-    defaultValue: {fileID: 0}
---- !u!114 &-4989609396174529366
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
-  m_Name: CinemachineShot
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineShot
-  DisplayName: 
-  VirtualCamera:
-    exposedName: ad972321fa17b59438cdc15f41deed82
-    defaultValue: {fileID: 0}
---- !u!114 &-2459416812342381031
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
-  m_Name: CinemachineShot
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineShot
-  DisplayName: 
-  VirtualCamera:
-    exposedName: d995ee1222587a34ead6d436a336c164
-    defaultValue: {fileID: 0}
---- !u!114 &-2391078507555678030
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
-  m_Name: CinemachineShot
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineShot
-  DisplayName: 
-  VirtualCamera:
-    exposedName: 6d545540a665801428eacefc5e500c24
+    exposedName: 4250dfaf40abd68498505a29a21ff448
     defaultValue: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -434,14 +402,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.TimelineAsset
   m_Version: 0
   m_Tracks:
-  - {fileID: -8917018603973075326}
+  - {fileID: -4554397234243203867}
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 60
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: 0}
---- !u!114 &1981345126165196852
+--- !u!114 &1066306120112345310
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -455,9 +423,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineShot
   DisplayName: 
   VirtualCamera:
-    exposedName: 0df98cff9dbd11746b56e7f0c230bd70
+    exposedName: 954fce4e6fcf6d349a2c6fa8b680b7b0
     defaultValue: {fileID: 0}
---- !u!114 &6757751521913809566
+--- !u!114 &2405608434631238855
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -471,5 +439,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineShot
   DisplayName: 
   VirtualCamera:
-    exposedName: 84a536f9f3043ce47b5183ab33ec0cd2
+    exposedName: 65dfe7274a975f648ba2bf8ef0da565a
+    defaultValue: {fileID: 0}
+--- !u!114 &5198391247684102872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
+  m_Name: CinemachineShot
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineShot
+  DisplayName: 
+  VirtualCamera:
+    exposedName: 4d424c16a674c244f9f3381c401c70e3
+    defaultValue: {fileID: 0}
+--- !u!114 &8138328664111739018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
+  m_Name: CinemachineShot
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineShot
+  DisplayName: 
+  VirtualCamera:
+    exposedName: 09c2e9fae853cec44bd0730c54b3cd3b
     defaultValue: {fileID: 0}

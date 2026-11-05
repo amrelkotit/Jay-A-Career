@@ -22,6 +22,8 @@ using UnityEngine.Playables;
 public class CutsceneController : MonoBehaviour
 {
     public static bool IsPlaying => active != null;
+    /// <summary>Same as holding [Space]: ends the cutscene and applies its finish actions.</summary>
+    public static void SkipActive() { if (active) active.finished = true; }
     static CutsceneController active;
 
     [Serializable]

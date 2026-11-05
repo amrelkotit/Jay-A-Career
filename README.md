@@ -1,45 +1,42 @@
-# Jay A Career Assignment 2
+# Jay A Career — Assignment 3 (Storyline, Levels and UI)
 
-Game World and Game Mechanics submission for DMET909 Video Game Design.
+DMET 909 Video Game Design, GUC. Branch `assignment-3`. Assignment 1 is on `main`, Assignment 2 on `assignment-2`.
 
-This `assignment-2` branch contains the complete realism revision. Assignment 1 remains on `main` and in Git history.
+Jay is behind on rent in Calder Flats. Dr. Hale offers him delivery work for Corvane: sealed CF-7 cartons. Over three story levels Jay delivers to Leo, makes one meaningful choice with Luka, and in the last level learns what Hale has been hiding before Paul, the big buyer, makes him an offer. The product stays a fictional sealed carton; the game has no real production procedure.
 
-## Open and play in Unity
+## Open and play
 
-1. Clone or download **this branch**, including `Assets`, `Packages` and `ProjectSettings`.
-2. Add the repository folder in Unity Hub and open with **Unity 6000.3.24f1**.
-3. Allow Unity to restore packages and import assets.
-4. Open `Assets/JayACareer/Scenes/JayACareer_Realism.unity` and press Play.
+1. Open the project with **Unity 6000.3.24f1** (URP 17.3, Cinemachine 3.1.5, Input System, TextMesh Pro, Timeline).
+2. Open `Assets/JayACareer/Scenes/MainMenu.unity` and press Play. (Each level scene can also be played directly; it fills in sensible defaults.)
+3. To regenerate every story scene from the A2 world: **Jay A Career → Assignment 3 → Build Story Game (all scenes)**.
 
-URP 17.3.0, Cinemachine 3.1.5 and Input System versions are recorded in `Packages/manifest.json` and `packages-lock.json`. Blender and MPFB are authoring tools, not requirements for running the project.
+Scene flow (Build Settings): MainMenu → Loading → L1_FirstDelivery → L2_Middleman → L3_BigBuyer → Ending.
 
-## Controls and complete daily route
+## Controls
 
-WASD/mouse move/look. O/Q opens/closes the lab door. T on Dr. Hale begins the briefing; T continues it. O at the yellow Preparation bench note creates one package. L lifts/places and R rotates. Carry the package across the road, aim at the yellow Delivery counter and press L to dock it. T at the customer starts negotiation: A accepts $50, C counters $75 with a disclosed 50% acceptance chance, and R rejects. A refusal/rejection requires returning the same package to the lab return shelf. C at the sink removes clutter, then O at the bedroom bed begins another day and retains session cash.
+| Action | Key |
+|---|---|
+| Move / look | WASD / mouse |
+| Interact, talk, advance dialogue | **E** (also Space/Enter/click for dialogue) |
+| Pick a dialogue choice | 1 – 3 or click |
+| Lift / place, rotate carried item | L / R |
+| Inventory / Journal | Tab / J |
+| Switch first/third person | V |
+| Flashlight | F |
+| Pause (resume, restart level, settings, main menu) | Esc |
+| Skip a cutscene | hold Space or Esc |
 
-V switches first/third person. Dialogue blends to the speaker through Cinemachine. F toggles the flashlight. O at the yellow Lab lights note beside the entrance toggles the ceiling fixtures. Fixtures start off; windows admit daylight and the deep lab remains subdued. Esc pauses; Resume restores mouse capture. The bedroom chair supports O, WASD, Q/R, Enter and Esc for bounded arrangement.
+## What Assignment 3 adds
 
-The bedroom entrance now has its own O light switch, independent of the laboratory fixtures and flashlight. Both roadside lamps automatically fade on and visibly glow at dusk, then switch off in the morning. Preparing, cleaning and sleeping play humanoid animations with Cinemachine action views before applying their world-state changes. Preparation and cleaning take 3.2 seconds; sleep takes 5 seconds. Pause freezes these actions, and completion restores the previous first/third-person view.
+- **Story:** intro cutscene, three levels with 3+ narrative moments each, one meaningful choice (Luka: accept / push / refuse) with consequences carried to Level 3 and the ending, a revelation (Hale's ledger and confession) and an ending cutscene and end card.
+- **Systems (Assets/JayACareer/Scripts/Story):** StoryStateManager (flags, cash, trust, heat, inventory, journal), data-driven ScriptableObject dialogue with conditions and effects, ObjectiveManager with derived objectives, StoryTriggers, gated LevelDirector transitions, Timeline cutscenes, loading screen, pause and settings, end screen.
+- **UI:** dialogue box with name and portrait, objective tracker with marker, cash/rent/trust/heat status, toast messages, inventory with lore descriptions, journal, chapter cards and subtitles.
+- **World:** time of day follows the story (morning → dusk → night); street lamps switch on automatically in the evening and off in the morning; colour grades, wall props (eviction notice, calendar), decals and tyre tracks; three human buyers (Leo, Luka, Paul).
 
-For customer handoff, place the package fully on the counter before pressing T. A package resting on the counter is also recognized when it was placed through ordinary surface placement.
+## Verification
 
-## Assignment evidence
+`Jay A Career → Assignment 3 → Test Playthrough → All three branches` plays the whole game from the main menu to the end screen for each Luka choice and checks every beat, flag and transition. Latest result: accepted 63/63, pushed 63/63, refused 65/65 — reports are in `Deliverables/Evidence/Assignment3`. `Record Video` re-records the prototype video with Unity Recorder.
 
-- 36 described object types and 23 documented mechanics.
-- Five world-changing actions: preparation, carrying/placement, negotiation, cleanup and sleep.
-- Three Cinemachine behaviors: first person, third-person follow and blended dialogue focus.
-- Three lighting behaviors: 120-second ambient cycle, flashlight and switched lab fixtures.
-- `Deliverables/Jay A Career - Assignment 2 Revised GDD.pdf` and the measured world map.
-- `Deliverables/Evidence/`: build, input, rules, lighting and performance reports.
+## Credits
 
-The fresh full Windows build succeeded with zero errors. Automated player checks passed 40 assertions; the visible 1080p two-day route averaged 59.8 FPS (1% low 58.6 FPS) on Ryzen 7 4800H / GTX 1650. These figures are automated measurements, not a claim of human testing. The prior player passed physical movement, pause and camera checks; the new labeled lift/place and lighting review is documented separately.
-
-The 18 October lighting/actions update was separately built with zero errors and passed 32 standalone integration checks. These cover the bedroom switch, evening lamp emission, timed actions, pause, package/payment state, view restoration and the next morning. See `Deliverables/Evidence/Lights and Actions Update 20261018.md`, `lights-actions-build-20261018.json` and `LightsActions-Player-Final-20261018/review-result.json`. The measured performance figures above belong to the earlier build; they were not rerun for this update.
-
-## Included files and licenses
-
-`Assets`, `Packages`, `ProjectSettings`, editable `ArtSource`, reproducible authoring helpers, source/license metadata and documentation are included. Generated Unity caches, build binaries and portable tool executables are excluded.
-
-See `REALISM_ASSET_CREDITS.md` and `Deliverables/asset-register.json` for original work and selected CC0 assets. MPFB tool source retains its GPL license; it is not linked into the game. The fictional sealed package has no real production procedure. No persistent saves, driving or combat are implemented.
-
-Course submission is performed separately through the submission PDF and form.
+See `REALISM_ASSET_CREDITS.md` (Assignment 2 assets plus the Assignment 3 section: Microsoft Rocketbox avatars, MIT).

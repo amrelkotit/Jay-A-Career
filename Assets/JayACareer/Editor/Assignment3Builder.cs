@@ -9,6 +9,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.Playables;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
@@ -82,12 +83,14 @@ public static class Assignment3Builder
         AssetDatabase.Refresh();
         UI.Init();
         Assignment3Content.Build();
+        Assignment3Characters.PrepareImports();
         BuildLevel1();
         BuildLevel2();
         BuildLevel3();
         BuildMainMenu();
         BuildLoading();
         BuildEnding();
+        Assignment3Characters.CapturePortraits(LevelTransitionManager.Level1, LevelTransitionManager.Level2, LevelTransitionManager.Level3);
         EditorBuildSettings.scenes = new[] { "MainMenu", "Loading", LevelTransitionManager.Level1, LevelTransitionManager.Level2, LevelTransitionManager.Level3, "Ending" }
             .Select(n => new EditorBuildSettingsScene(ScenePath(n), true)).ToArray();
         AssetDatabase.SaveAssets();
@@ -242,7 +245,7 @@ public static class Assignment3Builder
             Talk("L1_LeoDeal", "Negotiation", C.Flag(StoryKeys.CanNegotiate)),
             Talk("L1_LeoWaiting", "After the deal", C.Flag(StoryKeys.LeoPaid)),
             Talk("L1_LeoBefore", "Before the carton arrives"));
-        if (lv.game.customerClothing && lv.game.customerVariantA) lv.game.customerClothing.sharedMaterial = lv.game.customerVariantA;
+        Assignment3Characters.SwapBuyer(lv.game, "Leo");
 
         var steps = new List<ObjectiveStep>
         {
@@ -263,6 +266,12 @@ public static class Assignment3Builder
         Lore(lv, "bills", "Unpaid bills", "Jay's desk", new Vector3(9.25f, 0, 10.55f), new Vector3(.24f, .01f, .3f), Mat("Paper", new Color(.92f, .9f, .82f)),
             "Electricity: overdue. Water: overdue. A calendar with three days circled in red. Jay is out of time and out of money.",
             "", "", "L1_BillsThought", null);
+
+        // Realism & environmental storytelling.
+        Grade(lv, "L1_Morning", 14, 4, 8, 6, new Color(1f, .97f, .92f), .22f, .35f);
+        CommonDecals(lv);
+        WallProp(lv, "EvictionNotice", "notice", new Vector3(9.1f, 1.5f, 5.61f), 180, new Vector2(.42f, .56f));
+        WallProp(lv, "RentCalendar", "calendar", new Vector3(11.6f, 1.62f, 11.39f), 0, new Vector2(.48f, .6f));
 
         // End-of-day reflection once the work is done (beat: emotional close of Act 1).
         Trigger(lv, "L1_EndOfDay", StoryTrigger.Activation.WhenConditionsMet, "L1_EndOfDay", 1.5f,
@@ -323,7 +332,7 @@ public static class Assignment3Builder
             Talk("L2_LukaDeal", "The meaningful choice", C.Flag(StoryKeys.CanNegotiate)),
             Talk("L2_LukaWaiting", "After the deal", C.Flag(StoryKeys.LukaDealt)),
             Talk("L2_LukaBefore", "Before the carton arrives"));
-        if (lv.game.customerClothing && lv.game.customerVariantB) lv.game.customerClothing.sharedMaterial = lv.game.customerVariantB;
+        Assignment3Characters.SwapBuyer(lv.game, "Luka");
 
         var phone = Lore(lv, "phone", "Luka's phone", "Customer counter", new Vector3(9.55f, 0, 13.75f), new Vector3(.075f, .01f, .15f), Mat("PhoneBody", new Color(.04f, .04f, .05f)),
             "Luka's phone lit up on the counter. One message, signed only \"P.\":\n\"Is the old man's new boy reliable? Find out tonight.\"",
@@ -349,8 +358,11 @@ public static class Assignment3Builder
             var butt = Prop(props, "CigaretteButt", PrimitiveType.Cylinder, new Vector3(8.2f + i * .23f, .06f, 13.1f + (i % 2) * .21f), new Vector3(.012f, .02f, .012f), Mat("Cigarette", new Color(.95f, .92f, .85f)));
             butt.transform.rotation = Quaternion.Euler(90, i * 47, 0);
         }
-        for (int s = -1; s <= 1; s += 2)
-            Prop(props, "TyreTrack", PrimitiveType.Cube, new Vector3(5.9f, .057f, 14.2f + s * .78f), new Vector3(4.2f, .004f, .22f), Mat("TyreTrack", new Color(.12f, .11f, .1f)));
+        Grade(lv, "L2_Dusk", 28, 8, 14, 4, new Color(1f, .9f, .82f), .3f, .7f);
+        CommonDecals(lv);
+        TyreTracks(lv);
+        WallProp(lv, "EvictionNotice", "notice", new Vector3(9.1f, 1.5f, 5.61f), 180, new Vector2(.42f, .56f));
+        WallProp(lv, "RentCalendar", "calendar", new Vector3(11.6f, 1.62f, 11.39f), 0, new Vector2(.48f, .6f));
 
         Trigger(lv, "L2_EndOfDay", StoryTrigger.Activation.WhenConditionsMet, "L2_EndOfDay", 1.5f, new[] { Stage(JayDailyLoop.Stage.Sleep), C.Flag(StoryKeys.LukaDealt) });
         Save(lv);
@@ -366,6 +378,8 @@ public static class Assignment3Builder
             E.Text(StoryKeys.LukaDeal, "accepted"), E.Set(StoryKeys.PhoneNoteFound), E.Set(StoryKeys.Act2Complete), E.SetNumber(StoryKeys.Cash, 300), E.SetNumber(StoryKeys.Heat, 1) };
         d.timeOfDay = new List<LevelDirector.TimeOfDayKey> { TOD("Midnight", .5f, 0) };
         d.completionFlag = ""; d.nextScene = "";   // the ending cutscene loads the Ending scene
+        d.labLightsAtStart = false;                // Jay searches the dark lab by flashlight...
+        d.labLightsOnWhen = new List<C> { C.Flag(StoryKeys.NotesFound) };   // ...until Hale walks back in
 
         var hale = Hale(lv); var paul = Buyer(lv);
         SetConversations(hale, Assignment3Content.Hale,
@@ -374,14 +388,14 @@ public static class Assignment3Builder
         SetConversations(paul, Assignment3Content.Paul,
             Talk("L3_PaulDeal", "Final deal (varies with lukaDeal)", C.Flag(StoryKeys.CanNegotiate)),
             Talk("L3_PaulBefore", "Waiting"));
-        if (lv.game.customerClothing && lv.game.customerVariantA) lv.game.customerClothing.sharedMaterial = lv.game.customerVariantA;
+        Assignment3Characters.SwapBuyer(lv.game, "Paul");
 
         // Night start: Jay wakes in his room; Hale and Paul are not here yet.
         var player = lv.game.player.transform;
         player.SetPositionAndRotation(new Vector3(10.6f, .2f, 8.2f), Quaternion.Euler(0, -140, 0));
         hale.gameObject.SetActive(false);
         paul.gameObject.SetActive(false);
-        var haleEntrance = Marker("HaleEntranceMarker", new Vector3(-7f, .08f, 6.1f), 0);
+        var haleEntrance = Marker("HaleEntranceMarker", new Vector3(-5.9f, .08f, 6.95f), -25);
         var haleDoorway = Marker("HaleDoorwayMarker", new Vector3(-7f, .08f, 5.45f), 62);
 
         // Search clues: three lore items, each adds one to "clues".
@@ -434,6 +448,12 @@ public static class Assignment3Builder
         steps.AddRange(LoopSteps(lv, "Seal Paul's order at the preparation bench", "Carry the carton to the counter. Paul is waiting", "Meet Paul at the counter"));
         lv.objectives.steps = steps;
         lv.objectives.allCompleteText = "";
+
+        Grade(lv, "L3_Night", -24, -4, 16, -18, new Color(.86f, .92f, 1f), .38f, .9f);
+        CommonDecals(lv);
+        TyreTracks(lv);
+        WallProp(lv, "EvictionNotice", "notice", new Vector3(9.1f, 1.5f, 5.61f), 180, new Vector2(.42f, .56f));
+        WallProp(lv, "RentCalendar", "calendar", new Vector3(11.6f, 1.62f, 11.39f), 0, new Vector2(.48f, .6f));
 
         // Closing narrative: Paul's card, Hale in the doorway, cliffhanger.
         var card = Prop(null, "PaulsCard", PrimitiveType.Cube, new Vector3(9.12f, 0, 13.82f), new Vector3(.09f, .002f, .055f), Mat("Card", new Color(.97f, .96f, .93f)));
@@ -776,6 +796,98 @@ public static class Assignment3Builder
         director.SetReferenceValue(shot.VirtualCamera.exposedName, cam);
     }
 
+    // ================================================================== realism: colour grade + decals
+    /// <summary>Per-level colour grade layered over the A2 global volume (warm sunrise, orange dusk, cold night).</summary>
+    static void Grade(Level lv, string id, float temperature, float tint, float contrast, float saturation, Color filter, float vignette, float bloom)
+        => GradeScene(id, temperature, tint, contrast, saturation, filter, vignette, bloom).transform.SetParent(lv.systems.transform, true);
+
+    static Volume GradeScene(string id, float temperature, float tint, float contrast, float saturation, Color filter, float vignette, float bloom)
+    {
+        Directory.CreateDirectory(StoryRoot + "Grades");
+        string path = StoryRoot + "Grades/" + id + ".asset";
+        if (File.Exists(path)) AssetDatabase.DeleteAsset(path);
+        var profile = ScriptableObject.CreateInstance<VolumeProfile>();
+        AssetDatabase.CreateAsset(profile, path);
+        var wb = profile.Add<WhiteBalance>(); wb.temperature.Override(temperature); wb.tint.Override(tint);
+        var ca = profile.Add<ColorAdjustments>(); ca.contrast.Override(contrast); ca.saturation.Override(saturation); ca.colorFilter.Override(filter);
+        var vg = profile.Add<Vignette>(); vg.intensity.Override(vignette); vg.smoothness.Override(.45f);
+        var bl = profile.Add<Bloom>(); bl.intensity.Override(bloom); bl.threshold.Override(1f); bl.scatter.Override(.65f);
+        foreach (var c in profile.components) { c.name = c.GetType().Name; AssetDatabase.AddObjectToAsset(c, profile); }
+        EditorUtility.SetDirty(profile);
+        var go = new GameObject("ColourGrade_" + id);
+        var v = go.AddComponent<Volume>(); v.isGlobal = true; v.priority = 10; v.weight = 1; v.sharedProfile = profile;
+        return v;
+    }
+
+    /// <summary>Wear and history on every surface: stains, oil, dust (fake decals = transparent quads).</summary>
+    static void CommonDecals(Level lv)
+    {
+        var root = new GameObject("Decals").transform; root.SetParent(lv.systems.transform, false);
+        Decal(root, "stain", new Vector3(-9.6f, 0, 13.3f), 20, 1.1f, .085f);
+        Decal(root, "stain", new Vector3(-4.4f, 0, 8.1f), 140, .8f, .085f);
+        Decal(root, "dirt", new Vector3(-7f, 0, 5.9f), 0, 2.2f, .085f);
+        Decal(root, "dirt", new Vector3(-3.0f, 0, 12.6f), 60, 1.6f, .085f);
+        Decal(root, "oil", new Vector3(8.1f, 0, 13.5f), 75, 1.3f, .058f);
+        Decal(root, "oil", new Vector3(1.6f, 0, 13.9f), 10, 1.6f, .03f);
+        Decal(root, "oil", new Vector3(.3f, 0, 4.5f), 200, 1.1f, .03f);
+        Decal(root, "dirt", new Vector3(10.5f, 0, 14.2f), 30, 2.4f, .058f);
+    }
+
+    static void TyreTracks(Level lv)
+    {
+        var root = new GameObject("TyreTracks").transform; root.SetParent(lv.systems.transform, false);
+        for (int s = -1; s <= 1; s += 2)
+        {
+            var q = Decal(root, "tyre", new Vector3(5.6f, 0, 14.15f + s * .78f), 90, 1f, .059f);
+            q.transform.localScale = new Vector3(.26f, 4.6f, 1);
+        }
+    }
+
+    static GameObject Decal(Transform parent, string texture, Vector3 xz, float yaw, float size, float surfaceY)
+    {
+        var q = GameObject.CreatePrimitive(PrimitiveType.Quad);
+        Object.DestroyImmediate(q.GetComponent<Collider>());
+        q.name = "Decal_" + texture; q.transform.SetParent(parent, false);
+        q.transform.position = new Vector3(xz.x, surfaceY + .004f, xz.z);
+        q.transform.rotation = Quaternion.Euler(90, yaw, 0);
+        q.transform.localScale = new Vector3(size, size, 1);
+        var r = q.GetComponent<Renderer>(); r.sharedMaterial = DecalMat(texture); r.shadowCastingMode = ShadowCastingMode.Off;
+        return q;
+    }
+
+    static void WallProp(Level lv, string name, string texture, Vector3 position, float yaw, Vector2 size)
+    {
+        var q = GameObject.CreatePrimitive(PrimitiveType.Quad);
+        Object.DestroyImmediate(q.GetComponent<Collider>());
+        q.name = name; q.transform.SetParent(lv.systems.transform, false);
+        q.transform.SetPositionAndRotation(position, Quaternion.Euler(0, yaw, 0));
+        q.transform.localScale = new Vector3(size.x, size.y, 1);
+        string path = Materials + "Prop_" + texture + ".mat";
+        var m = AssetDatabase.LoadAssetAtPath<Material>(path);
+        if (!m) { m = new Material(Shader.Find("Universal Render Pipeline/Lit")); AssetDatabase.CreateAsset(m, path); }
+        m.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>(StoryRoot + "Decals/" + texture + ".png"));
+        m.SetColor("_BaseColor", Color.white); m.SetFloat("_Smoothness", .15f);
+        EditorUtility.SetDirty(m);
+        q.GetComponent<Renderer>().sharedMaterial = m;
+    }
+
+    static Material DecalMat(string texture)
+    {
+        string path = Materials + "Decal_" + texture + ".mat";
+        var m = AssetDatabase.LoadAssetAtPath<Material>(path);
+        if (!m) { m = new Material(Shader.Find("Universal Render Pipeline/Lit")); AssetDatabase.CreateAsset(m, path); }
+        m.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>(StoryRoot + "Decals/" + texture + ".png"));
+        m.SetColor("_BaseColor", Color.white);
+        m.SetFloat("_Smoothness", texture == "oil" ? .6f : .1f);
+        // Transparent, alpha-blended, no depth write: sits on the surface like a projected decal.
+        m.SetFloat("_Surface", 1); m.SetFloat("_Blend", 0);
+        m.SetFloat("_SrcBlend", (float)BlendMode.SrcAlpha); m.SetFloat("_DstBlend", (float)BlendMode.OneMinusSrcAlpha);
+        m.SetFloat("_ZWrite", 0); m.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+        m.SetOverrideTag("RenderType", "Transparent"); m.renderQueue = (int)RenderQueue.Transparent - 10;
+        EditorUtility.SetDirty(m);
+        return m;
+    }
+
     // ================================================================== menu / loading / ending scenes
     static void BuildMainMenu()
     {
@@ -807,6 +919,7 @@ public static class Assignment3Builder
 
         var canvas = UI.Canvas("MainMenu UI", 10).transform;
         if (!Object.FindFirstObjectByType<UnityEngine.EventSystems.EventSystem>(FindObjectsInactive.Include)) NewEventSystem();
+        GradeScene("Menu_Dusk", 26, 6, 14, 2, new Color(1f, .9f, .82f), .34f, .8f);
         UI.Img(canvas, "LeftShade", new Color(0, 0, 0, .62f), new Vector2(0, 0), new Vector2(0, 1), new Vector2(0, .5f), Vector2.zero, new Vector2(760, 0), false);
         UI.Txt(canvas, "Title", "JAY A CAREER", 92, UI.Text, TextAlignmentOptions.Left, new Vector2(0, 1), new Vector2(0, 1), new Vector2(0, 1), new Vector2(90, -150), new Vector2(900, 110), FontStyles.Bold);
         UI.Txt(canvas, "Tagline", "Three days. Three buyers. One career.", 32, UI.Accent, TextAlignmentOptions.Left, new Vector2(0, 1), new Vector2(0, 1), new Vector2(0, 1), new Vector2(94, -262), new Vector2(900, 44), FontStyles.Italic);

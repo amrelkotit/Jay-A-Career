@@ -44,6 +44,17 @@ public class DialogueManager : MonoBehaviour
     public AudioSource uiAudio;
     public AudioClip openSound, choiceSound;
 
+    // ---- read-only state used by the automated playthrough test (Assignment3AutoPilot)
+    public bool AwaitingChoice => awaitingChoice;
+    public bool IsTyping => typing;
+    public string CurrentDialogueId => current ? current.id : "";
+    public int VisibleChoiceCount => visibleChoices.Count;
+    public string CurrentText => bodyText ? bodyText.text : "";
+    /// <summary>Same as pressing [E]: completes the typewriter or shows the next line.</summary>
+    public void Advance() { if (!open || awaitingChoice) return; if (typing) CompleteTyping(); else NextLine(); }
+    /// <summary>Same as pressing a number key during a choice.</summary>
+    public void ChooseOption(int index) => Choose(index);
+
     /// <summary>The profile of whoever is currently speaking (used by character animation).</summary>
     public CharacterProfile CurrentSpeaker { get; private set; }
 
