@@ -56,6 +56,9 @@ public class LevelDirector : MonoBehaviour
     public List<LoopEventEffects> loopEventEffects = new List<LoopEventEffects>();
     public List<TimeOfDayKey> timeOfDay = new List<TimeOfDayKey>();
 
+    [Tooltip("Position of this level in the chapter list (1–3). Two levels can share a day.")]
+    public int chapterIndex = 1;
+
     [Header("Hale's lab fixtures")]
     [Tooltip("Lab ceiling fixtures at the start of the level (Hale is working in daytime levels).")]
     public bool labLightsAtStart = true;
@@ -89,7 +92,7 @@ public class LevelDirector : MonoBehaviour
             StoryEffect.ApplyAll(directPlayDefaults, state);
         }
         state.SetInt(StoryKeys.Day, dayNumber);
-        MainMenuController.UnlockChapter(dayNumber);      // the chapter list grows in story order
+        MainMenuController.UnlockChapter(chapterIndex);   // the chapter list grows in story order
         state.TakeLevelSnapshot();
         if (game)
         {

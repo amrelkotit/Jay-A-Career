@@ -15,11 +15,11 @@ MonoBehaviour:
   id: L2_HaleWarning
   lines:
   - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
-    text: 'Before you seal anything: today is different.'
+    text: 'Before you seal anything: tonight is different.'
     conditions: []
   - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
-    text: Today's buyer is Luka. Luka is not a customer, Jay. Luka collects for someone
-      else.
+    text: Tonight's buyer is Luka. Luka is not a customer, Jay. Luka collects for
+      someone else.
     conditions: []
   - speaker: {fileID: 11400000, guid: 37fb9708d40dec141b361114c996e24e, type: 2}
     text: Collects for who?
@@ -29,7 +29,7 @@ MonoBehaviour:
       to argue, and he'll expect you to lose.
     conditions: []
   - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
-    text: Take his price, push for more, or send him away. It's your counter today.
+    text: Take his price, push for more, or send him away. It's your counter tonight.
       I want to see what you do with it.
     conditions: []
   - speaker: {fileID: 11400000, guid: 37fb9708d40dec141b361114c996e24e, type: 2}

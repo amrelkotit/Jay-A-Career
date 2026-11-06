@@ -1,4 +1,4 @@
-AutoPilot Validate branch=pushed 11/5/2026 5:13:36 PM
+AutoPilot Validate branch=pushed 11/6/2026 4:13:51 AM
 [00:00] Main menu
 PASS  Main menu offers New Game and the three chapters in story order
 PASS  Main menu theme is playing
@@ -14,98 +14,104 @@ PASS  Objective shown after the intro: Cross the road and talk to Dr. Hale in hi
 [00:07] Dr. Hale's briefing
 PASS  Conversation with Dr. Hale opens
 PASS  Briefing sets briefingDone and starts preparation
-[00:12] Lore: Hale's Corvane badge
+[00:11] Lore: Hale's Corvane badge
 PASS  Lore item collected: Corvane staff badge
 PASS  Badge sets badgeFound and adds a journal entry
 PASS  Lore item collected: Face-down certificate
-[00:14] Seal the order at the preparation bench
+[00:13] Seal the order at the preparation bench
 PASS  Preparation action finishes
 PASS  Carton sealed; stage = Delivery
 PASS  Sealing the carton sets cartonSealed
 PASS  Jay picks up the sealed carton
 [00:17] Carry the carton across the road
 PASS  Carton placed on the counter; negotiation available
-[00:21] Leo's deal (asks about Paul first)
+[00:20] Leo's deal (asks about Paul first)
 PASS  Conversation with Leo opens
    choice in L1_LeoDeal: option 2
    choice in L1_LeoHint: option 1
 PASS  Leo pays $100 (cash $150)
 PASS  Leo's slip about Paul is added to the journal
 PASS  Lore item collected: Unpaid bills
-[00:33] Clean the bench
+[00:32] Clean the bench
 PASS  Cleaning action finishes
 PASS  Workspace clean; stage = Sleep
-[00:41] Sleep: the day ends
-PASS  Sleep action finishes
-PASS  Sleeping sets act1Complete
-[00:49] Loading screen: Day 2 recap
+[00:36] Hale announces a second buyer tonight
+PASS  Conversation with Dr. Hale opens
+PASS  Hale's evening news sets haleEvening (two customers on Day 1)
+PASS  Jay's reflection sets act1Complete (no sleep between the two deals)
+[00:44] Loading screen: evening recap (same day)
 PASS  L2_Middleman loaded with its game manager
-[01:01] L2_Middleman starts
+[00:46] L2_Middleman starts
+PASS  Level 2 is still Day 1 (second customer the same day)
 PASS  Level 1 progress carried into Level 2
-[01:02] Hale warns about Luka
+[00:47] Hale warns about Luka
 PASS  Conversation with Dr. Hale opens
 PASS  Warning sets lukaWarned
-[01:06] Seal the order at the preparation bench
+[00:51] Seal the order at the preparation bench
 PASS  Preparation action finishes
 PASS  Carton sealed; stage = Delivery
 PASS  Jay picks up the sealed carton
-[01:10] Carry the carton across the road
+[00:54] Carry the carton across the road
 PASS  Carton placed on the counter; negotiation available
-[01:13] Dusk falls: street lamps switch on
-[01:14] Luka's deal — meaningful choice: pushed
+[00:58] Dusk falls: street lamps switch on
+[00:59] Luka's deal — meaningful choice: pushed
 PASS  Conversation with Luka opens
    choice in L2_LukaDeal: option 2
 PASS  lukaDeal recorded as pushed
-PASS  Push: $400, trust 1, heat 2 (got $400, 1, 2)
-[01:17] Clue: the "P." message on Luka's phone
+PASS  Push: $400, trust 1, heat 3 (got $400, 1, 3)
+[01:02] Clue: the "P." message on Luka's phone
 PASS  Luka's phone buzzes on the counter (sound cue)
 PASS  Lore item collected: Luka's phone
 PASS  Phone sets phoneNoteFound
 PASS  The phone stops buzzing once the message is read
-[01:21] Hale reacts to the choice
+[01:05] Hale reacts to the choice
 PASS  Conversation with Dr. Hale opens
+   choice in L2_HaleReaction: option 2
 PASS  Hale's reaction sets haleReacted
-[01:27] Clean the bench
+PASS  Keeping "P." from Hale lowers Trust (trust 0)
+[01:12] Clean the bench
 PASS  Cleaning action finishes
 PASS  Workspace clean; stage = Sleep
-[01:35] Sleep: the day ends
+[01:20] Sleep: the day ends
 PASS  Sleep action finishes
 PASS  Sleeping sets act2Complete
-[01:43] Loading screen: Day 3 recap
+[01:28] Loading screen: Day 2 recap
 PASS  L3_BigBuyer loaded with its game manager
-[01:45] L3_BigBuyer starts
+[01:30] L3_BigBuyer starts
+PASS  Level 3 is Day 2
 PASS  Choice carried into Level 3
 PASS  Hale and Paul are absent at the start of the night
 PASS  Hale's lab is dark and silent
-PASS  Day 3 is unlocked in the chapter list
-[01:47] Jay walks to the dark lab
+PASS  All three chapters are unlocked in the chapter list
+[01:31] Jay walks to the dark lab
 PASS  Entering the lab sets haleMissingSeen
-[01:50] Flashlight search: ledger, letter, lockbox
+[01:34] Flashlight search: ledger, letter, lockbox
 PASS  Lore item collected: Hale's ledger
 PASS  Lore item collected: Unsent letter
 PASS  Lore item collected: Forced lockbox
 PASS  Three clues set notesFound
 PASS  Hale returns after the clues are found
 PASS  Hale's return switches the lab lights (and their hum) back on
-[01:55] Hale's confession (varies with the Luka choice)
+[01:40] Hale's confession (varies with the Luka choice)
 PASS  Conversation with Dr. Hale opens
 PASS  Confession sets confessionHeard
+PASS  Trust below 4: no money from Hale
 PASS  Paul arrives after the confession
-[02:00] Seal the order at the preparation bench
+[01:45] Seal the order at the preparation bench
 PASS  Preparation action finishes
 PASS  Carton sealed; stage = Delivery
 PASS  Jay picks up the sealed carton
-[02:03] Carry the carton across the road
+[01:48] Carry the carton across the road
 PASS  Carton placed on the counter; negotiation available
-[02:07] Paul's deal and offer
+[01:51] Paul's deal and offer
 PASS  Conversation with Paul opens
    choice in L3_PaulDeal: option 2
    choice in L3_PaulAboutHale: option 1
-PASS  Paul pays $200 and sets paulMet
-[02:10] Closing cutscene: the card and Hale in the doorway
+PASS  Paul's price follows Heat 3: pays $150 (got $150)
+[01:55] Closing cutscene: the card and Hale in the doorway
 PASS  Ending cutscene starts after Paul's conversation
 PASS  Cutscene 32_ending plays its score
 PASS  Cutscene 32_ending playing
 PASS  End screen shows the summary and the cliffhanger line
-[02:12] End screen: consequences summary
-RESULT: PASS — 72/72 checks passed
+[01:57] End screen: consequences summary
+RESULT: PASS — 77/77 checks passed

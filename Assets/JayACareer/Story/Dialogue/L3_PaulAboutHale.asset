@@ -21,8 +21,30 @@ MonoBehaviour:
     text: Unless you want it to be.
     conditions: []
   choices:
+  - text: Take the $150.
+    conditions:
+    - type: 2
+      key: heat
+      intValue: 3
+      textValue: 
+    effects:
+    - type: 0
+      key: paulMet
+      intValue: 0
+      textValue: 
+    loopAction: 2
+    payment: 150
+    next: {fileID: 11400000, guid: 14e296763c0293e4296c1e58755ac1b5, type: 2}
   - text: Take the $200.
-    conditions: []
+    conditions:
+    - type: 2
+      key: heat
+      intValue: 2
+      textValue: 
+    - type: 3
+      key: heat
+      intValue: 3
+      textValue: 
     effects:
     - type: 0
       key: paulMet
@@ -30,6 +52,20 @@ MonoBehaviour:
       textValue: 
     loopAction: 2
     payment: 200
+    next: {fileID: 11400000, guid: 14e296763c0293e4296c1e58755ac1b5, type: 2}
+  - text: Take the $250.
+    conditions:
+    - type: 3
+      key: heat
+      intValue: 2
+      textValue: 
+    effects:
+    - type: 0
+      key: paulMet
+      intValue: 0
+      textValue: 
+    loopAction: 2
+    payment: 250
     next: {fileID: 11400000, guid: 14e296763c0293e4296c1e58755ac1b5, type: 2}
   onComplete: []
   loopActionOnComplete: 0

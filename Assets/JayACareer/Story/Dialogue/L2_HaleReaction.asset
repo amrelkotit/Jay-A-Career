@@ -57,20 +57,6 @@ MonoBehaviour:
       key: lukaDeal
       intValue: 0
       textValue: refused
-  - speaker: {fileID: 11400000, guid: 37fb9708d40dec141b361114c996e24e, type: 2}
-    text: Luka got a message. From someone who signs as "P."
-    conditions:
-    - type: 0
-      key: phoneNoteFound
-      intValue: 0
-      textValue: 
-  - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
-    text: Don't say that letter inside my lab again. Clean the bench. Go home.
-    conditions:
-    - type: 0
-      key: phoneNoteFound
-      intValue: 0
-      textValue: 
   - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
     text: Clean up. Go home. Tomorrow will be... different.
     conditions:
@@ -78,7 +64,39 @@ MonoBehaviour:
       key: phoneNoteFound
       intValue: 0
       textValue: 
-  choices: []
+  choices:
+  - text: Tell Hale about the message from "P." (Trust +1)
+    conditions:
+    - type: 0
+      key: phoneNoteFound
+      intValue: 0
+      textValue: 
+    effects:
+    - type: 2
+      key: trust
+      intValue: 1
+      textValue: 
+    - type: 0
+      key: toldHale
+      intValue: 0
+      textValue: 
+    loopAction: 0
+    payment: 0
+    next: {fileID: 11400000, guid: bf8d12153375ffe4ca384cf5fe4e3f58, type: 2}
+  - text: "Keep it to yourself. (Trust \u22121)"
+    conditions:
+    - type: 0
+      key: phoneNoteFound
+      intValue: 0
+      textValue: 
+    effects:
+    - type: 2
+      key: trust
+      intValue: -1
+      textValue: 
+    loopAction: 0
+    payment: 0
+    next: {fileID: 11400000, guid: de31f0e6bd3cd8c43a2b45627796c0af, type: 2}
   onComplete:
   - type: 0
     key: haleReacted

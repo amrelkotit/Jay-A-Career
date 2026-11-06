@@ -206,11 +206,11 @@ public static class Assignment3Builder
         yield return Step(deal, Buyer(lv).transform, new[] { Stage(JayDailyLoop.Stage.Negotiation) });
     }
 
-    static IEnumerable<ObjectiveStep> WrapUpSteps(Level lv)
+    static IEnumerable<ObjectiveStep> WrapUpSteps(Level lv, bool sleep = true)
     {
         yield return Step("Put the unsold carton back on the lab's return shelf", lv.game.returnSlot, new[] { Stage(JayDailyLoop.Stage.Return) });
         yield return Step("Clean the preparation bench at the sink", lv.sink, new[] { Stage(JayDailyLoop.Stage.Cleaning) });
-        yield return Step("Go home and sleep. The day is over", lv.bed, new[] { Stage(JayDailyLoop.Stage.Sleep) });
+        if (sleep) yield return Step("Go home and sleep. The day is over", lv.bed, new[] { Stage(JayDailyLoop.Stage.Sleep) });
     }
 
     // ================================================================== LEVEL 1
@@ -218,7 +218,7 @@ public static class Assignment3Builder
     {
         var lv = OpenLevelCopy(LevelTransitionManager.Level1);
         var d = lv.director;
-        d.dayNumber = 1; d.chapterTitle = "DAY 1 — FIRST DELIVERY"; d.chapterSubtitle = "Calder Flats. Rent due in three days.";
+        d.dayNumber = 1; d.chapterIndex = 1; d.chapterTitle = "DAY 1 — FIRST DELIVERY"; d.chapterSubtitle = "Calder Flats, morning. Rent due in two days.";
         d.timeOfDay = new List<LevelDirector.TimeOfDayKey>
         {
             TOD("Dawn: lamps still on", .70f, 0),
@@ -227,17 +227,18 @@ public static class Assignment3Builder
         d.loopEventEffects = new List<LevelDirector.LoopEventEffects>
         {
             OnLoop("prepared", E.Set(StoryKeys.CartonSealed)),
-            OnLoop("slept", E.Set(StoryKeys.Act1Complete)),
+            OnLoop("slept", E.Set(StoryKeys.Act1Complete)),   // fallback: the level normally ends with Hale's evening order
         };
-        d.completionFlag = StoryKeys.Act1Complete; d.nextScene = LevelTransitionManager.Level2; d.nextTitle = "DAY 2 — THE MIDDLEMAN";
+        d.completionFlag = StoryKeys.Act1Complete; d.nextScene = LevelTransitionManager.Level2; d.nextTitle = "DAY 1 — EVENING: THE MIDDLEMAN";
         d.recaps = new List<LevelDirector.RecapVariant>
         {
-            Recap("Leo paid $100 for a sealed carton nobody would describe. In Hale's desk, Jay found an old Corvane badge: \"E. Hale, Senior Chemist\".\n\nRent: ${cash} of ${rent}. Two days left.\n\nTomorrow's buyer is Luka. Hale says he is \"not a customer\".", C.Flag(StoryKeys.BadgeFound)),
-            Recap("Leo paid $100 for a sealed carton nobody would describe. Hale keeps his desk closed and his past closer.\n\nRent: ${cash} of ${rent}. Two days left.\n\nTomorrow's buyer is Luka. Hale says he is \"not a customer\"."),
+            Recap("Later that day. Leo paid $100 for a sealed carton nobody would describe. In Hale's desk, Jay found an old Corvane badge: \"E. Hale, Senior Chemist\".\n\nRent: ${cash} of ${rent}, due by the end of tomorrow.\n\nThe second buyer comes at dusk. Hale did not want to say his name.", C.Flag(StoryKeys.BadgeFound)),
+            Recap("Later that day. Leo paid $100 for a sealed carton nobody would describe. Hale keeps his desk closed and his past closer.\n\nRent: ${cash} of ${rent}, due by the end of tomorrow.\n\nThe second buyer comes at dusk. Hale did not want to say his name."),
         };
 
         SetConversations(Hale(lv), Assignment3Content.Hale,
             Talk("L1_HaleBriefing", "Day 1 briefing", Stage(JayDailyLoop.Stage.Briefing)),
+            Talk("L1_HaleEvening", "Announces the second order tonight", Stage(JayDailyLoop.Stage.Sleep), C.Flag(StoryKeys.LeoPaid)),
             Talk("L1_HaleDesk", "Asked about the badge", C.Flag(StoryKeys.BadgeFound)),
             Talk("L1_HaleAfterSale", "After Leo paid", C.Flag(StoryKeys.LeoPaid)),
             Talk("L1_HaleWork", "Idle"));
@@ -252,7 +253,8 @@ public static class Assignment3Builder
             Step("Cross the road and talk to Dr. Hale in his laboratory", Head(Hale(lv)), new[] { C.Flag(StoryKeys.IntroSeen) }, C.Flag(StoryKeys.BriefingDone)),
         };
         steps.AddRange(LoopSteps(lv, "Seal Leo's order at the preparation bench", "Carry the carton across the road to the counter", "Talk to Leo and close the deal"));
-        steps.AddRange(WrapUpSteps(lv));
+        steps.AddRange(WrapUpSteps(lv, false));
+        steps.Add(Step("Tell Dr. Hale the bench is clean", Head(Hale(lv)), new[] { Stage(JayDailyLoop.Stage.Sleep) }, C.Flag(StoryKeys.HaleEvening)));
         lv.objectives.steps = steps;
 
         // Lore objects (environmental storytelling): Hale's past and Jay's money problems.
@@ -264,19 +266,20 @@ public static class Assignment3Builder
             "A framed certificate, turned face-down, the glass cracked: \"Corvane Safety Excellence Award — Dr. Elias Hale\".",
             "", "", "L1_CertificateThought", null);
         Lore(lv, "bills", "Unpaid bills", "Jay's desk", new Vector3(9.25f, 0, 10.55f), new Vector3(.24f, .01f, .3f), Mat("Paper", new Color(.92f, .9f, .82f)),
-            "Electricity: overdue. Water: overdue. A calendar with three days circled in red. Jay is out of time and out of money.",
+            "Electricity: overdue. Water: overdue. A calendar with two days circled in red. Jay is out of time and out of money.",
             "", "", "L1_BillsThought", null);
 
         // Realism & environmental storytelling.
         Grade(lv, "L1_Morning", 14, 4, 8, 6, new Color(1f, .97f, .92f), .22f, .35f);
         CommonDecals(lv);
         Cue(lv.systems.transform, "LabHum", LabHumPosition, Clip("Lab_Hum", false), .2f, 9f, true);
+        TrustHeatSignals(lv);
         WallProp(lv, "EvictionNotice", "notice", new Vector3(9.1f, 1.5f, 5.61f), 180, new Vector2(.42f, .56f));
         WallProp(lv, "RentCalendar", "calendar", new Vector3(11.6f, 1.62f, 11.39f), 0, new Vector2(.48f, .6f));
 
         // End-of-day reflection once the work is done (beat: emotional close of Act 1).
-        Trigger(lv, "L1_EndOfDay", StoryTrigger.Activation.WhenConditionsMet, "L1_EndOfDay", 1.5f,
-            new[] { Stage(JayDailyLoop.Stage.Sleep), C.Flag(StoryKeys.LeoPaid) });
+        Trigger(lv, "L1_EndOfDay", StoryTrigger.Activation.WhenConditionsMet, "L1_EndOfDay", 1.2f,
+            new[] { C.Flag(StoryKeys.HaleEvening) });   // its onComplete sets act1Complete -> evening recap
 
         // Opening narrative: Timeline + Cinemachine intro (skippable), then the eviction notice.
         var intro = Cutscene(lv, "L1_Intro", StoryKeys.IntroSeen, new[]
@@ -288,13 +291,13 @@ public static class Assignment3Builder
         }, new[]
         {
             Sub(.5f, 4.2f, "Jay", "Calder Flats. Population: shrinking."),
-            Sub(5.3f, 4.6f, "Jay", "Eviction notice on my door this morning. Four hundred dollars. Three days."),
+            Sub(5.3f, 4.6f, "Jay", "Eviction notice on my door this morning. Four hundred dollars. Two days."),
             Sub(10.3f, 4.6f, "Jay", "Only one man in town is hiring. Dr. Elias Hale. Nobody visits his lab."),
             Sub(15.2f, 3.4f, "Jay", "Nobody but me, apparently."),
         });
         intro.playOnStart = true;
         intro.music = MusicSource(intro.transform, "Theme_Intro"); intro.musicVolume = .5f;
-        intro.effectsOnFinish.Add(E.Item("eviction", "Eviction notice", "\"Unpaid rent: $400. Vacate within 3 days.\" Taped to Jay's door at 6 a.m. The landlord underlined \"3 days\" twice."));
+        intro.effectsOnFinish.Add(E.Item("eviction", "Eviction notice", "\"Unpaid rent: $400. Vacate within 2 days.\" Taped to Jay's door at 6 a.m. The landlord underlined \"2 days\" twice."));
         intro.effectsOnFinish.Add(E.Message("Objective markers point the way. [E] interacts, [Tab] inventory, [J] journal."));
         Save(lv);
     }
@@ -304,8 +307,8 @@ public static class Assignment3Builder
     {
         var lv = OpenLevelCopy(LevelTransitionManager.Level2);
         var d = lv.director;
-        d.dayNumber = 2; d.chapterTitle = "DAY 2 — THE MIDDLEMAN"; d.chapterSubtitle = "Late afternoon. Somebody new is buying.";
-        d.directPlayDefaults = new List<E> { E.Set(StoryKeys.IntroSeen), E.Set(StoryKeys.BriefingDone), E.Set(StoryKeys.LeoPaid), E.Set(StoryKeys.Act1Complete), E.SetNumber(StoryKeys.Cash, 150) };
+        d.dayNumber = 1; d.chapterIndex = 2; d.chapterTitle = "DAY 1 — EVENING: THE MIDDLEMAN"; d.chapterSubtitle = "Same day, late afternoon. Hale's second buyer is on his way.";
+        d.directPlayDefaults = new List<E> { E.Set(StoryKeys.IntroSeen), E.Set(StoryKeys.BriefingDone), E.Set(StoryKeys.LeoPaid), E.Set(StoryKeys.HaleEvening), E.Set(StoryKeys.Act1Complete), E.SetNumber(StoryKeys.Cash, 150) };
         d.timeOfDay = new List<LevelDirector.TimeOfDayKey>
         {
             TOD("Late afternoon", .25f, 0),
@@ -317,12 +320,12 @@ public static class Assignment3Builder
             OnLoop("delivered", E.Set("lukaArrived")),
             OnLoop("slept", E.Set(StoryKeys.Act2Complete)),
         };
-        d.completionFlag = StoryKeys.Act2Complete; d.nextScene = LevelTransitionManager.Level3; d.nextTitle = "DAY 3 — THE BIG BUYER";
+        d.completionFlag = StoryKeys.Act2Complete; d.nextScene = LevelTransitionManager.Level3; d.nextTitle = "DAY 2 — THE BIG BUYER";
         d.recaps = new List<LevelDirector.RecapVariant>
         {
-            Recap("You took Luka's $150 and kept things quiet. Hale called it \"forgettable\", which from him is praise.\n\nSomeone who signs as \"P.\" is asking about you.\n\nRent: ${cash} of ${rent}. One day left.", C.Text(StoryKeys.LukaDeal, "accepted")),
-            Recap("You squeezed Luka for $250. Hale says you made the two of you visible, and Luka promised that nerve gets noticed.\n\nSomeone who signs as \"P.\" is asking about you.\n\nRent: ${cash} of ${rent}. One day left.", C.Text(StoryKeys.LukaDeal, "pushed")),
-            Recap("You sent Luka away with nothing. Hale didn't say he was proud, but he was. The rent didn't move.\n\nSomeone who signs as \"P.\" is asking about you.\n\nRent: ${cash} of ${rent}. ${short} short, one day left.", C.Text(StoryKeys.LukaDeal, "refused")),
+            Recap("You took Luka's $150 and kept things quiet. Hale called it \"forgettable\", which from him is praise.\n\nSomeone who signs as \"P.\" is asking about you.\n\nRent: ${cash} of ${rent}, due when tomorrow ends.", C.Text(StoryKeys.LukaDeal, "accepted")),
+            Recap("You squeezed Luka for $250. Hale says you made the two of you visible, and Luka promised that nerve gets noticed.\n\nSomeone who signs as \"P.\" is asking about you.\n\nRent: ${cash} of ${rent}, due when tomorrow ends.", C.Text(StoryKeys.LukaDeal, "pushed")),
+            Recap("You sent Luka away with nothing. Hale didn't say he was proud, but he was. The rent didn't move.\n\nSomeone who signs as \"P.\" is asking about you.\n\nRent: ${cash} of ${rent}. ${short} short, and it is due when tomorrow ends.", C.Text(StoryKeys.LukaDeal, "refused")),
         };
 
         SetConversations(Hale(lv), Assignment3Content.Hale,
@@ -347,7 +350,7 @@ public static class Assignment3Builder
 
         var steps = new List<ObjectiveStep>
         {
-            Step("Talk to Dr. Hale before today's order", Head(Hale(lv)), new[] { Stage(JayDailyLoop.Stage.Briefing) }),
+            Step("Talk to Dr. Hale before tonight's order", Head(Hale(lv)), new[] { Stage(JayDailyLoop.Stage.Briefing) }),
         };
         steps.AddRange(LoopSteps(lv, "Seal Luka's order at the preparation bench", "Carry the carton to the counter. Luka is waiting", "Deal with Luka. It's your call"));
         steps.Add(Step("Check the phone Luka left on the counter", phone.transform, new[] { C.Flag(StoryKeys.LukaDealt) }, C.Flag(StoryKeys.PhoneNoteFound)));
@@ -365,6 +368,8 @@ public static class Assignment3Builder
         Grade(lv, "L2_Dusk", 28, 8, 14, 4, new Color(1f, .9f, .82f), .3f, .7f);
         CommonDecals(lv);
         Cue(lv.systems.transform, "LabHum", LabHumPosition, Clip("Lab_Hum", false), .2f, 9f, true);
+        TrustHeatSignals(lv);
+        CounterLamp(lv);
         TyreTracks(lv);
         WallProp(lv, "EvictionNotice", "notice", new Vector3(9.1f, 1.5f, 5.61f), 180, new Vector2(.42f, .56f));
         WallProp(lv, "RentCalendar", "calendar", new Vector3(11.6f, 1.62f, 11.39f), 0, new Vector2(.48f, .6f));
@@ -378,9 +383,10 @@ public static class Assignment3Builder
     {
         var lv = OpenLevelCopy(LevelTransitionManager.Level3);
         var d = lv.director;
-        d.dayNumber = 3; d.chapterTitle = "DAY 3 — THE BIG BUYER"; d.chapterSubtitle = "Midnight. The lights are off at Hale's.";
+        d.dayNumber = 2; d.chapterIndex = 3; d.chapterTitle = "DAY 2 — THE BIG BUYER"; d.chapterSubtitle = "Midnight. The rent is due at dawn, and the lights are off at Hale's.";
         d.directPlayDefaults = new List<E> { E.Set(StoryKeys.IntroSeen), E.Set(StoryKeys.LeoPaid), E.Set(StoryKeys.Act1Complete), E.Set(StoryKeys.LukaDealt),
-            E.Text(StoryKeys.LukaDeal, "accepted"), E.Set(StoryKeys.PhoneNoteFound), E.Set(StoryKeys.Act2Complete), E.SetNumber(StoryKeys.Cash, 300), E.SetNumber(StoryKeys.Heat, 1) };
+            E.Text(StoryKeys.LukaDeal, "accepted"), E.Set(StoryKeys.PhoneNoteFound), E.Set(StoryKeys.ToldHale), E.Set(StoryKeys.HaleReacted), E.Set(StoryKeys.Act2Complete),
+            E.SetNumber(StoryKeys.Cash, 300), E.SetNumber(StoryKeys.Trust, 3), E.SetNumber(StoryKeys.Heat, 2) };
         d.timeOfDay = new List<LevelDirector.TimeOfDayKey> { TOD("Midnight", .5f, 0) };
         d.completionFlag = ""; d.nextScene = "";   // the ending cutscene loads the Ending scene
         d.labLightsAtStart = false;                // Jay searches the dark lab by flashlight...
@@ -461,6 +467,8 @@ public static class Assignment3Builder
         Grade(lv, "L3_Night", -24, -4, 16, -18, new Color(.86f, .92f, 1f), .38f, .9f);
         CommonDecals(lv);
         Cue(lv.systems.transform, "LabHum", LabHumPosition, Clip("Lab_Hum", false), .2f, 9f, true, C.Flag(StoryKeys.NotesFound));
+        TrustHeatSignals(lv);
+        CounterLamp(lv);
         TyreTracks(lv);
         WallProp(lv, "EvictionNotice", "notice", new Vector3(9.1f, 1.5f, 5.61f), 180, new Vector2(.42f, .56f));
         WallProp(lv, "RentCalendar", "calendar", new Vector3(11.6f, 1.62f, 11.39f), 0, new Vector2(.48f, .6f));
@@ -511,7 +519,7 @@ public static class Assignment3Builder
         hud.hudGroup.blocksRaycasts = false;
 
         var status = UI.Img(hudRoot, "StatusPanel", UI.Panel, new Vector2(0, 1), new Vector2(0, 1), new Vector2(0, 1), new Vector2(24, -24), new Vector2(360, 178)).transform;
-        hud.dayText = UI.Txt(status, "Day", "DAY 1 / 3", 20, UI.Accent, TextAlignmentOptions.Left, new Vector2(0, 1), new Vector2(0, 1), new Vector2(0, 1), new Vector2(22, -14), new Vector2(320, 26), FontStyles.Bold);
+        hud.dayText = UI.Txt(status, "Day", "DAY 1 / 2", 20, UI.Accent, TextAlignmentOptions.Left, new Vector2(0, 1), new Vector2(0, 1), new Vector2(0, 1), new Vector2(22, -14), new Vector2(320, 26), FontStyles.Bold);
         hud.cashText = UI.Txt(status, "Cash", "$50", 36, UI.Text, TextAlignmentOptions.Left, new Vector2(0, 1), new Vector2(0, 1), new Vector2(0, 1), new Vector2(22, -40), new Vector2(330, 46), FontStyles.Bold);
         hud.trustFill = UI.Bar(status, "Trust", "TRUST · DR. HALE", UI.TrustColor, new Vector2(22, -94), 316);
         hud.heatFill = UI.Bar(status, "Heat", "HEAT · ATTENTION", UI.HeatColor, new Vector2(22, -134), 316);
@@ -743,6 +751,63 @@ public static class Assignment3Builder
     struct ShotSpec { public Vector3 from, to, look; public float start, duration; }
     static ShotSpec Shot(Vector3 from, Vector3 to, Vector3 look, float start, float duration)
         => new ShotSpec { from = from, to = to, look = look, start = start, duration = duration };
+    // ------------------------------------------------------------------ trust & heat feedback
+    /// <summary>
+    /// Signs & Feedback for the status meters: a short message the first time Trust or Heat
+    /// crosses a threshold that changes what Hale or Paul will say and pay (fires once per game).
+    /// </summary>
+    static void TrustHeatSignals(Level lv)
+    {
+        Trigger(lv, "HeatHigh", StoryTrigger.Activation.WhenConditionsMet, null, .6f, new[] { C.AtLeast(StoryKeys.Heat, StoryKeys.HeatHigh) },
+            E.Message("Heat is high: your name is getting around. Buyers pay less to people who are loud."));
+        Trigger(lv, "TrustHigh", StoryTrigger.Activation.WhenConditionsMet, null, .6f, new[] { C.AtLeast(StoryKeys.Trust, StoryKeys.TrustHigh) },
+            E.Message("Trust is high: Hale is starting to rely on you."));
+        Trigger(lv, "TrustLow", StoryTrigger.Activation.WhenConditionsMet, null, .6f, new[] { C.Below(StoryKeys.Trust, StoryKeys.TrustLow) },
+            E.Message("Trust is low: Hale will tell you less."));
+    }
+
+    // ------------------------------------------------------------------ counter lamp
+    /// <summary>
+    /// A practical work lamp beside the customer counter for the dusk and night levels: a warm key
+    /// light aimed at the buyer's face from Jay's side plus a soft fill, so Luka and Paul stay
+    /// readable without flattening the night grade. The fixture is visible, so the light has a source.
+    /// </summary>
+    static void CounterLamp(Level lv)
+    {
+        Vector3 buyer = lv.game.customer.transform.position, counter = lv.game.counterSlot.position;
+        Vector3 toJay = counter - buyer; toJay.y = 0; toJay.Normalize();
+        Vector3 side = Vector3.Cross(Vector3.up, toJay).normalized;
+        Vector3 face = buyer + Vector3.up * 1.6f;
+
+        var root = new GameObject("CounterLamp").transform;
+        root.SetParent(lv.systems.transform, false);
+        Vector3 basePos = new Vector3(counter.x, 0, counter.z) + toJay * .85f + side * 1.15f;
+        Vector3 head = basePos + Vector3.up * 2.25f;
+        Part(root, "Stand", PrimitiveType.Cylinder, basePos + Vector3.up * 1.1f, Quaternion.identity, new Vector3(.045f, 1.1f, .045f), Mat("LampStand", new Color(.12f, .12f, .13f)));
+        Part(root, "Foot", PrimitiveType.Cylinder, basePos + Vector3.up * .02f, Quaternion.identity, new Vector3(.42f, .02f, .42f), Mat("LampStand", new Color(.12f, .12f, .13f)));
+        var aim = Quaternion.LookRotation(face - head);
+        Part(root, "Head", PrimitiveType.Cylinder, head, aim * Quaternion.Euler(90, 0, 0), new Vector3(.24f, .09f, .24f), Mat("LampHead", new Color(.16f, .15f, .14f)));
+        Part(root, "Lens", PrimitiveType.Cylinder, head + (face - head).normalized * .095f, aim * Quaternion.Euler(90, 0, 0), new Vector3(.2f, .005f, .2f), Mat("LampLens", new Color(1f, .86f, .64f), 5f));
+
+        var key = new GameObject("KeyLight").AddComponent<Light>();
+        key.transform.SetParent(root); key.transform.SetPositionAndRotation(head + (face - head).normalized * .12f, aim);
+        key.type = LightType.Spot; key.range = 7f; key.spotAngle = 62f; key.innerSpotAngle = 28f; key.intensity = 3.2f;
+        key.color = new Color(1f, .86f, .68f); key.shadows = LightShadows.Soft; key.shadowStrength = .55f;
+
+        var fill = new GameObject("FillLight").AddComponent<Light>();
+        fill.transform.SetParent(root); fill.transform.position = buyer + toJay * .75f + Vector3.up * 1.25f;
+        fill.type = LightType.Point; fill.range = 2.6f; fill.intensity = .7f; fill.color = new Color(1f, .93f, .85f); fill.shadows = LightShadows.None;
+    }
+
+    static GameObject Part(Transform parent, string name, PrimitiveType type, Vector3 position, Quaternion rotation, Vector3 scale, Material material)
+    {
+        var go = GameObject.CreatePrimitive(type);
+        go.name = name; Object.DestroyImmediate(go.GetComponent<Collider>());   // decoration only: never blocks the player
+        go.transform.SetParent(parent, true); go.transform.SetPositionAndRotation(position, rotation); go.transform.localScale = scale;
+        go.GetComponent<Renderer>().sharedMaterial = material;
+        return go;
+    }
+
     // ------------------------------------------------------------------ story audio
     // Clips are original, generated by Tools/synth_story_audio.py (see REALISM_ASSET_CREDITS.md).
     const string AudioFolder = "Assets/JayACareer/Story/Audio/";
@@ -985,7 +1050,7 @@ public static class Assignment3Builder
         GradeScene("Menu_Dusk", 26, 6, 14, 2, new Color(1f, .9f, .82f), .34f, .8f);
         UI.Img(canvas, "LeftShade", new Color(0, 0, 0, .62f), new Vector2(0, 0), new Vector2(0, 1), new Vector2(0, .5f), Vector2.zero, new Vector2(760, 0), false);
         UI.Txt(canvas, "Title", "JAY A CAREER", 92, UI.Text, TextAlignmentOptions.Left, new Vector2(0, 1), new Vector2(0, 1), new Vector2(0, 1), new Vector2(90, -150), new Vector2(900, 110), FontStyles.Bold);
-        UI.Txt(canvas, "Tagline", "Three days. Three buyers. One career.", 32, UI.Accent, TextAlignmentOptions.Left, new Vector2(0, 1), new Vector2(0, 1), new Vector2(0, 1), new Vector2(94, -262), new Vector2(900, 44), FontStyles.Italic);
+        UI.Txt(canvas, "Tagline", "Two days. Three buyers. One career.", 32, UI.Accent, TextAlignmentOptions.Left, new Vector2(0, 1), new Vector2(0, 1), new Vector2(0, 1), new Vector2(94, -262), new Vector2(900, 44), FontStyles.Italic);
         var col = UI.Column(canvas, "Buttons", new Vector2(0, 1), new Vector2(0, 1), new Vector2(90, -380), new Vector2(440, 440), 16);
         col.childAlignment = TextAnchor.UpperLeft;
         var menu = canvas.gameObject.AddComponent<MainMenuController>();
@@ -1016,21 +1081,21 @@ public static class Assignment3Builder
         EditorSceneManager.SaveScene(scene);
     }
 
-    /// <summary>Chapter select: the three days in story order; later days unlock when reached.</summary>
+    /// <summary>Chapter select: the three levels in story order; later chapters unlock when reached.</summary>
     static void BuildChapterPanel(Transform canvas, MainMenuController menu)
     {
         var panel = UI.Img(canvas, "ChaptersPanel", new Color(.07f, .07f, .08f, .97f), new Vector2(.5f, .5f), new Vector2(.5f, .5f), new Vector2(.5f, .5f), Vector2.zero, new Vector2(1000, 620));
         menu.chaptersPanel = UI.Group(panel.gameObject, 0);
         UI.Txt(panel.transform, "Title", "CHAPTERS", 40, UI.Text, TextAlignmentOptions.Left, new Vector2(0, 1), new Vector2(0, 1), new Vector2(0, 1), new Vector2(40, -30), new Vector2(600, 56), FontStyles.Bold);
-        UI.Txt(panel.transform, "Hint", "Play the days in story order. Each day unlocks the first time you reach it.", 22, UI.Muted, TextAlignmentOptions.Left,
+        UI.Txt(panel.transform, "Hint", "Play the chapters in story order. Each one unlocks the first time you reach it.", 22, UI.Muted, TextAlignmentOptions.Left,
             new Vector2(0, 1), new Vector2(0, 1), new Vector2(0, 1), new Vector2(40, -88), new Vector2(920, 32));
         var specs = new[]
         {
-            (LevelTransitionManager.Level1, "DAY 1 — FIRST DELIVERY", "Day 1 — First Delivery", "Morning. Hale's rules, Leo's order and a name nobody should say.", menu.openingRecap),
-            (LevelTransitionManager.Level2, "DAY 2 — THE MIDDLEMAN", "Day 2 — The Middleman", "Dusk. Luka names a price. Your choice follows you.",
-                "Yesterday Leo paid $100 and let a name slip: Paul. Hale's old badge says he was a senior chemist at Corvane.\nToday's buyer is Luka, and Hale does not trust him."),
-            (LevelTransitionManager.Level3, "DAY 3 — THE BIG BUYER", "Day 3 — The Big Buyer", "Midnight. The lights are off at Hale's.",
-                "Jay took Luka's price. A message on Luka's phone, signed \"P.\", asked whether the old man's new boy is reliable.\nIt is midnight. The lights are off at Hale's."),
+            (LevelTransitionManager.Level1, "DAY 1 — FIRST DELIVERY", "Day 1, morning — First Delivery", "Hale's rules, Leo's order and a name nobody should say.", menu.openingRecap),
+            (LevelTransitionManager.Level2, "DAY 1 — EVENING: THE MIDDLEMAN", "Day 1, evening — The Middleman", "Luka names a price. Your choice follows you.",
+                "This morning Leo paid $100 and let a name slip: Paul. Hale's old badge says he was a senior chemist at Corvane.\nThe second buyer is Luka, and Hale does not trust him."),
+            (LevelTransitionManager.Level3, "DAY 2 — THE BIG BUYER", "Day 2, midnight — The Big Buyer", "The rent is due at dawn. The lights are off at Hale's.",
+                "Jay took Luka's price and told Hale about a message signed \"P.\": was the old man's new boy reliable?\nIt is midnight on Day 2. The rent is due at dawn, and the lights are off at Hale's."),
         };
         menu.chapters = new MainMenuController.Chapter[specs.Length];
         for (int i = 0; i < specs.Length; i++)

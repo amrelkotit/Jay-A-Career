@@ -15,7 +15,7 @@ MonoBehaviour:
   id: L1_BillsThought
   lines:
   - speaker: {fileID: 11400000, guid: 37fb9708d40dec141b361114c996e24e, type: 2}
-    text: Electricity, overdue. Water, overdue. And three red circles on the calendar.
+    text: Electricity, overdue. Water, overdue. And two red circles on the calendar.
       Great.
     conditions: []
   choices: []

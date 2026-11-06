@@ -6,8 +6,8 @@ using UnityEngine.UI;
 /// UI SCRIPT — the starting menu scene (brief "User Experience Flow": start the game, navigate
 /// through levels in narrative order, exit/restart).
 ///   • New Game   — resets the story state and loads Day 1 through the Loading screen
-///   • Chapters   — replays any day already reached, in story order (Day 1 → 2 → 3); a day
-///                  unlocks the first time the player arrives in it. Starting a later day seeds
+///   • Chapters   — replays any level already reached, in story order (Day 1 morning → Day 1
+///                  evening → Day 2); a chapter unlocks the first time the player arrives in it. Starting a later day seeds
 ///                  the state earlier days would have produced (LevelDirector.directPlayDefaults)
 ///   • Settings / Credits / Quit
 /// </summary>
@@ -30,7 +30,7 @@ public class MainMenuController : MonoBehaviour
     public SettingsManager settings;
     public Chapter[] chapters = new Chapter[0];
     [TextArea(3, 6)] public string openingRecap =
-        "Calder Flats. Jay is twenty-three, broke, and three days away from losing his room.\n" +
+        "Calder Flats. Jay is twenty-three, broke, and two days away from losing his room.\n" +
         "The only job on offer is across the road, in the laboratory of a man the town avoids: Dr. Elias Hale.";
 
     /// <summary>Called by each level when the player arrives, so the chapter list grows in story order.</summary>
@@ -85,7 +85,7 @@ public class MainMenuController : MonoBehaviour
         {
             bool open = i + 1 <= unlocked;
             if (chapters[i].button) chapters[i].button.interactable = open;
-            if (chapters[i].status) chapters[i].status.text = open ? (i == 0 ? "Start here" : "Replay") : "Locked — reach this day first";
+            if (chapters[i].status) chapters[i].status.text = open ? (i == 0 ? "Start here" : "Replay") : "Locked — reach this chapter first";
         }
         if (chapters.Length > 0 && chapters[0].button) chapters[0].button.Select();
     }

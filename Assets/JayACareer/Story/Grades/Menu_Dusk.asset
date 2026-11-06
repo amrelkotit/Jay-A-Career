@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7614843111903492146
+--- !u!114 &-7984903160438820987
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &-4545635194204710673
+--- !u!114 &-4783314224775406301
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,11 +82,11 @@ MonoBehaviour:
   m_Name: Menu_Dusk
   m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.VolumeProfile
   components:
-  - {fileID: -4545635194204710673}
-  - {fileID: 2367593152750659218}
-  - {fileID: 6247851244085134029}
-  - {fileID: -7614843111903492146}
---- !u!114 &2367593152750659218
+  - {fileID: -4783314224775406301}
+  - {fileID: 3115640453858308477}
+  - {fileID: 6646093207977824897}
+  - {fileID: -7984903160438820987}
+--- !u!114 &3115640453858308477
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,7 +114,7 @@ MonoBehaviour:
   saturation:
     m_OverrideState: 1
     m_Value: 2
---- !u!114 &6247851244085134029
+--- !u!114 &6646093207977824897
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}

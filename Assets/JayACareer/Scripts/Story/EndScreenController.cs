@@ -27,12 +27,20 @@ public class EndScreenController : MonoBehaviour
         string rent = cash >= StoryKeys.RentDue
             ? "<color=#9BE39B>Rent paid.</color> You keep your room, for now. ($" + cash + ")"
             : "<color=#E8866A>Rent short by $" + (StoryKeys.RentDue - cash) + ".</color> The eviction notice is still on the door.";
+        int trust = s.GetInt(StoryKeys.Trust), heat = s.GetInt(StoryKeys.Heat);
+        string trustLine = trust >= StoryKeys.TrustHigh ? "Hale trusted you with his story and his money."
+            : trust < StoryKeys.TrustLow ? "Hale never trusted you. He told you only what he had to."
+            : "Hale told you the truth, but not all of it.";
+        string heatLine = heat >= StoryKeys.HeatHigh ? "Your name reached Paul before you did. Loud work cost you $50."
+            : heat < StoryKeys.HeatLow ? "Nobody had heard of you. Paul paid extra for that."
+            : "Paul knows your face now.";
         if (titleText) titleText.text = "TO BE CONTINUED";
         if (summaryText)
             summaryText.text =
                 "\"Tomorrow. Without the old man.\"\n\n" +
                 rent + "\n" + lukaLine + "\n\n" +
-                "Trust with Dr. Hale: " + s.GetInt(StoryKeys.Trust) + " / 5      Heat: " + s.GetInt(StoryKeys.Heat) + " / 5\n\n" +
+                "Trust with Dr. Hale: " + trust + " / 5   —   " + trustLine + "\n" +
+                "Heat: " + heat + " / 5   —   " + heatLine + "\n\n" +
                 "<size=80%><color=#A0A0A0>Jay has his rent. What he no longer has is a simple answer:\nwhose career is this?</color></size>";
         if (mainMenuButton) { mainMenuButton.onClick.AddListener(LevelTransitionManager.ToMainMenu); mainMenuButton.Select(); }
         if (quitButton) quitButton.onClick.AddListener(LevelTransitionManager.Quit);

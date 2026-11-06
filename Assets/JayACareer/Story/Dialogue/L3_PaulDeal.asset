@@ -40,14 +40,62 @@ MonoBehaviour:
       meet me.
     conditions: []
   - speaker: {fileID: 11400000, guid: aae13fe32c7817f42bcaa93cd894d3a7, type: 2}
-    text: Two hundred, for the carton. And something else. For you.
+    text: Your name reached me twice this week, Jay. Loud men cost me money. One-fifty
+      for the carton.
+    conditions:
+    - type: 2
+      key: heat
+      intValue: 3
+      textValue: 
+  - speaker: {fileID: 11400000, guid: aae13fe32c7817f42bcaa93cd894d3a7, type: 2}
+    text: Two hundred for the carton.
+    conditions:
+    - type: 2
+      key: heat
+      intValue: 2
+      textValue: 
+    - type: 3
+      key: heat
+      intValue: 3
+      textValue: 
+  - speaker: {fileID: 11400000, guid: aae13fe32c7817f42bcaa93cd894d3a7, type: 2}
+    text: Nobody has mentioned you. Quiet men are rare. Two-fifty for the carton.
+    conditions:
+    - type: 3
+      key: heat
+      intValue: 2
+      textValue: 
+  - speaker: {fileID: 11400000, guid: aae13fe32c7817f42bcaa93cd894d3a7, type: 2}
+    text: And something else. For you.
     conditions: []
   - speaker: {fileID: 11400000, guid: 37fb9708d40dec141b361114c996e24e, type: 2}
     text: Something else?
     conditions: []
   choices:
+  - text: Take the $150.
+    conditions:
+    - type: 2
+      key: heat
+      intValue: 3
+      textValue: 
+    effects:
+    - type: 0
+      key: paulMet
+      intValue: 0
+      textValue: 
+    loopAction: 2
+    payment: 150
+    next: {fileID: 11400000, guid: 14e296763c0293e4296c1e58755ac1b5, type: 2}
   - text: Take the $200.
-    conditions: []
+    conditions:
+    - type: 2
+      key: heat
+      intValue: 2
+      textValue: 
+    - type: 3
+      key: heat
+      intValue: 3
+      textValue: 
     effects:
     - type: 0
       key: paulMet
@@ -55,6 +103,20 @@ MonoBehaviour:
       textValue: 
     loopAction: 2
     payment: 200
+    next: {fileID: 11400000, guid: 14e296763c0293e4296c1e58755ac1b5, type: 2}
+  - text: Take the $250.
+    conditions:
+    - type: 3
+      key: heat
+      intValue: 2
+      textValue: 
+    effects:
+    - type: 0
+      key: paulMet
+      intValue: 0
+      textValue: 
+    loopAction: 2
+    payment: 250
     next: {fileID: 11400000, guid: 14e296763c0293e4296c1e58755ac1b5, type: 2}
   - text: '"What do you want with Hale?"'
     conditions: []

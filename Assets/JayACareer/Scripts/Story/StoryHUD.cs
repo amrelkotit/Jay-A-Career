@@ -123,7 +123,7 @@ public class StoryHUD : MonoBehaviour
             bool rentCovered = cash >= StoryKeys.RentDue;
             cashText.text = "$" + cash + "  <size=70%><color=" + (rentCovered ? "#9BE39B" : "#E8B36A") + ">/ $" + StoryKeys.RentDue + " rent</color></size>";
         }
-        if (dayText) dayText.text = "DAY " + Mathf.Max(1, s.GetInt(StoryKeys.Day)) + " / 3";
+        if (dayText) dayText.text = "DAY " + Mathf.Max(1, s.GetInt(StoryKeys.Day)) + " / " + StoryKeys.TotalDays;
         if (trustFill) trustFill.fillAmount = s.GetInt(StoryKeys.Trust) / 5f;
         if (heatFill) heatFill.fillAmount = s.GetInt(StoryKeys.Heat) / 5f;
     }

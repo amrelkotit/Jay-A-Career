@@ -39,9 +39,13 @@ MonoBehaviour:
     loopAction: 2
     payment: 100
     next: {fileID: 11400000, guid: 6ebd5ed141d169f4ca14693675ade2cb, type: 2}
-  - text: '"Who else buys from Hale?"'
+  - text: '"Who else buys from Hale?" (people notice questions: Heat +1)'
     conditions: []
-    effects: []
+    effects:
+    - type: 2
+      key: heat
+      intValue: 1
+      textValue: 
     loopAction: 0
     payment: 0
     next: {fileID: 11400000, guid: cc892cf7dad42dd48840a2649668c1d4, type: 2}

@@ -43,6 +43,7 @@ public class StoryCondition
     public static StoryCondition Text(string key, string value) => new StoryCondition(StoryConditionType.TextEquals, key, 0, value);
     public static StoryCondition NotText(string key, string value) => new StoryCondition(StoryConditionType.TextNotEquals, key, 0, value);
     public static StoryCondition AtLeast(string key, int value) => new StoryCondition(StoryConditionType.IntAtLeast, key, value);
+    public static StoryCondition Below(string key, int value) => new StoryCondition(StoryConditionType.IntBelow, key, value);
 
     public bool IsMet(StoryStateManager state)
     {
@@ -146,6 +147,7 @@ public static class StoryKeys
     public const string IntroSeen = "introSeen", BriefingDone = "briefingDone", BadgeFound = "badgeFound",
         CartonSealed = "cartonSealed", LeoPaid = "leoPaid", Act1Complete = "act1Complete",
         LukaWarned = "lukaWarned", LukaDealt = "lukaDealt", PhoneNoteFound = "phoneNoteFound", HaleReacted = "haleReacted",
+        HaleEvening = "haleEvening", ToldHale = "toldHale", HaleGift = "haleGift",
         Act2Complete = "act2Complete", HaleMissingSeen = "haleMissingSeen", NotesFound = "notesFound",
         ConfessionHeard = "confessionHeard", PaulMet = "paulMet", EndingSeen = "endingSeen";
     // Loop mirror flags
@@ -153,4 +155,7 @@ public static class StoryKeys
         WorkspaceClean = "loop.cleaned";
     // Rent target from the story bible
     public const int RentDue = 400;
+    public const int TotalDays = 2;          // Day 1: Leo (morning) and Luka (evening); Day 2: Paul
+    // Thresholds at which Trust and Heat change what characters say and pay.
+    public const int TrustHigh = 4, TrustLow = 2, HeatHigh = 3, HeatLow = 2;
 }

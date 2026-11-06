@@ -84,11 +84,11 @@ public class Assignment3AutoPilot : MonoBehaviour
         yield return WaitScene(LevelTransitionManager.Level1, 60);
         yield return Level1();
         yield return WaitScene(LevelTransitionManager.LoadingScene, 30, true);
-        if (SceneManager.GetActiveScene().name == LevelTransitionManager.LoadingScene) { Beat("Loading screen: Day 2 recap"); yield return Pause(1.2f, .1f); Shot("12_loading_day2"); }
+        if (SceneManager.GetActiveScene().name == LevelTransitionManager.LoadingScene) { Beat("Loading screen: evening recap (same day)"); yield return Pause(1.2f, .1f); Shot("12_loading_day2"); }
         yield return WaitScene(LevelTransitionManager.Level2, 60);
         yield return Level2();
         yield return WaitScene(LevelTransitionManager.LoadingScene, 30, true);
-        if (SceneManager.GetActiveScene().name == LevelTransitionManager.LoadingScene) { Beat("Loading screen: Day 3 recap"); yield return Pause(1.2f, .1f); Shot("24_loading_day3"); }
+        if (SceneManager.GetActiveScene().name == LevelTransitionManager.LoadingScene) { Beat("Loading screen: Day 2 recap"); yield return Pause(1.2f, .1f); Shot("24_loading_day3"); }
         yield return WaitScene(LevelTransitionManager.Level3, 60);
         yield return Level3();
         yield return WaitScene(LevelTransitionManager.EndingScene, 90);
@@ -140,14 +140,20 @@ public class Assignment3AutoPilot : MonoBehaviour
         yield return Go("BEDDESK");
         yield return Collect("bills", null);
         yield return Clean();
-        yield return Sleep("L1");
-        yield return WaitFor(() => s.GetFlag(StoryKeys.Act1Complete), 15, "Sleeping sets act1Complete");
+        yield return Go("HALE");
+        Beat("Hale announces a second buyer tonight");
+        yield return Talk(G.hale, "09_hale_evening");
+        Check(s.GetFlag(StoryKeys.HaleEvening), "Hale's evening news sets haleEvening (two customers on Day 1)");
+        yield return Pause(1.8f, .3f);
+        yield return FlushDialogue("09_end_of_morning");
+        yield return WaitFor(() => s.GetFlag(StoryKeys.Act1Complete), 15, "Jay's reflection sets act1Complete (no sleep between the two deals)");
     }
 
     // ================================================================== LEVEL 2
     IEnumerator Level2()
     {
-        yield return LevelStart("Day 2 chapter");
+        yield return LevelStart("Day 1 evening chapter");
+        Check(StoryStateManager.Instance.GetInt(StoryKeys.Day) == 1, "Level 2 is still Day 1 (second customer the same day)");
         var s = StoryStateManager.Instance;
         Check(s.GetInt(StoryKeys.Cash) == 150 && s.GetFlag(StoryKeys.Act1Complete), "Level 1 progress carried into Level 2");
         Shot("13_day2_afternoon");
@@ -164,9 +170,10 @@ public class Assignment3AutoPilot : MonoBehaviour
         yield return Talk(G.customer, "16_luka_choice");
         Check(s.GetText(StoryKeys.LukaDeal) == branch, "lukaDeal recorded as " + branch);
         int cash = s.GetInt(StoryKeys.Cash), trust = s.GetInt(StoryKeys.Trust), heat = s.GetInt(StoryKeys.Heat);
-        if (branch == "accepted") Check(cash == 300 && trust == 2 && heat == 1, "Accept: $300, trust 2, heat 1 (got $" + cash + ", " + trust + ", " + heat + ")");
-        if (branch == "pushed") Check(cash == 400 && trust == 1 && heat == 2, "Push: $400, trust 1, heat 2 (got $" + cash + ", " + trust + ", " + heat + ")");
-        if (branch == "refused") Check(cash == 150 && trust == 4 && heat == 1 && G.Loop.Current == JayDailyLoop.Stage.Return, "Refuse: $150, trust 4, heat 1, carton must go back (got $" + cash + ", " + trust + ", " + heat + ")");
+        // Heat already 1 from asking Leo about other buyers.
+        if (branch == "accepted") Check(cash == 300 && trust == 2 && heat == 2, "Accept: $300, trust 2, heat 2 (got $" + cash + ", " + trust + ", " + heat + ")");
+        if (branch == "pushed") Check(cash == 400 && trust == 1 && heat == 3, "Push: $400, trust 1, heat 3 (got $" + cash + ", " + trust + ", " + heat + ")");
+        if (branch == "refused") Check(cash == 150 && trust == 4 && heat == 2 && G.Loop.Current == JayDailyLoop.Stage.Return, "Refuse: $150, trust 4, heat 2, carton must go back (got $" + cash + ", " + trust + ", " + heat + ")");
         Shot("17_status_after_choice");
 
         Beat("Clue: the \"P.\" message on Luka's phone");
@@ -177,8 +184,12 @@ public class Assignment3AutoPilot : MonoBehaviour
         if (branch == "refused") yield return ReturnCarton();
         yield return Go("HALE");
         Beat("Hale reacts to the choice");
+        int trustBefore = s.GetInt(StoryKeys.Trust);
         yield return Talk(G.hale, "19_hale_reaction");
         Check(s.GetFlag(StoryKeys.HaleReacted), "Hale's reaction sets haleReacted");
+        bool tells = branch != "pushed";
+        Check(s.GetInt(StoryKeys.Trust) == trustBefore + (tells ? 1 : -1) && s.GetFlag(StoryKeys.ToldHale) == tells,
+            (tells ? "Telling Hale about \"P.\" raises Trust" : "Keeping \"P.\" from Hale lowers Trust") + " (trust " + s.GetInt(StoryKeys.Trust) + ")");
         yield return Clean();
         yield return Sleep("L2");
         yield return WaitFor(() => s.GetFlag(StoryKeys.Act2Complete), 15, "Sleeping sets act2Complete");
@@ -187,12 +198,13 @@ public class Assignment3AutoPilot : MonoBehaviour
     // ================================================================== LEVEL 3
     IEnumerator Level3()
     {
-        yield return LevelStart("Day 3 chapter");
+        yield return LevelStart("Day 2 chapter");
+        Check(StoryStateManager.Instance.GetInt(StoryKeys.Day) == 2, "Level 3 is Day 2");
         var s = StoryStateManager.Instance;
         Check(s.GetText(StoryKeys.LukaDeal) == branch, "Choice carried into Level 3");
         Check(!G.hale.gameObject.activeInHierarchy && !G.customer.gameObject.activeInHierarchy, "Hale and Paul are absent at the start of the night");
         Check(!G.lighting.WorkspaceLightsOn && !Playing("LabHum"), "Hale's lab is dark and silent");
-        Check(PlayerPrefs.GetInt(MainMenuController.ChapterKey, 1) >= 3, "Day 3 is unlocked in the chapter list");
+        Check(PlayerPrefs.GetInt(MainMenuController.ChapterKey, 1) >= 3, "All three chapters are unlocked in the chapter list");
         yield return FlushDialogue("25_jay_wakes");
         Beat("Jay walks to the dark lab");
         yield return Go("LAB_A");
@@ -209,17 +221,22 @@ public class Assignment3AutoPilot : MonoBehaviour
         yield return WaitFor(() => G.lighting.WorkspaceLightsOn && Playing("LabHum"), 4, "Hale's return switches the lab lights (and their hum) back on");
         yield return Go("HALE3");
         Beat("Hale's confession (varies with the Luka choice)");
+        int cashBeforeConfession = s.GetInt(StoryKeys.Cash);
+        bool highTrust = s.GetInt(StoryKeys.Trust) >= StoryKeys.TrustHigh;
         yield return Talk(G.hale, "29_confession");
         Check(s.GetFlag(StoryKeys.ConfessionHeard), "Confession sets confessionHeard");
+        if (highTrust) Check(s.GetFlag(StoryKeys.HaleGift) && s.GetInt(StoryKeys.Cash) == cashBeforeConfession + 100, "High Trust: Hale gives Jay $100 for the rent");
+        else Check(!s.GetFlag(StoryKeys.HaleGift) && s.GetInt(StoryKeys.Cash) == cashBeforeConfession, "Trust below 4: no money from Hale");
         yield return WaitFor(() => G.customer.gameObject.activeInHierarchy, 6, "Paul arrives after the confession");
         if (G.lighting.FlashlightOn) G.lighting.ToggleFlashlight();
         yield return Prepare();
         yield return Deliver();
         Shot("30_paul_headlights");
         Beat("Paul's deal and offer");
-        int before = s.GetInt(StoryKeys.Cash);
+        int before = s.GetInt(StoryKeys.Cash), heatNow = s.GetInt(StoryKeys.Heat);
+        int price = heatNow >= StoryKeys.HeatHigh ? 150 : heatNow >= StoryKeys.HeatLow ? 200 : 250;
         yield return Talk(G.customer, "31_paul");
-        Check(s.GetFlag(StoryKeys.PaulMet) && s.GetInt(StoryKeys.Cash) == before + 200, "Paul pays $200 and sets paulMet");
+        Check(s.GetFlag(StoryKeys.PaulMet) && s.GetInt(StoryKeys.Cash) == before + price, "Paul's price follows Heat " + heatNow + ": pays $" + price + " (got $" + (s.GetInt(StoryKeys.Cash) - before) + ")");
         Beat("Closing cutscene: the card and Hale in the doorway");
         yield return WaitFor(() => CutsceneController.IsPlaying, 8, "Ending cutscene starts after Paul's conversation");
         yield return CutsceneShots("32_ending", 3);
@@ -285,6 +302,7 @@ public class Assignment3AutoPilot : MonoBehaviour
             case "L1_LeoDeal": return 1;                 // ask who else buys from Hale first
             case "L2_LukaDeal": return branch == "pushed" ? 1 : branch == "refused" ? 2 : 0;
             case "L3_PaulDeal": return 1;                // ask what he wants with Hale
+            case "L2_HaleReaction": return branch == "pushed" ? 1 : 0;   // pushed branch also hides "P." from Hale (low Trust)
             default: return 0;
         }
     }

@@ -15,6 +15,21 @@ MonoBehaviour:
   id: L3_HaleConfession
   lines:
   - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
+    text: You've been straight with me since the first morning. So I'll be straight
+      with you.
+    conditions:
+    - type: 2
+      key: trust
+      intValue: 4
+      textValue: 
+  - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
+    text: I don't trust you, Jay. But you're all I have left tonight.
+    conditions:
+    - type: 3
+      key: trust
+      intValue: 2
+      textValue: 
+  - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
     text: You read them. Of course you read them. I would have.
     conditions: []
   - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
@@ -58,7 +73,42 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
     text: Seal it. Carry it. Be polite. Then go home and forget his face.
     conditions: []
-  choices: []
+  - speaker: {fileID: 11400000, guid: b4a5171808e189648a6c629a843d67e0, type: 2}
+    text: And take this. A hundred, for your rent. Don't argue with me.
+    conditions:
+    - type: 2
+      key: trust
+      intValue: 4
+      textValue: 
+  choices:
+  - text: Take Hale's $100.
+    conditions:
+    - type: 2
+      key: trust
+      intValue: 4
+      textValue: 
+    effects:
+    - type: 2
+      key: cash
+      intValue: 100
+      textValue: 
+    - type: 0
+      key: haleGift
+      intValue: 0
+      textValue: 
+    loopAction: 0
+    payment: 0
+    next: {fileID: 0}
+  - text: '"Keep it. You''ll need it more than me."'
+    conditions:
+    - type: 2
+      key: trust
+      intValue: 4
+      textValue: 
+    effects: []
+    loopAction: 0
+    payment: 0
+    next: {fileID: 0}
   onComplete:
   - type: 0
     key: confessionHeard

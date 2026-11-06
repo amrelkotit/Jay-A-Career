@@ -61,6 +61,15 @@ public static class Assignment3Content
         return d;
     }
 
+    /// <summary>Paul's price follows Heat: quiet work pays $250, normal $200, loud work only $150.</summary>
+    static void PaulPrices(DialogueData d, DialogueData next)
+    {
+        d.Choice("Take the $150.", DialogueLoopAction.SellPackage, 150, next, E.Set(StoryKeys.PaulMet)).conditions.Add(C.AtLeast(StoryKeys.Heat, StoryKeys.HeatHigh));
+        var mid = d.Choice("Take the $200.", DialogueLoopAction.SellPackage, 200, next, E.Set(StoryKeys.PaulMet));
+        mid.conditions.Add(C.AtLeast(StoryKeys.Heat, StoryKeys.HeatLow)); mid.conditions.Add(C.Below(StoryKeys.Heat, StoryKeys.HeatHigh));
+        d.Choice("Take the $250.", DialogueLoopAction.SellPackage, 250, next, E.Set(StoryKeys.PaulMet)).conditions.Add(C.Below(StoryKeys.Heat, StoryKeys.HeatLow));
+    }
+
     static DialogueChoice Choice(this DialogueData d, string text, DialogueLoopAction action = DialogueLoopAction.None, int payment = 0, DialogueData next = null, params E[] effects)
     {
         var c = new DialogueChoice { text = text, loopAction = action, payment = payment, next = next, effects = new List<E>(effects) };
@@ -76,7 +85,7 @@ public static class Assignment3Content
         AssetDatabase.Refresh();
         all.Clear();
 
-        Jay = Profile("Jay", "Jay", "#8FC7FF", "23, broke, three days from eviction. The player.");
+        Jay = Profile("Jay", "Jay", "#8FC7FF", "23, broke, two days from eviction. The player.");
         Hale = Profile("DrHale", "Dr. Hale", "#E9C46A", "58, former senior chemist at Corvane. Precise, protective, secretive.");
         Leo = Profile("Leo", "Leo", "#9BE39B", "Nervous small-time buyer. Pays in small bills, talks too much.");
         Luka = Profile("Luka", "Luka", "#F28C8C", "Sharp, impatient middleman who collects for someone bigger.");
@@ -93,12 +102,12 @@ public static class Assignment3Content
     {
         D("L1_HaleBriefing", true)
             .L(Hale, "You're Jay. You're early. Good. Nobody in this town is early.")
-            .L(Jay, "You said there was work. My rent's due in three days.")
+            .L(Jay, "You said there was work. My rent's due in two days.")
             .L(Hale, "The work is simple. You seal the order at the preparation bench, carry it across the road to the counter, and take the money.")
             .L(Hale, "Then you come back, clean the bench, and go home. You do not open the cartons. You do not talk about the cartons.")
             .L(Jay, "What's in them?")
             .L(Hale, "An order. That is all it ever needs to be.")
-            .L(Hale, "Today's buyer is Leo. He is nervous, he talks too much, and he pays. Don't keep him waiting.")
+            .L(Hale, "Two buyers today. Leo this morning: nervous, talks too much, pays. The second one comes tonight.")
             .L(Hale, "And Jay... my desk is not part of the job.");
         var briefing = Get("L1_HaleBriefing");
         briefing.loopActionOnComplete = DialogueLoopAction.CompleteBriefing;
@@ -112,7 +121,7 @@ public static class Assignment3Content
 
         D("L1_BadgeThought").L(Jay, "\"E. Hale, Senior Chemist.\" So what is a senior chemist doing in a shed in Calder Flats?");
         D("L1_CertificateThought").L(Jay, "A safety award. Turned face-down, glass cracked. Somebody didn't want to look at this.");
-        D("L1_BillsThought").L(Jay, "Electricity, overdue. Water, overdue. And three red circles on the calendar. Great.");
+        D("L1_BillsThought").L(Jay, "Electricity, overdue. Water, overdue. And two red circles on the calendar. Great.");
 
         var after = D("L1_LeoAfter").L(Leo, "Pleasure. Tell Hale I said... nothing. Tell him nothing. Bye.");
         var hint = D("L1_LeoHint")
@@ -128,25 +137,32 @@ public static class Assignment3Content
             .L(Jay, "A hundred, right? That's what he said.")
             .L(Leo, "Yeah, yeah, a hundred, it's all here. Small bills, sorry. It's how they pay me.");
         deal.Choice("Count the money and hand over the carton.", DialogueLoopAction.SellPackage, 100, after, E.Set(StoryKeys.LeoPaid));
-        deal.Choice("\"Who else buys from Hale?\"", DialogueLoopAction.None, 0, hint);
+        deal.Choice("\"Who else buys from Hale?\" (people notice questions: Heat +1)", DialogueLoopAction.None, 0, hint, E.Add(StoryKeys.Heat, 1));
 
         D("L1_LeoWaiting").L(Leo, "My ride's late. Paul's people are never late. ...Forget I said that.");
         D("L1_LeoBefore").L(Leo, "Put it on the counter first. Nothing goes hand to hand. Hale's rule, not mine.");
 
-        D("L1_EndOfDay", true)
+        var evening = D("L1_HaleEvening", true)
+            .L(Hale, "Clean. Good. Don't go home yet, Jay. The second order is tonight.")
+            .L(Jay, "Who's buying?")
+            .L(Hale, "Someone I'd rather not sell to. Come back when the street lights come on. We'll talk before he gets here.");
+        evening.onComplete.Add(E.Set(StoryKeys.HaleEvening));
+
+        var reflection = D("L1_EndOfDay", true)
             .L(Jay, "A hundred bucks for carrying a box across a road.")
-            .L(Jay, "Nobody makes money that easy. Nobody honest, anyway.");
+            .L(Jay, "Nobody makes money that easy. Nobody honest, anyway. And Hale is nervous about tonight.");
+        reflection.onComplete.Add(E.Set(StoryKeys.Act1Complete));
     }
 
     // ================================================================== LEVEL 2 — The Middleman
     static void BuildLevel2()
     {
         var warn = D("L2_HaleWarning", true)
-            .L(Hale, "Before you seal anything: today is different.")
-            .L(Hale, "Today's buyer is Luka. Luka is not a customer, Jay. Luka collects for someone else.")
+            .L(Hale, "Before you seal anything: tonight is different.")
+            .L(Hale, "Tonight's buyer is Luka. Luka is not a customer, Jay. Luka collects for someone else.")
             .L(Jay, "Collects for who?")
             .L(Hale, "For people who notice things. He'll offer you a price. He'll expect you to argue, and he'll expect you to lose.")
-            .L(Hale, "Take his price, push for more, or send him away. It's your counter today. I want to see what you do with it.")
+            .L(Hale, "Take his price, push for more, or send him away. It's your counter tonight. I want to see what you do with it.")
             .L(Jay, "And if I get it wrong?")
             .L(Hale, "Then we both find out what kind of man I hired.");
         warn.loopActionOnComplete = DialogueLoopAction.CompleteBriefing;
@@ -193,10 +209,17 @@ public static class Assignment3Content
             .L(Hale, "You made us visible, Jay. Do you understand what that means out here? It means somebody writes our names down.", push)
             .L(Hale, "You sent Luka away.", refuse)
             .L(Hale, "...That took more nerve than you know. More than I had at your age.", refuse)
-            .L(Jay, "Luka got a message. From someone who signs as \"P.\"", C.Flag(StoryKeys.PhoneNoteFound))
-            .L(Hale, "Don't say that letter inside my lab again. Clean the bench. Go home.", C.Flag(StoryKeys.PhoneNoteFound))
             .L(Hale, "Clean up. Go home. Tomorrow will be... different.", C.NotFlag(StoryKeys.PhoneNoteFound));
         reaction.onComplete.Add(E.Set(StoryKeys.HaleReacted));
+        var told = D("L2_HaleTold")
+            .L(Jay, "Luka got a message on his phone. From someone who signs as \"P.\"")
+            .L(Hale, "...Thank you for telling me. Don't say that letter inside my lab again. Clean the bench. Go home.");
+        var kept = D("L2_HaleNotTold")
+            .L(Jay, "Nothing else happened. He paid and left.")
+            .L(Hale, "Nothing else. Hm. You looked at his phone, Jay. I watched you do it. Clean the bench. Go home.");
+        var tell = reaction.Choice("Tell Hale about the message from \"P.\" (Trust +1)", DialogueLoopAction.None, 0, told, E.Add(StoryKeys.Trust, 1), E.Set(StoryKeys.ToldHale));
+        var keep = reaction.Choice("Keep it to yourself. (Trust −1)", DialogueLoopAction.None, 0, kept, E.Add(StoryKeys.Trust, -1));
+        tell.conditions.Add(C.Flag(StoryKeys.PhoneNoteFound)); keep.conditions.Add(C.Flag(StoryKeys.PhoneNoteFound));
 
         D("L2_EndOfDay", true)
             .L(Jay, "\"P.\" Leo went pale saying that name. Hale went pale hearing it.", C.Flag(StoryKeys.PhoneNoteFound))
@@ -208,7 +231,7 @@ public static class Assignment3Content
     static void BuildLevel3()
     {
         D("L3_JayWakes", true)
-            .L(Jay, "Midnight, and Hale's lab is dark. Three days, and I've never seen his lights off.")
+            .L(Jay, "Hale didn't call all day. Now it's midnight, the rent is due at dawn, and his lab is dark.")
             .L(Jay, "And that car has been parked out there for an hour.");
         D("L3_LabEmpty", true)
             .L(Jay, "Dr. Hale? ...His coat is still on the hook. He never goes anywhere without that coat.")
@@ -222,6 +245,8 @@ public static class Assignment3Content
         var push = C.Text(StoryKeys.LukaDeal, "pushed");
         var refuse = C.Text(StoryKeys.LukaDeal, "refused");
         var confession = D("L3_HaleConfession", true)
+            .L(Hale, "You've been straight with me since the first morning. So I'll be straight with you.", C.AtLeast(StoryKeys.Trust, StoryKeys.TrustHigh))
+            .L(Hale, "I don't trust you, Jay. But you're all I have left tonight.", C.Below(StoryKeys.Trust, StoryKeys.TrustLow))
             .L(Hale, "You read them. Of course you read them. I would have.")
             .L(Hale, "Corvane. Eleven years ago a reactor line failed. A young engineer made the mistake. I signed the report that said it was mine.")
             .L(Hale, "They took my licence and gave me a settlement I could never pay. Paul bought my debt. I have been paying him in cartons ever since.")
@@ -230,8 +255,12 @@ public static class Assignment3Content
             .L(Hale, "And yesterday you said no to Luka. I hired you so there would be someone between Paul and me. I never meant it to be someone braver than me.", refuse)
             .L(Jay, "So why did you hire me?")
             .L(Hale, "Because tonight's order goes out in person. Paul is coming himself.")
-            .L(Hale, "Seal it. Carry it. Be polite. Then go home and forget his face.");
+            .L(Hale, "Seal it. Carry it. Be polite. Then go home and forget his face.")
+            .L(Hale, "And take this. A hundred, for your rent. Don't argue with me.", C.AtLeast(StoryKeys.Trust, StoryKeys.TrustHigh));
         confession.loopActionOnComplete = DialogueLoopAction.CompleteBriefing;
+        var gift = confession.Choice("Take Hale's $100.", DialogueLoopAction.None, 0, null, E.Add(StoryKeys.Cash, 100), E.Set(StoryKeys.HaleGift));
+        var noGift = confession.Choice("\"Keep it. You'll need it more than me.\"", DialogueLoopAction.None, 0, null);
+        gift.conditions.Add(C.AtLeast(StoryKeys.Trust, StoryKeys.TrustHigh)); noGift.conditions.Add(C.AtLeast(StoryKeys.Trust, StoryKeys.TrustHigh));
         confession.onComplete.Add(E.Set(StoryKeys.ConfessionHeard));
 
         D("L3_HaleWork").L(Hale, "Seal it, Jay. Before he gets impatient. Men like Paul are very patient right up until they aren't.");
@@ -241,16 +270,19 @@ public static class Assignment3Content
         var aboutHale = D("L3_PaulAboutHale")
             .L(Paul, "Hale owes me. Hale will always owe me. That isn't about you.")
             .L(Paul, "Unless you want it to be.");
-        aboutHale.Choice("Take the $200.", DialogueLoopAction.SellPackage, 200, take, E.Set(StoryKeys.PaulMet));
+        PaulPrices(aboutHale, take);
 
         var deal = D("L3_PaulDeal", true)
             .L(Paul, "Luka says you're easy to work with. Easy is useful.", accept)
             .L(Paul, "You squeezed my man for an extra hundred. Bold. Expensive.", push)
             .L(Paul, "The kid who said no to Luka. I respect a man who knows his price.", refuse)
             .L(Paul, "I'm Paul. You've heard the name, I think. Most people hear it before they meet me.")
-            .L(Paul, "Two hundred, for the carton. And something else. For you.")
+            .L(Paul, "Your name reached me twice this week, Jay. Loud men cost me money. One-fifty for the carton.", C.AtLeast(StoryKeys.Heat, StoryKeys.HeatHigh))
+            .L(Paul, "Two hundred for the carton.", C.AtLeast(StoryKeys.Heat, StoryKeys.HeatLow), C.Below(StoryKeys.Heat, StoryKeys.HeatHigh))
+            .L(Paul, "Nobody has mentioned you. Quiet men are rare. Two-fifty for the carton.", C.Below(StoryKeys.Heat, StoryKeys.HeatLow))
+            .L(Paul, "And something else. For you.")
             .L(Jay, "Something else?");
-        deal.Choice("Take the $200.", DialogueLoopAction.SellPackage, 200, take, E.Set(StoryKeys.PaulMet));
+        PaulPrices(deal, take);
         deal.Choice("\"What do you want with Hale?\"", DialogueLoopAction.None, 0, aboutHale);
     }
 }
